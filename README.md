@@ -1,18 +1,21 @@
 # Night's Dotfiles!!11!
 ## What I got
-- Bulk file editing with scripts written in C++ (might move from dirent as the filesystem handler to the new in C++17)
+- Bulk file editing with scripts written in C++ (might move from dirent to the new native filesystem handler in C++17)
     - Prefix all in current directory
         - Names can contain anything (Be a little bit careful here.....)
         - Spaces will be joined
+        - Use example: `$ prefixAllHere All my files here are now prefixed with this long obnoxious name`
     - Suffix all in current directory 
         - Names can contain anything (Be a little bit careful here.....)
         - Spaces will be joined
         - Puts name before file extension
+        - Use example: `$ suffixAllHere All files now have this suffix`
     - Rename all in current directory
         - Names can contain anything (Be a little bit careful here.....)
         - Spaces will be joined
         - --silent flag for peace and quiet
         - Puts name before any file extension
+        - Use example: `$ renameAllHere --silent NewNamedFiles`
 - Some nice aliases
 - A nice .vimrc that uses YouCompleteMe (not clean yet but will be soon when I figure out how to use Unity with Vim)
 
