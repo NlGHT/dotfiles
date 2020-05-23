@@ -4,18 +4,20 @@
     - Prefix all in current directory
         - Names can contain anything (Be a little bit careful here.....)
         - Spaces will be joined
-        - Use example: `$ prefixAllHere All my files here are now prefixed with this long obnoxious name`
+        - --silent flag for peace and quiet
+        - Use example: `$ prefixAllHere [--silent] {New prefix for all files}`
     - Suffix all in current directory 
         - Names can contain anything (Be a little bit careful here.....)
         - Spaces will be joined
+        - --silent flag for peace and quiet
         - Puts name before file extension
-        - Use example: `$ suffixAllHere All files now have this suffix`
+        - Use example: `$ suffixAllHere [--silent] {New suffix for all files}`
     - Rename all in current directory
         - Names can contain anything (Be a little bit careful here.....)
         - Spaces will be joined
         - --silent flag for peace and quiet
         - Puts name before any file extension
-        - Use example: `$ renameAllHere --silent NewNamedFiles`
+        - Use example: `$ renameAllHere [--silent] {New name for files}`
 - Some nice aliases
 - A nice .vimrc that uses YouCompleteMe (not clean yet but will be soon when I figure out how to use Unity with Vim)
 
