@@ -148,10 +148,14 @@ ruled.client.connect_signal("request::rules", function()
 		rule_any   = {  
 			class = {
 				"Subl3",
-				"code-oss"
+				"code-oss",
+                "nvim",
+                "NeoVim",
+                "vim",
+				"jetbrains-rider"
 			},
 			name  = {
-				"FreeOffice"
+				"LibreOffice Writer"
 			}
 		},
 		properties = { 
@@ -218,7 +222,8 @@ ruled.client.connect_signal("request::rules", function()
 		rule_any   = {  
 			class = {
                 "blender",
-				"photopea-desktop"
+				"photopea-desktop",
+                "krita"
 			},
         name = { "Photopea Desktop" }
 		},
@@ -229,11 +234,11 @@ ruled.client.connect_signal("request::rules", function()
 
 	-- Sandboxes
 	ruled.client.append_rule {
-		id         = "sandbox",
+		id         = "reaper",
 		rule_any   = {  
 			class = {
-				"VirtualBox Manage",
-				"VirtualBox Machine"
+				"reaper",
+				"UnityHub"
 			}
 		},
 		properties = { 
@@ -243,11 +248,12 @@ ruled.client.connect_signal("request::rules", function()
 
 	-- IDEs and Tools
 	ruled.client.append_rule {
-		id         = "ide",
+		id         = "social",
 		rule_any   = {  
 			class = {
-				"UnityHub",
-				"jetbrains-rider"
+                "discord",
+                "caprine",
+                "whatsdesk"
 			}
 		},
 		properties = { 

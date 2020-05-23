@@ -106,8 +106,8 @@ autocmd FileType py imap <F5> <Esc>:w<CR>:!clear;python %<CR>
 autocmd FileType py map <F5> <Esc>:w<CR>:!clear;python %<CR>
 
 " For basic C++ running
-autocmd FileType cpp imap <F5> <Esc>:w<CR>:!clear;g++ %<CR>
-autocmd FileType cpp map <F5> <Esc>:w<CR>:!clear;make %<CR>
+autocmd FileType cpp imap <F5> <Esc>:w<CR>:!clear;g++ % -o %:t:r<CR>
+autocmd FileType cpp map <F5> <Esc>:w<CR>:!clear;g++ % -o %:t:r<CR>
 
 " EEL File Type
 " au BufNewFile,BufRead *.eel setfiletype eel2
