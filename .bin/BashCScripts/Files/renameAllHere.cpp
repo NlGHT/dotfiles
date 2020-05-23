@@ -76,13 +76,15 @@ int createName(const unsigned int argStartPosition, int* argc, char* argv[], con
             inputString.append(" ").append(argv[i]);
         int renameRetVal = renameInDir(".", inputString, bitArgs);
         if (renameRetVal == -1) {
-            std::cout << "Directory not found." << std::endl;
+            if ((bitArgs & 1) == 0)
+                std::cout << "Directory not found." << std::endl;
             return 1;
         }
     } else {
         int renameRetVal = renameInDir(".", argv[argStartPosition], bitArgs);
         if (renameRetVal == -1) {
-            std::cout << "Directory not found." << std::endl;
+            if ((bitArgs & 1) == 0)
+                std::cout << "Directory not found." << std::endl;
             return 1;
         }
     }
@@ -130,7 +132,8 @@ int main(int argc, char* argv[]) {
 	} else {
         int bitArgs = checkArgs(&argc, argv);
         if ((bitArgs & (0x2^10)) > 0) {
-            std::cout << "Only options given" << std::endl;
+            if ((bitArgs & 1) == 0)
+                std::cout << "Only options given" << std::endl;
             return 1;
         }
 
