@@ -1,6 +1,6 @@
 # NVIDIA and Optimus Manager
 alias pro='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia'
-alias mb='sudo su -c "echo 12 >/sys/class/backlight/intel_backlight/brightness"'
+alias mb='sudo su -c "echo 12 >/sys/class/backlight/intel_backlight/brightness"' # Go to minimum brightness
 alias nv='optimus-manager --switch nvidia'
 alias intl='optimus-manager --switch nvidia'
 
@@ -16,8 +16,8 @@ alias usnews='curl us.getnews.tech'
 
 # All edits
 alias editAlacritty='nvim ~/.config/alacritty/alacritty.yml'
-alias editAwesome='cd ~/.config/awesome/ && vim'
-alias editRedshift='vim ~/.config/redshift.conf'
+alias editAwesome='cd ~/.config/awesome/ && nvim'
+alias editRedshift='nvim ~/.config/redshift.conf'
 alias editAliases='nvim ~/.bash_aliases'
 alias editBashRC='nvim ~/.bashrc'
 alias editVim='nvim ~/.vimrc'
@@ -27,7 +27,7 @@ alias td='nvim ~/ToDoList.txt'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias x='exit'
 alias reload='source ~/.bashrc'
-alias delOrphans='sudo pacman -Rns $(pacman -Qtdq)'
+alias delOrphans='sudo pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
 
 # WIFI
 alias getRegularWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/limit56farce59umbra.nmconnection'
@@ -45,4 +45,4 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Get all aliases
 alias aliases='sed -n -e :a -e "1,4!{P;N;D;};N;ba" ~/.bash_aliases'
-alias aliasCommand='tail -n 3 ~/.bash_aliases'
+alias aliasCommand='tail -n 3 ~/.bash_aliases' # Get the get aliases command
