@@ -17,7 +17,7 @@ return {
 		power_manager 									= 'xfce4-power-manager',								-- Power manager
 		package_manager 								= 'pamac-manager',											-- GUI Package manager
 		lock 														= 'awesome-client "_G.show_lockscreen()"',  	-- Lockscreen
-		quake 													= 'kitty --name QuakeTerminal',       			    -- Quake-like Terminal
+		quake 													= 'alacritty --name QuakeTerminal',       			    -- Quake-like Terminal
 
 		rofiglobal												= 'rofi -dpi ' .. screen.primary.dpi .. 
 																	    ' -show "Global Search" -modi "Global Search":' .. config_dir .. 

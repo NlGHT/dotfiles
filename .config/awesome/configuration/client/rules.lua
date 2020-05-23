@@ -150,7 +150,7 @@ ruled.client.connect_signal("request::rules", function()
 				"Subl3",
 				"code-oss",
                 "nvim",
-                "NeoVim",
+                "Neovim",
                 "vim",
 				"jetbrains-rider"
 			},
