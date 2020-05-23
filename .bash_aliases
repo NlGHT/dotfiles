@@ -30,7 +30,7 @@ alias reload='source ~/.bashrc'
 alias delOrphans='sudo pacman -Rns $(pacman -Qtdq)'
 
 # WIFI
-alias getHeleneWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/limit56farce59umbra.nmconnection'
+alias getRegularWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/limit56farce59umbra.nmconnection'
 
 # Instant CD's
 alias documents='cd ~/Documents'
