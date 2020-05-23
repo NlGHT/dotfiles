@@ -20,6 +20,11 @@
         - Use example: `$ renameAllHere [--silent] {New name for files}`
 - Some nice aliases
 - A nice .vimrc that uses YouCompleteMe (not clean yet but will be soon when I figure out how to use Unity with Vim)
+    - Plugged (for plugins)
+    - YouCompleteMe (for auto-complete)
+    - NERDTree (for file browser)
+    - NERDCommenter (for commenting with code)
+    - Lightline (for nicer UI)
 
 ## Apps
 - Terminal = Alacritty
