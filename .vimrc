@@ -72,14 +72,16 @@ map <Space> <Leader>
 
 " All YouCompleteMe keybinds
 nnoremap <leader>gg :YcmCompleter GoTo<CR>
-nnoremap <leader>gd  :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>gt :YcmCompleter GoToType<CR>
 nnoremap <leader>gi :YcmCompleter GetDoc<CR>
 nnoremap <leader>gf :YcmCompleter GoToImplementation<CR>
 nnoremap <leader>fi :YcmCompleter FixIt<CR>
-nnoremap <leader>rn :YcmCompleter RefactorRename<CR>
-let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>'] "Add enter to accept code completion
+nnoremap <leader>rn :YcmCompleter RefactorRename<CR> 
+" Need to fix this ^^^^^^^^^^^, need to have some way of entering the name
+" after RefactorRename
+let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>'] " Add enter to accept code completion
 
 " All NERDTree keybinds
 nnoremap <leader>n :NERDTreeToggle<CR>
@@ -102,10 +104,10 @@ nnoremap <CR> :noh<CR><CR>
 inoremap <C-H> <C-W>
 
 " For python running
-autocmd FileType py imap <F5> <Esc>:w<CR>:!clear;python %<CR>
-autocmd FileType py map <F5> <Esc>:w<CR>:!clear;python %<CR>
+autocmd FileType python imap <F5> <Esc>:w<CR>:!clear;python %<CR>
+autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python %<CR>
 
-" For basic C++ running
+" For basic C++ compiling
 autocmd FileType cpp imap <F5> <Esc>:w<CR>:!clear;g++ % -o %:t:r<CR>
 autocmd FileType cpp map <F5> <Esc>:w<CR>:!clear;g++ % -o %:t:r<CR>
 
