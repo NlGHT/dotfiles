@@ -21,10 +21,18 @@
 - Some nice aliases
 - A nice .vimrc that uses YouCompleteMe (not clean yet but will be soon when I figure out how to use Unity with Vim)
 
+## Apps
+- Terminal = Alacritty
+- File manager = Nautilus
+- Web browser = Brave
+- Text editor = NeoVim / Vim
+- Screenshot tool = Flameshot
+
 ## Creditses
 The original supplier for the Awesome Window Manager config is Gerome Matilla (manilarome) who published a fantastic config that I have hacked and modified a little for my own personal preference.  Any questions or for proper installation and use (getting the right core dependencies), please visit his repository at <https://github.com/manilarome/the-glorious-dotfiles>.
 
-He has made a great wiki for many questions that you might have and issues with setting up [over here](https://github.com/manilarome/the-glorious-dotfiles/wiki).
+He has made a great wiki for many questions that you might have and issues with setting up (including dependencies) [over here](https://github.com/manilarome/the-glorious-dotfiles/wiki).
 
 ## Disclaimer
-This is very much still a work in progress and it will be properly up and running soon!  Just wanted to get all the main files up.  *Mostly for my own well-being so that it's backed up...*
+- This is very much still a work in progress and it will be properly up and running soon!  Just wanted to get all the main files up.  *Mostly for my own well-being so that it's backed up...*
+- The base Awesome config is all all Gerome Matilla's as referenced in the credits.  Hence, the license is just the same as the one he used.
