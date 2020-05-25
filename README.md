@@ -1,6 +1,6 @@
 # Night's Dotfiles!!11!
 ## What I got
-- Bulk file editing with scripts written in C++ (might move from dirent to the new native filesystem handler in C++17)
+- Bulk file editing with scripts written in C++ (Will be moving to the C++17 filesystem library (doesn't work for very large datasets))
     - Prefix all in current directory
         - Names can contain anything (Be a little bit careful here.....)
         - Spaces will be joined
@@ -25,6 +25,9 @@
     - NERDTree (for file browser)
     - NERDCommenter (for commenting with code)
     - Lightline (for nicer UI)
+
+## Operating system
+Arch Linux
 
 ## Apps
 - Terminal = Alacritty
