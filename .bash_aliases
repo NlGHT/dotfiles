@@ -43,6 +43,11 @@ alias uniVideos='cd ~/Videos/Sem6/'
 # Dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+# Currency conversion (cconv {amount} {from} {to}) (Country codes must be capital)
+cconv() {
+    qalc -t $1 $2 to $3
+}
+
 # Get all aliases
 alias aliases='sed -n -e :a -e "1,4!{P;N;D;};N;ba" ~/.bash_aliases'
 alias aliasCommand='tail -n 3 ~/.bash_aliases' # Get the get aliases command
