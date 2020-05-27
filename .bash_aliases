@@ -22,6 +22,7 @@ alias editAliases='nvim ~/.bash_aliases'
 alias editBashRC='nvim ~/.bashrc'
 alias editVim='nvim ~/.vimrc'
 alias td='nvim ~/ToDoList.txt'
+alias editLightDM='sudo nvim /etc/lightdm/lightdm.conf'
 
 # Utility
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
@@ -31,6 +32,7 @@ alias delOrphans='sudo pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
 
 # WIFI
 alias getRegularWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/limit56farce59umbra.nmconnection'
+alias getLANIP="ip a s wlp2s0 | awk -F '[\/ ]+' '/inet / {print $3}'"
 
 # Instant CD's
 alias documents='cd ~/Documents'
