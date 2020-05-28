@@ -38,8 +38,8 @@ set shiftwidth=4
 set smartcase
 set mouse=a
 set tabstop=4
-set clipboard=unnamedplus
-set background=dark
+set clipboard=unnamedplus " Clipboard just works with everything (no register shit)
+" set background=dark
 " colorscheme gruvbox
 colorscheme dracula
 " set lines=50 columns=1000
