@@ -2,7 +2,7 @@
 
 ############## LightDM Startup Script ############## 
 
-# I symlink this to /usr/share so that it can be used by any user
+# I make it executable (chmod +x .XStartupScript) and symlink this to /usr/share o that it can be used by any user
 
 # Configure resolution (Intel)
 xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1-1 --off --output HDMI-1-1 --off --output DP-1-2 --off --output HDMI-1-2 --off
