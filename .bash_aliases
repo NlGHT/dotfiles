@@ -32,7 +32,7 @@ alias delOrphans='sudo pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
 
 # WIFI
 alias getRegularWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/limit56farce59umbra.nmconnection'
-alias getLANIP="ip a s wlp2s0 | awk -F '[\/ ]+' '/inet / {print $3}'"
+alias getLANIP="ip a s wlp2s0 | awk -F '[/ ]+' '/inet / {print $3}'"
 
 # Instant CD's
 alias documents='cd ~/Documents'
