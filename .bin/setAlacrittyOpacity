@@ -1,0 +1,10 @@
+#!/bin/sh
+
+opacity=$1
+alacrittyConfigPath=~/.config/alacritty/alacritty.yml
+
+if [ -f $alacrittyConfigPath ]; then
+    awk -i inplace -v newOpacity=$opacity -v INPLACE_SUFFIX=.bak 'BEGIN {FS = "[ ]"; OFS = " "} /^background_opacity:/ {$2=newOpacity} {print}' $alacrittyConfigPath
+else
+    echo "Config not found at $alacrittyConfigPath"
+fi
