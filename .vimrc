@@ -14,6 +14,12 @@ Plug 'preservim/nerdtree'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'vim/killersheep'
+Plug 'vim-scripts/Solarized'
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'morhetz/gruvbox'
+Plug 'jacoborus/tender.vim'
+Plug 'dracula/vim', { 'as': 'dracula' } " Dracula also has transparent background????
+" Plug 'arcticicestudio/nord-vim' " Why does this have transparent background
 
 " Plug 'OmniSharp/omnisharp-vim'
 " Plug 'w0rp/ale'
@@ -41,9 +47,15 @@ set mouse=a
 set tabstop=4
 set clipboard=unnamedplus " Clipboard just works with everything (no register shit)
 " set background=dark
-colorscheme gruvbox
+
+
+" Themes
+" colorscheme gruvbox
+colorscheme tender
 " colorscheme dracula
-" set lines=50 columns=1000
+" colorscheme solarized
+
+" set lines=50 columns=1000 " Was here for usage on GNOME, vim was too small
 set backspace=indent,eol,start
 " set linespace=10
 " set cursorline
@@ -117,7 +129,7 @@ autocmd FileType cpp map <F5> <Esc>:w<CR>:!clear;g++ % -o %:t:r<CR>
 autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
 autocmd FileType sh map <F5> <Esc>:w<CR>:!clear;./%<CR>
 
-" For setting the background terminal colour jsut for vim
+" For setting the background terminal colour just for vim
 " let t:is_transparent = 1
 " hi Normal guibg=#111111 ctermbg=black
 
