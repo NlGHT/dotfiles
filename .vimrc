@@ -13,6 +13,7 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'preservim/nerdtree'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdcommenter'
+Plug 'vim/killersheep'
 
 " Plug 'OmniSharp/omnisharp-vim'
 " Plug 'w0rp/ale'
@@ -40,8 +41,8 @@ set mouse=a
 set tabstop=4
 set clipboard=unnamedplus " Clipboard just works with everything (no register shit)
 " set background=dark
-" colorscheme gruvbox
-colorscheme dracula
+colorscheme gruvbox
+" colorscheme dracula
 " set lines=50 columns=1000
 set backspace=indent,eol,start
 " set linespace=10
@@ -117,20 +118,20 @@ autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
 autocmd FileType sh map <F5> <Esc>:w<CR>:!clear;./%<CR>
 
 " For setting the background terminal colour jsut for vim
-let t:is_transparent = 1
-hi Normal guibg=#111111 ctermbg=black
+" let t:is_transparent = 1
+" hi Normal guibg=#111111 ctermbg=black
 
-function! Toggle_transparent_background()
-    if t:is_transparent == 0
-        hi Normal guibg=#111111 ctermbg=black
-        let t:is_transparent = 1
-    else
-        hi Normal guibg=NONE ctermbg=NONE
-        let t:is_transparent = 0
-    endif
-endfunction
+" function! Toggle_transparent_background()
+    " if t:is_transparent == 0
+        " hi Normal guibg=#111111 ctermbg=black
+        " let t:is_transparent = 1
+    " else
+        " hi Normal guibg=NONE ctermbg=NONE
+        " let t:is_transparent = 0
+    " endif
+" endfunction
 
-nnoremap <C-x><C-t> :call Toggle_transparent_background()<CR>
+" nnoremap <C-x><C-t> :call Toggle_transparent_background()<CR>
 
 " EEL File Type
 " au BufNewFile,BufRead *.eel setfiletype eel2
