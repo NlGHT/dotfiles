@@ -50,8 +50,13 @@ set clipboard=unnamedplus " Clipboard just works with everything (no register sh
 
 
 " Themes
-" colorscheme gruvbox
-colorscheme tender
+
+" Use a lighter theme during the day and darker one at night
+if strftime("%H") < 19
+    colorscheme tender
+else
+    colorscheme gruvbox
+endif
 " colorscheme dracula
 " colorscheme solarized
 
