@@ -9,11 +9,14 @@ call plug#begin('~/.vim/plugged')
 " CoC - Use release branch (Recommend)
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'ycm-core/YouCompleteMe'
-Plug 'preservim/nerdtree'
+Plug 'ycm-core/YouCompleteMe' # Code completion
+
+Plug 'preservim/nerdtree' # File manager
 Plug 'itchyny/lightline.vim'
-Plug 'preservim/nerdcommenter'
-Plug 'vim/killersheep'
+Plug 'preservim/nerdcommenter' # Easy comment toggling
+Plug 'vim/killersheep' # New minigame
+
+" Themes
 Plug 'vim-scripts/Solarized'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'morhetz/gruvbox'
@@ -22,7 +25,7 @@ Plug 'dracula/vim', { 'as': 'dracula' } " Dracula also has transparent backgroun
 " Plug 'arcticicestudio/nord-vim' " Why does this have transparent background
 
 " Plug 'OmniSharp/omnisharp-vim'
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale' # Linting
 call plug#end()
 
 " Vim-Plug commands
@@ -46,7 +49,7 @@ set smartcase
 set mouse=a
 set tabstop=4
 set clipboard=unnamedplus " Clipboard just works with everything (no register shit)
-" set background=dark
+set background=dark
 
 
 " Themes
