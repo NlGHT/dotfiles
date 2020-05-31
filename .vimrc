@@ -9,12 +9,12 @@ call plug#begin('~/.vim/plugged')
 " CoC - Use release branch (Recommend)
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'ycm-core/YouCompleteMe' # Code completion
+Plug 'ycm-core/YouCompleteMe' " Code completion
 
-Plug 'preservim/nerdtree' # File manager
+Plug 'preservim/nerdtree' " File manager
 Plug 'itchyny/lightline.vim'
-Plug 'preservim/nerdcommenter' # Easy comment toggling
-Plug 'vim/killersheep' # New minigame
+Plug 'preservim/nerdcommenter' " Easy comment toggling
+Plug 'vim/killersheep' " New minigame
 
 " Themes
 Plug 'vim-scripts/Solarized'
@@ -25,7 +25,7 @@ Plug 'dracula/vim', { 'as': 'dracula' } " Dracula also has transparent backgroun
 " Plug 'arcticicestudio/nord-vim' " Why does this have transparent background
 
 " Plug 'OmniSharp/omnisharp-vim'
-Plug 'w0rp/ale' # Linting
+Plug 'w0rp/ale' " Linting
 call plug#end()
 
 " Vim-Plug commands
