@@ -2,7 +2,7 @@
 alias pro='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia'
 alias mb='sudo su -c "echo 12 >/sys/class/backlight/intel_backlight/brightness"' # Go to minimum brightness
 alias nv='optimus-manager --switch nvidia'
-alias intl='optimus-manager --switch nvidia'
+alias intl='optimus-manager --switch intel'
 
 # MongoDB
 alias startMongo='sudo systemctl start mongodb.service'
