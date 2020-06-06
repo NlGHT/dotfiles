@@ -9,7 +9,7 @@ return {
 	-- The default applications in keybindings and widgets
 	default = {
 		terminal 												= 'alacritty',                                  							-- Terminal Emulator
-		text_editor 											= 'nvim',                                  						-- GUI Text Editor
+		text_editor 											= 'alacritty -e vim',                                  						-- GUI Text Editor
 		web_browser 										= 'brave',                                						-- Web browser
 		file_manager 										= 'nautilus',                              	 	 					-- GUI File manager
 		network_manager 								= 'nm-connection-editor',								-- Network manager
