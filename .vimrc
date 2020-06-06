@@ -133,6 +133,10 @@ autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python %<CR>
 autocmd FileType cpp imap <F5> <Esc>:w<CR>:!clear;g++ % -o %:t:r<CR>
 autocmd FileType cpp map <F5> <Esc>:w<CR>:!clear;g++ % -o %:t:r<CR>
 
+" For basic C++ compiling and running
+autocmd FileType cpp imap <F6> <Esc>:w<CR>:!clear;g++ % -o %:t:r;./%:t:r<CR>
+autocmd FileType cpp map <F6> <Esc>:w<CR>:!clear;g++ % -o %:t:r;./%:t:r<CR>
+
 " For basic Bash running
 autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
 autocmd FileType sh map <F5> <Esc>:w<CR>:!clear;./%<CR>
