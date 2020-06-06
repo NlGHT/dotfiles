@@ -7,17 +7,22 @@
 
 PS1='[\u@\h \W]\$ '
 
-# set PATH so it includes user's bash scripts if it exists
+# Set PATH so it includes user's bash scripts if it exists
 if [ -d "$HOME/.bin" ] ; then
     PATH="$HOME/.bin:$PATH"
 fi
 
-# set PATH so it includes user's bash scripts in .local if it exists
+# Set PATH so it includes user's EMACS scripts if it exists (DOOM EMACS doom command)
+if [ -d "$HOME/.emacs.d/bin" ] ; then
+        PATH="$HOME/.emacs.d/bin:$PATH"
+fi
+
+# Set PATH so it includes user's bash scripts in .local if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# enable color support of ls and also add handy aliases
+# Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -41,8 +46,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
+alias ld='ls -d .*/ */'
 alias mv='mv -i'
 alias rm='rm -i'
 
