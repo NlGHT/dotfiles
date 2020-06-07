@@ -45,6 +45,7 @@ alias uniVideos='cd ~/Videos/Sem6/'
 
 # Dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias seeCommitDiff='config diff --cached origin/master'
 
 # Currency conversion (cconv {amount} {from} {to}) (Country codes must be capital)
 cconv() {
