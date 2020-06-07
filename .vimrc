@@ -65,8 +65,6 @@ endif
 
 " set lines=50 columns=1000 " Was here for usage on GNOME, vim was too small
 set backspace=indent,eol,start
-" set linespace=10
-" set cursorline
 syntax on
 
 if !has('nvim')
@@ -186,6 +184,16 @@ nnoremap <C-d> <C-d>M
 nnoremap <C-u> <C-u>M
 nnoremap <C-f> <C-f>M
 nnoremap <C-b> <C-b>M
+
+" Strip the trailing white space on write
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    keepp %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 
 
