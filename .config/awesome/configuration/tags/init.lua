@@ -33,7 +33,7 @@ local tags = {
 	{
 		icon = icons.multimedia,
 		type = 'music',
-		default_app = '/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=spotify --file-forwarding com.spotify.Client @@u %U @@',
+		default_app = 'spotify',
 		screen = 1
 	},
 	{
