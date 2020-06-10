@@ -52,7 +52,7 @@ cconv() {
     qalc -t $1 $2 to $3
 }
 
-# Time functions
+# Time functions (Credit: https://superuser.com/a/611582)
 function countdown(){
     date1=$((`date +%s` + $1));
     while [ "$date1" -ge `date +%s` ]; do
