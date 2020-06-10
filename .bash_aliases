@@ -52,6 +52,24 @@ cconv() {
     qalc -t $1 $2 to $3
 }
 
+# Time functions
+function countdown(){
+    date1=$((`date +%s` + $1));
+    while [ "$date1" -ge `date +%s` ]; do
+        echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+        sleep 0.1
+    done
+}
+
+function stopwatch(){
+    date1=`date +%s`;
+    # 24 = q ; 65 = SPACE
+    while true; do
+        echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
+        sleep 0.1
+    done
+}
+
 # Get all aliases
 alias aliases='sed -n -e :a -e "1,4!{P;N;D;};N;ba" ~/.bash_aliases'
 alias aliasCommand='tail -n 3 ~/.bash_aliases' # Get the get aliases command
