@@ -1,0 +1,3 @@
+#!/bin/sh
+
+xrandr | awk '/ connected/ {print $1}'
