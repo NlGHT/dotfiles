@@ -1,4 +1,12 @@
 #!/bin/sh
+
+# XRandR setup script that will setup up to 3 monitors automatically
+# I usually have this symlinked in /usr/share and then run as startup script in LightDM
+
+################# ARGS #################
+# -s = silent (nothing will be echoed) #
+########################################
+
 connected=$(xrandr | awk '/ connected/ {print $1}')
 wc=$(echo $connected | wc -l)
 [ "$1" != "-s" ] && echo "Found $wc devices connected"
