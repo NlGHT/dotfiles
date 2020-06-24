@@ -1,6 +1,6 @@
 # Night's Dotfiles!!11!
 ## What I got
-- Bulk file editing with scripts written in C++ (Will be moving to the C++17 filesystem library (Currently doesn't work for very large datasets, but will be coming soon!))
+- Bulk file editing with scripts written in C++ (Will be moving to the C++17 filesystem library **(Currently doesn't work for very large datasets, but will be coming soon!)**)
     - Prefix all in current directory
         - Names can contain anything (Be a little bit careful here.....)
         - Spaces will be joined
