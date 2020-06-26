@@ -138,8 +138,12 @@ autocmd FileType cpp imap <F6> <Esc>:w<CR>:!clear;g++ % -o %:t:r;./%:t:r<CR>
 autocmd FileType cpp map <F6> <Esc>:w<CR>:!clear;g++ % -o %:t:r;./%:t:r<CR>
 
 " For C++17 experimental filesystem compiling
-autocmd FileType cpp imap <F8> <Esc>:w<CR>:!clear;g++ -std=c++17 % -o %:t:r -lstdc++fs<CR>
-autocmd FileType cpp map <F8> <Esc>:w<CR>:!clear;g++ -std=c++17 % -o %:t:r -lstdc++fs<CR>
+autocmd FileType cpp imap <F7> <Esc>:w<CR>:!clear;g++ -std=c++17 % -o %:t:r -lstdc++fs<CR>
+autocmd FileType cpp map <F7> <Esc>:w<CR>:!clear;g++ -std=c++17 % -o %:t:r -lstdc++fs<CR>
+
+" For C++17 experimental filesystem compiling (DEBUGGING)
+autocmd FileType cpp imap <F8> <Esc>:w<CR>:!clear;g++ -g -std=c++17 % -o %:t:r -lstdc++fs<CR>
+autocmd FileType cpp map <F8> <Esc>:w<CR>:!clear;g++ -g -std=c++17 % -o %:t:r -lstdc++fs<CR>
 
 " For basic Bash running
 autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
