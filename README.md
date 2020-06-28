@@ -1,6 +1,6 @@
-# Night's Dotfiles!!11!
+# Night's Dotfiles!
 ## What I got
-- Bulk file editing with scripts written in C++ (Will be moving to the C++17 filesystem library **(Currently doesn't work for very large datasets, but will be coming soon!)**)
+- Bulk file editing with scripts written in C++ **(WIP: Currently renameAllHere does support large datasets, others don't.  It will all be combined and optimised in the near future!)**
     - Prefix all in current directory
         - Names can contain anything (Be a little bit careful here.....)
         - Spaces will be joined
@@ -22,15 +22,19 @@
     - Terminal weather
     - Minimum brightness command
     - Currency conversion (Requires `libqalculate`)
+        - Example use: `$ cconv 10 EUR USD`
 - A nice .vimrc that uses YouCompleteMe (not clean yet but will be soon when I figure out how to use Unity with Vim)
     - Plugged (for plugins)
     - YouCompleteMe (for auto-complete)
     - NERDTree (for file browser)
     - NERDCommenter (for commenting with code)
     - Lightline (for nicer UI)
+    - Running and building hotkeys (C++, Python, Shell)
+    - Trailing white-space stripping on write
 
 ## Operating system
-Arch Linux
+**Arch Linux**
+*(However, I am trying to keep shell scripts POSIX-compliant)*
 
 ## Apps
 - Terminal: **Alacritty**
