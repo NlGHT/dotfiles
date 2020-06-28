@@ -16,6 +16,7 @@ Plug 'ycm-core/YouCompleteMe' " Code completion
 Plug 'preservim/nerdtree' " File manager
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdcommenter' " Easy comment toggling
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'vim/killersheep' " New minigame
 
 " Themes
