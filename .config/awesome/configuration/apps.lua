@@ -19,12 +19,12 @@ return {
 		lock 														= 'awesome-client "_G.show_lockscreen()"',  	-- Lockscreen
 		quake 													= 'alacritty --name QuakeTerminal',       			    -- Quake-like Terminal
 
-		rofiglobal												= 'rofi -dpi ' .. screen.primary.dpi .. 
-																	    ' -show "Global Search" -modi "Global Search":' .. config_dir .. 
-																	    '/configuration/rofi/sidebar/rofi-spotlight.sh' .. 
+		rofiglobal												= 'rofi -dpi ' .. screen.primary.dpi ..
+																	    ' -show "Global Search" -modi "Global Search":' .. config_dir ..
+																	    '/configuration/rofi/sidebar/rofi-spotlight.sh' ..
 																	    ' -theme ' .. config_dir ..
 																	    '/configuration/rofi/sidebar/rofi.rasi', 			-- Rofi Web Search
-		
+
 
 		rofiappmenu 										= 'rofi -dpi ' .. screen.primary.dpi ..
 																	    ' -show drun -theme ' .. config_dir ..
@@ -32,24 +32,24 @@ return {
 
 		-- You can add more default applications here
 	},
-	
+
 	-- List of apps to start once on start-up
 
 	run_on_start_up = {
 
-		'picom -b --experimental-backends --dbus --config ' .. 
+		'picom -b --experimental-backends --dbus --config ' ..
 		config_dir .. '/configuration/picom.conf',   																	-- Compositor
 
 		'blueman-applet',                                                 								                        -- Bluetooth tray icon
 		'mpd',                                                                    										        	    -- Music Server
 		'xfce4-power-manager',                                                                  					    	-- Power manager
-		'/usr/lib/polkit-kde-authentication-agent-1 &' .. 
+		'/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &' ..
 		' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',           -- Credential manager
-		
+
 		'xrdb $HOME/.Xresources',                                                                   						-- Load X Colors
 		'nm-applet',                                                                                									-- NetworkManager Applet
 		'pulseeffects --gapplication-service',                                                      						-- Sound Equalizer
-		
+
 		'xidlehook --not-when-fullscreen --not-when-audio --timer 600 '..
 		' "awesome-client \'_G.show_lockscreen()\'" ""'  															-- Auto lock timer
 
