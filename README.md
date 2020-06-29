@@ -48,7 +48,7 @@ In addition to this the apps described below in the applications section are use
 #### Personal Additions
 | Name | Description | Why/Where is it needed? |
 | --- | --- | --- |
-| [`playerctl`](https://github.com/altdesktop/playerctl) | Mostly universal tool for media players to play, next, previous etc | Spotify pause/play/next/previous keys|
+| [`playerctl`](https://github.com/altdesktop/playerctl) | Tool for media players to play, next, previous etc. | Spotify *pause*, *play*, *next*, and *previous* keys|
 
 
 ## Operating system
