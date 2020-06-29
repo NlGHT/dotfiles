@@ -1,4 +1,5 @@
 # Night's Dotfiles!
+
 ## What I got
 - Bulk file editing with scripts written in C++ **(WIP: Currently renameAllHere does support large datasets, others don't.  It will all be combined and optimised in the near future!)**
     - Prefix all in current directory
@@ -31,6 +32,24 @@
     - Lightline (for nicer UI)
     - Running and building hotkeys (C++, Python, Shell)
     - Trailing white-space stripping on write
+
+## Dependencies
+Please visit the [original dependency description](https://github.com/manilarome/the-glorious-dotfiles/wiki/Dependencies) because it's done very well.  However, the base required dependencies are:
+
+#### Base
+| Name | Description | Why/Where is it needed? |
+| --- | --- | --- |
+| [`awesome-git`](https://github.com/awesomeWM/awesome) |  Highly configurable framework window manager | isn't it obvious? |
+| [`rofi-git`](https://github.com/davatorium/rofi) | Window switcher, application launcher and dmenu replacement | Application launcher |
+| [`tryone144's picom`](https://github.com/tryone144/compton/tree/feature/dual_kawase) | A compositor for X11 | a compositor with kawase-blur |
+
+In addition to this the apps described below in the applications section are used in the config.  The GTK themeing is optional of course but if you don't know what you're doing then just get the things listed :).  Also however there are a few extra dependencies I use:
+
+#### Personal Additions
+| Name | Description | Why/Where is it needed? |
+| --- | --- | --- |
+| [`playerctl`](https://github.com/altdesktop/playerctl) | Mostly universal tool for media players to play, next, previous etc | Spotify pause/play/next/previous keys|
+
 
 ## Operating system
 **Arch Linux**
