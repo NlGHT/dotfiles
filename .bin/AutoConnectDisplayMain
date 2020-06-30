@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# XRandR setup script that will setup up to 3 monitors automatically using the first connected display as the primary
+# XRandR setup script that will setup up to 3 monitors automatically
 # I usually have this symlinked in /usr/share and then run as startup script in LightDM
 
 ################# ARGS #################
@@ -21,8 +21,8 @@ if [ "$wc" -gt 0 ]; then
             mon1=${connected%% *}
             mon2=${connected#* }
             xrandr \
-                --output $mon1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
-                --output $mon2 --auto --right-of $mon1
+                --output $mon2 --primary --auto --pos 0x0 --rotate normal \
+                --output $mon1 --mode 1920x1080 --right-of $mon2
             [ "$1" != "-s" ] && echo "XRandR of two displays: $mon1 and $mon2"
             ;;
         3)
@@ -31,8 +31,8 @@ if [ "$wc" -gt 0 ]; then
             mon2=${lastTwo%% *}
             mon3=${lastTwo#* }
             xrandr \
-                --output $mon1 --mode 1920x1080 --primary --pos 0x0 --rotate normal \
-                --output $mon2 --auto --right-of $mon1 \
+                --output $mon2 --primary --auto --pos 0x0 --rotate normal \
+                --output $mon1 --mode 1920x1080 --right-of $mon2 \
                 --output $mon3 --auto --left-of $mon2
             [ "$1" != "-s" ] && echo "XRandR of three displays: $mon1, $mon2 and $mon3"
             ;;
