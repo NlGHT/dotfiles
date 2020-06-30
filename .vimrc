@@ -24,12 +24,10 @@ Plug 'vim-scripts/Solarized'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'morhetz/gruvbox'
 Plug 'jacoborus/tender.vim'
-Plug 'dracula/vim', { 'as': 'dracula' } " [TODO] Dracula also has transparent background????
 " Plug 'arcticicestudio/nord-vim' " [TODO] Why does this have transparent background?
 
 " Plug 'OmniSharp/omnisharp-vim'
 Plug 'w0rp/ale' " Linting
-" [TODO] Test if this is ale is necessary
 call plug#end()
 
 " Vim-Plug commands
@@ -105,6 +103,10 @@ nnoremap <leader>fi :YcmCompleter FixIt<CR>
 nnoremap <leader>rn :YcmCompleter RefactorRename<CR>
 " [TODO] Need to have some way of entering the name after RefactorRename
 let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>'] " Add enter to accept code completion
+
+" ALE jump to errors/warnings
+nnoremap <leader>en :ALENextWrap<CR>
+nnoremap <leader>ep :ALEPreviousWrap<CR>
 
 " All NERDTree keybinds
 nnoremap <leader>n :NERDTreeToggle<CR>
