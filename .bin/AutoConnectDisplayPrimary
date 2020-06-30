@@ -8,21 +8,21 @@
 ########################################
 
 connected=$(xrandr | awk '/ connected/ {print $1" "}')
-wc=$(echo $connected | wc -w)
+wc=$(echo "$connected" | wc -w)
 [ "$1" != "-s" ] && echo "Found $wc devices connected"
 
 if [ "$wc" -gt 0 ]; then
     case $wc in
         1)
-            xrandr --output $connected --primary --mode 1920x1080 --pos 0x0 --rotate normal
+            xrandr --output "$connected" --primary --mode 1920x1080 --pos 0x0 --rotate normal
             [ "$1" != "-s" ] && echo "XRandR of single display: $connected"
             ;;
         2)
             mon1=${connected%% *}
             mon2=${connected#* }
             xrandr \
-                --output $mon2 --primary --auto --pos 0x0 --rotate normal \
-                --output $mon1 --mode 1920x1080 --right-of $mon2
+                --output "$mon2" --primary --auto --pos 0x0 --rotate normal \
+                --output "$mon1" --mode 1920x1080 --right-of "$mon2"
             [ "$1" != "-s" ] && echo "XRandR of two displays: $mon1 and $mon2"
             ;;
         3)
@@ -31,9 +31,9 @@ if [ "$wc" -gt 0 ]; then
             mon2=${lastTwo%% *}
             mon3=${lastTwo#* }
             xrandr \
-                --output $mon2 --primary --auto --pos 0x0 --rotate normal \
-                --output $mon1 --mode 1920x1080 --right-of $mon2 \
-                --output $mon3 --auto --left-of $mon2
+                --output "$mon2" --primary --auto --pos 0x0 --rotate normal \
+                --output "$mon1" --mode 1920x1080 --right-of "$mon2" \
+                --output "$mon3" --auto --left-of "$mon2"
             [ "$1" != "-s" ] && echo "XRandR of three displays: $mon1, $mon2 and $mon3"
             ;;
     esac
