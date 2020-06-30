@@ -108,6 +108,7 @@ python3 - <<END
 import imaplib
 import email
 import datetime
+from email.policy import default
 
 def process_mailbox(M):
 	rv, data = M.search(None, "(UNSEEN)")
@@ -121,7 +122,7 @@ def process_mailbox(M):
 			print ("ERROR getting message", num)
 			return
 
-		msg = email.message_from_bytes(data[0][1])
+		msg = email.message_from_bytes(data[0][1], policy=default)
 		print ('From:', msg['From'])
 		print ('Subject: %s' % (msg['Subject']))
 		date_tuple = email.utils.parsedate_tz(msg['Date'])
@@ -193,7 +194,7 @@ local email_report = wibox.widget{
 -- Create a notification
 local notify_new_email = function(count, details)
 	if tonumber(count) > tonumber(mail_counter) then
-		
+
 		details = details:gsub("<(.-)>", ''):sub(1, -2)
 		mail_counter = count
 
@@ -203,7 +204,7 @@ local notify_new_email = function(count, details)
 			title = "You have " .. mail_counter .. " unread emails!"
 		end
 
-		naughty.notification({ 
+		naughty.notification({
 			title = title,
 			message = details,
 			app_name = 'Email',
@@ -287,7 +288,7 @@ end
 
 -- Check credentials
 local check_credentials = function()
-	if email_account == '' or app_password == '' or 
+	if email_account == '' or app_password == '' or
 		imap_server == '' or port == '' then
 
 		set_error_msg('no-credentials')
@@ -334,13 +335,13 @@ local update_widget_timer = gears.timer {
 	call_now = true,
 	callback  = function()
 		-- Check if there's a credentials
-		update_widget() 
+		update_widget()
 	end
 }
 
 -- Update widget after connecting to wifi
 awesome.connect_signal('system::wifi_connected', function()
-	gears.timer.start_new(15, function() 
+	gears.timer.start_new(15, function()
 		update_widget()
 	end)
 end)

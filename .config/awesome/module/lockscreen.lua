@@ -20,7 +20,7 @@ local pam = require('liblua_pam')
 
 -- Configuration
 
-local capture_intruder = false  							-- Capture a picture using webcam 
+local capture_intruder = false  							-- Capture a picture using webcam
 local face_capture_dir = '${HOME}/Pictures/Intruders/'  -- Save location, auto creates
 
 local background_mode = 'blur' 							-- Available background mode: `blur`, `root`, `background`
@@ -41,6 +41,7 @@ local capture_now = capture_intruder
 local locker = function(s)
 
 	local lockscreen = wibox {
+        screen = s,
 		visible = false,
 		ontop = true,
 		type = "splash",
@@ -88,7 +89,7 @@ local locker = function(s)
 	}
 
 	-- Update username textbox
-	awful.spawn.easy_async_with_shell('whoami | tr -d "\\n"', function(stdout) 
+	awful.spawn.easy_async_with_shell('whoami | tr -d "\\n"', function(stdout)
 		uname_text.markup = stdout
 		uname_text_shadow.markup = '<span foreground="#00000066">' .. stdout .. "</span>"
 	end)
@@ -121,12 +122,12 @@ local locker = function(s)
 
 	-- Update image
 	gears.timer.start_new(
-		2, 
-		function() 
+		2,
+		function()
 			update_profile_pic()
 		end
 	)
-	
+
 	local time = wibox.widget.textclock(
 		'<span font="SF Pro Display Bold 56">%H:%M</span>',
 		1
@@ -208,16 +209,16 @@ local locker = function(s)
 
 	}
 
-	awful.placement.bottom(wanted_poster, 
-		{ 
-			margins = 
+	awful.placement.bottom(wanted_poster,
+		{
+			margins =
 			{
 				bottom = dpi(10),
-			}, 
+			},
 			parent = screen.primary
 		}
 	)
-	
+
 
 	local date_value = function()
 		local date_val = {}
@@ -226,8 +227,8 @@ local locker = function(s)
 		local day = os.date('%d')
 		local month = os.date('%B')
 
-		local first_digit = string.sub(day, 0, 1) 
-		local last_digit = string.sub(day, -1) 
+		local first_digit = string.sub(day, 0, 1)
+		local last_digit = string.sub(day, -1)
 
 		if first_digit == '0' then
 		  day = last_digit
@@ -260,7 +261,7 @@ local locker = function(s)
 	}
 
 	local date_shadow = wibox.widget {
-		markup = "<span foreground='#00000066'>" .. date_value().day .. date_value().ordinal .. " of " .. 
+		markup = "<span foreground='#00000066'>" .. date_value().day .. date_value().ordinal .. " of " ..
 			date_value().month .. "</span>",
 		font = 'SF Pro Display Bold 20',
 		align = 'center',
@@ -327,7 +328,7 @@ local locker = function(s)
 	local green = beautiful.system_green_dark
 	local yellow = beautiful.system_yellow_dark
 	local blue = beautiful.system_blue_dark
-	
+
 	-- Color table
 	local arc_color = {red, green, yellow, blue}
 
@@ -389,22 +390,22 @@ local locker = function(s)
 
 		-- Capture the filthy intruder face
 		awful.spawn.easy_async_with_shell(
-			capture_image, 
+			capture_image,
 			function(stdout)
 				circle_container.bg = beautiful.groups_title_bg
 				type_again = true
-					
+
 				-- Humiliate the intruder by showing his/her hideous face
 				wanted_image:set_image(stdout:gsub('%\n',''))
 				wanted_poster.visible= true
 				wanted_msg:set_markup(msg_table[math.random(#msg_table)])
 
-				awful.placement.bottom(wanted_poster, 
-					{ 
-						margins = 
+				awful.placement.bottom(wanted_poster,
+					{
+						margins =
 						{
 							bottom = dpi(10),
-						}, 
+						},
 						parent = screen.primary
 					}
 				)
@@ -430,7 +431,7 @@ local locker = function(s)
 
 
 	local generalkenobi_ohhellothere = function()
-		
+
 		circle_container.bg = green .. 'AA'
 
 		-- Add a little delay before unlocking completely
@@ -446,7 +447,7 @@ local locker = function(s)
 			end
 
 			circle_container.bg = beautiful.groups_title_bg
-			
+
 			-- Enable locking again
 			lock_again = true
 
@@ -475,7 +476,7 @@ local locker = function(s)
 	        awful.key {
 	            modifiers = {'Control'},
 	            key       = 'u',
-	            on_press  = function() 
+	            on_press  = function()
 	            	input_password = nil
 
 	            end
@@ -483,13 +484,13 @@ local locker = function(s)
 	        awful.key {
 	            modifiers = {'Mod1', 'Mod4', 'Shift', 'Control'},
 	            key       = 'Return',
-	            on_press  = function(self) 
+	            on_press  = function(self)
 	            	self:stop()
-	            	back_door() 
+	            	back_door()
 	        	end
 	        }
 	    },
-		keypressed_callback = function(self, mod, key, command) 
+		keypressed_callback = function(self, mod, key, command)
 
 			if not type_again then
 				return
@@ -504,14 +505,14 @@ local locker = function(s)
 			-- Accept only the single charactered key
 			-- Ignore 'Shift', 'Control', 'Return', 'F1', 'F2', etc., etc
 			if #key == 1 then
-				
+
 				locker_widget_rotate()
 
 				if input_password == nil then
 					input_password = key
 					return
 				end
-				
+
 				input_password = input_password .. key
 			end
 
@@ -549,7 +550,7 @@ local locker = function(s)
 
 				input_password = nil
 			end
-		
+
 		end
 
 	}
@@ -640,10 +641,10 @@ local locker = function(s)
 
 		-- Why is there a lock_again variable?
 		-- Well, it fixes a bug.
-		-- What is the bug? 
+		-- What is the bug?
 		-- It's a secret.
 
-		if lock_again == true or lock_again == nil then		
+		if lock_again == true or lock_again == nil then
 
 			-- Check capslock status
 			check_caps()
@@ -678,6 +679,7 @@ end
 -- This lockscreen is for the extra/multi monitor
 local locker_ext = function(s)
 	local extended_lockscreen = wibox {
+        screen = s,
 		visible = false,
 		ontop = true,
 		ontype = 'true',
@@ -707,7 +709,7 @@ end)
 -- Dont show notification popups if the screen is locked
 naughty.connect_signal("request::display", function(_)
 	focused = awful.screen.focused()
-	if (focused.lockscreen and focused.lockscreen.visible) or 
+	if (focused.lockscreen and focused.lockscreen.visible) or
 		(focused.lockscreen_extended and focused.lockscreen_extended.visible) then
 		naughty.destroy_all_notifications()
 	end
@@ -730,8 +732,8 @@ local return_cmd_str_to_blur = function(wall_name, index, ap, width, height)
 
 	if [ ! -d ]] .. tmp_wall_dir ..[[ ]; then mkdir -p ]] .. tmp_wall_dir .. [[; fi
 
-	convert -quality 100 -filter Gaussian -blur 0x10 ]] .. wall_dir .. wall_name .. 
-	[[ -gravity center -crop ]] .. ap .. [[:1 +repage -resize ]] .. width .. 'x' .. height .. 
+	convert -quality 100 -filter Gaussian -blur 0x10 ]] .. wall_dir .. wall_name ..
+	[[ -gravity center -crop ]] .. ap .. [[:1 +repage -resize ]] .. width .. 'x' .. height ..
 	[[! ]] .. tmp_wall_dir .. index .. wall_name .. [[
 	]]
 	return magic
@@ -759,7 +761,7 @@ local update_ls_bg = function(wall_name)
 				s.lockscreen.bgimage = tmp_wall_dir .. index .. wall_name
 			end)
 		else
-			awful.spawn.easy_async_with_shell(cmd, function() 
+			awful.spawn.easy_async_with_shell(cmd, function()
 				s.lockscreen_extended.bgimage = tmp_wall_dir .. index .. wall_name
 			end)
 		end
@@ -869,8 +871,8 @@ local blur_bg = function()
 			bg_data = {midnight_schedule, ls_bg_midnight}
 
 		end
-	  
-		
+
+
 		-- Get the time difference to set as timeout for the wall_updater timer below
 		the_countdown = time_diff(bg_data[1], current_time())
 
@@ -889,13 +891,13 @@ local blur_bg = function()
 
 			-- Emit signal to update lockscreen background
 	    	awesome.emit_signal("module::lockscreen_background")
-	  	
+
 	  	end
 	}
 
 	-- Update lockscreen bg here and update the timeout for the next schedule
 	awesome.connect_signal("module::lockscreen_background", function()
-		
+
 		-- Update values for the next specified schedule
 		manage_timer()
 
@@ -910,10 +912,10 @@ local blur_bg = function()
 end
 
 
--- If a screen is added, generate a background 
+-- If a screen is added, generate a background
 -- for the inserted screen/monitor
 screen.connect_signal(
-	'added', 
+	'added',
 	function()
 		if background_mode == 'blur' then
 			blur_bg()
@@ -925,7 +927,7 @@ if background_mode == 'blur'  then
 
 	if not change_background_on_time then
 		update_ls_bg(default_wall_name)
-		return 
+		return
 	end
 	blur_bg()
 

@@ -172,7 +172,7 @@ local weather_report =  wibox.widget {
 						}
 					}
 				},
-				nil				
+				nil
 			}
 		},
 		margins = dpi(10),
@@ -182,7 +182,7 @@ local weather_report =  wibox.widget {
 	bg = beautiful.groups_bg,
 	shape = function(cr, width, height)
 	gears.shape.partially_rounded_rect(cr, width, height, true, true, true, true, beautiful.groups_radius) end,
-	widget = wibox.container.background	
+	widget = wibox.container.background
 }
 
 -- Don't update too often, because your requests might get blocked for 24 hours
@@ -205,17 +205,17 @@ weather=$(curl -sf "http://api.openweathermap.org/data/2.5/weather?APPID="${KEY}
 
 if [ ! -z "$weather" ]; then
 	weather_icon="icon=$(printf "$weather" | jq -r ".weather[].icon" | head -1)"
-	
+
 	weather_location="location=$(printf "$weather" | jq -r ".name")"
 	weather_country="country=$(printf "$weather" | jq -r ".sys.country")"
-	
+
 	weather_sunrise="sunrise=$(printf "$weather" | jq -r ".sys.sunrise" | xargs -0 -L1 -I '$' echo '@$' | xargs date +"%H:%M" -d)"
 	weather_sunset="sunset=$(printf "$weather" | jq -r ".sys.sunset" | xargs -0 -L1 -I '$' echo '@$' | xargs date +"%H:%M" -d)"
-	
+
 	weather_data_time="update=$(printf "$weather" | jq -r ".dt" | xargs -0 -L1 -I '$' echo '@$' | xargs date +"%H:%M" -d)"
-	
+
 	weather_temp="temperature=$(printf "$weather" | jq ".main.temp" | cut -d "." -f 1)"
-	
+
 	weather_description="details=$(printf "$weather" | jq -r ".weather[].description" | head -1)"
 
 	DATA="${weather_icon}\n${weather_location}\n${weather_country}\n${weather_sunrise}\n${weather_sunset}\n${weather_data_time}\n${weather_temp}\n${weather_description}\n"
@@ -223,10 +223,10 @@ if [ ! -z "$weather" ]; then
 
 else
 	printf "icon=..."
-fi	
+fi
 ]]
 
-awesome.connect_signal('widget::weather_fetch', function() 
+awesome.connect_signal('widget::weather_fetch', function()
 
 	awful.spawn.easy_async_with_shell(weather_details_script, function(stdout)
 
@@ -244,15 +244,15 @@ awesome.connect_signal('widget::weather_fetch', function()
 		-- No internet / no credentials
 		if icon_code == '...' then
 
-			awesome.emit_signal("widget::weather_update", 
-				icon_code, 
-				'dust & clouds, -1000°C', 
-				'Earth, Milky Way', 
-				'00:00', 
-				'00:00', 
+			awesome.emit_signal("widget::weather_update",
+				icon_code,
+				'dust & clouds, -1000°C',
+				'Earth, Milky Way',
+				'00:00',
+				'00:00',
 				'00:00'
 			)
-			
+
 		else
 
 			local location = weather_data_tbl['location']
@@ -265,19 +265,19 @@ awesome.connect_signal('widget::weather_fetch', function()
 
 			local weather_description = details .. ', ' .. temperature .. weather_temperature_symbol
 			local weather_location = location .. ', ' .. country
-			
+
 			if #weather_description >= 33 then
 				weather_desc_temp:set_font('SF Pro Text Bold 11')
 			else
 				weather_desc_temp:set_font('SF Pro Text Bold 12')
 			end
 
-			awesome.emit_signal("widget::weather_update", 
-				icon_code, 
-				weather_description, 
-				weather_location, 
-				sunrise, 
-				sunset, 
+			awesome.emit_signal("widget::weather_update",
+				icon_code,
+				weather_description,
+				weather_location,
+				sunrise,
+				sunset,
 				update_time
 			)
 
@@ -301,14 +301,14 @@ gears.timer {
 }
 
 -- Update widget if connecte to wifi
-awesome.connect_signal('system::wifi_connected', function() 
+awesome.connect_signal('system::wifi_connected', function()
 	-- Add a delay of 3 seconds
-	gears.timer.start_new(3, function() 
+	gears.timer.start_new(3, function()
 		awesome.emit_signal('widget::weather_fetch')
 	end)
 end)
 
-awesome.connect_signal("widget::weather_update", 
+awesome.connect_signal("widget::weather_update",
 	function(code, desc, location, sunrise, sunset, data_receive)
 		local widget_icon_name = 'weather-error'
 
@@ -327,7 +327,7 @@ awesome.connect_signal("widget::weather_update",
 			['10n'] = 'drain_icon',
 			['10d'] = 'nrain_icon',
 			['11d'] = 'dthunderstorm',
-			['11n'] = 'nhunderstorm',
+			['11n'] = 'nthunderstorm',
 			['13d'] = 'snow',
 			['13n'] = 'snow',
 			['50d'] = 'dmist',
@@ -339,7 +339,7 @@ awesome.connect_signal("widget::weather_update",
 
 		weather_icon_widget.icon:set_image(widget_icon_dir .. widget_icon_name .. '.svg')
 		weather_icon_widget.icon:emit_signal('widget::redraw_needed')
-		
+
 		weather_desc_temp:set_text(desc)
 		weather_location:set_text(location)
 		weather_sunrise:set_text(sunrise)
