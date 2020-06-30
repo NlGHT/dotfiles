@@ -7,33 +7,34 @@
 # -s = silent (nothing will be echoed) #
 ########################################
 
-connected=$(xrandr | awk '/ connected/ {print $1}')
-wc=$(echo $connected | wc -l)
+connected=$(xrandr | awk '/ connected/ {print $1" "}')
+wc=$(echo $connected | wc -w)
 [ "$1" != "-s" ] && echo "Found $wc devices connected"
 
 if [ "$wc" -gt 0 ]; then
     case $wc in
-        3)
-            mon1=$(echo $connected | sed '1!d')
-            mon2=$(echo $connected | sed '2!d')
-            mon3=$(echo $connected | sed '3!d')
-            xrandr \
-                --output $mon2 --primary --auto --pos 0x0 --rotate normal \
-                --output $mon1 --mode 1920x1080 --right-of $mon2 \
-                --output $mon3 --auto --left-of $mon2
-            [ "$1" != "-s" ] && echo "XRandR of three displays: $mon1, $mon2 and $mon3"
+        1)
+            xrandr --output $connected --primary --mode 1920x1080 --pos 0x0 --rotate normal
+            [ "$1" != "-s" ] && echo "XRandR of single display: $connected"
             ;;
         2)
-            mon1=$(echo $connected | sed '1!d')
-            mon2=$(echo $connected | sed '2!d')
+            mon1=${connected%% *}
+            mon2=${connected#* }
             xrandr \
                 --output $mon2 --primary --auto --pos 0x0 --rotate normal \
                 --output $mon1 --mode 1920x1080 --right-of $mon2
             [ "$1" != "-s" ] && echo "XRandR of two displays: $mon1 and $mon2"
             ;;
-        1)
-            xrandr --output $connected --primary --mode 1920x1080 --pos 0x0 --rotate normal
-            [ "$1" != "-s" ] && echo "XRandR of single display: $connected"
+        3)
+            mon1=${connected%% *}
+            lastTwo=${connected#* }
+            mon2=${lastTwo%% *}
+            mon3=${lastTwo#* }
+            xrandr \
+                --output $mon2 --primary --auto --pos 0x0 --rotate normal \
+                --output $mon1 --mode 1920x1080 --right-of $mon2 \
+                --output $mon3 --auto --left-of $mon2
+            [ "$1" != "-s" ] && echo "XRandR of three displays: $mon1, $mon2 and $mon3"
             ;;
     esac
 fi
