@@ -7,7 +7,7 @@ local clickable_container = require('widget.window-effects.clickable-container')
 
 local icons = require('theme.icons')
 
-local blue_light_state = nil
+local blue_light_state = true
 
 local action_name = wibox.widget {
 	text = 'Blue Light Filter',
@@ -19,7 +19,7 @@ local action_name = wibox.widget {
 local button_widget = wibox.widget {
 	{
 		id = 'icon',
-		image = icons.toggled_off,
+		image = icons.toggled_on,
 		widget = wibox.widget.imagebox,
 		resize = true
 	},
@@ -119,7 +119,7 @@ local action_widget =  wibox.widget {
 
 awesome.connect_signal(
 	'widget::blue_light:toggle',
-	function() 
+	function()
 		toggle_action()
 	end
 )
