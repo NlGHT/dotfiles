@@ -14,7 +14,7 @@ wc=$(echo "$connected" | wc -w)
 if [ "$wc" -gt 0 ]; then
     case $wc in
         1)
-            xrandr --output "$connected" --primary --mode 1920x1080 --pos 0x0 --rotate normal
+            xrandr --output "${connected% }" --primary --mode 1920x1080 --pos 0x0 --rotate normal
             [ "$1" != "-s" ] && echo "XRandR of single display: $connected"
             ;;
         2)
