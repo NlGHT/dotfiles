@@ -34,7 +34,7 @@
     - Trailing white-space stripping on write
 
 ## Dependencies
-Please visit the [original dependency description](https://github.com/manilarome/the-glorious-dotfiles/wiki/Dependencies) because it's done very well.  However, the base required dependencies are:
+Please visit the [original dependency description](https://github.com/manilarome/the-glorious-dotfiles/wiki/Dependencies) because it's done very well.  However, the base required dependencies are but you kinda need the optional ones as described over on the origin:
 
 #### Base
 | Name | Description | Why/Where is it needed? |
