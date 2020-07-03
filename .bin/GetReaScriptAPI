@@ -1,0 +1,9 @@
+#!/bin/sh
+
+doc=$(curl http://reaper.fm/sdk/reascript/reascripthelp.html)
+
+mainParse=$(echo "$doc" | awk 'BEGIN{FS="<code>|</code>"} /[Ll]ua.*reaper\./ {print $2}' | sed 's/<i>\|<\/i>\|//g;/^$\|reaper.functionname()/d')
+
+[ "$1" = "--no-returns" ] && mainParse=$(echo "$mainParse" | sed 's/.* reaper\./reaper\./')
+
+echo "$mainParse"
