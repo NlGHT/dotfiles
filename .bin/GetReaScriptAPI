@@ -34,7 +34,6 @@ parseC() {
     [ "$noReturns" = 1 ] && removeReturns
 
     echo "$mainParse"
-    exit
 }
 
 parseEEL() {
@@ -44,8 +43,6 @@ parseEEL() {
     [ "$noReturns" = 1 ] && removeReturns
 
     echo "$mainParse"
-
-    exit
 }
 
 parseLua() {
