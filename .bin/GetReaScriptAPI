@@ -1,9 +1,154 @@
 #!/bin/sh
 
-doc=$(curl http://reaper.fm/sdk/reascript/reascripthelp.html)
+language=-1
 
-mainParse=$(echo "$doc" | awk 'BEGIN{FS="<code>|</code>"} /[Ll]ua.*reaper\./ {print $2}' | sed 's/<i>\|<\/i>\|//g;/^$\|reaper.functionname()/d')
+printHelp() {
+    printf '%s\n' \
+        "Gets the latest REAPER ReaScript documentation available at http://reaper.fm/sdk/reascript/reascripthelp.html and parses it to just output the actual functions available.  It takes the following options:" \
+        "You must specify a language! (Unless requesting --help or -h of course)  This is done by passing any of the following options:" \
+        "" \
+        "   -c or --c : Will parse the documentation for all the C functions" \
+        "   -e or --eel : Will parse the documentation for all the EEL functions" \
+        "   -l or --lua : Will parse the documentation for all the Lua functions" \
+        "   -p or --python : Will parse the documentation for all the Python functions" \
+        "" \
+        "Additionally some more options can be given to remove further parts of the output from the language options above:" \
+        "" \
+        "   --no-returns : Removes all returns from each function (variables before the function name)" \
+        "   --no-arrays : (LUA SPECIFIC) Removes the Lua array methods present with REAPER arrays" \
+        ""
+}
 
-[ "$1" = "--no-returns" ] && mainParse=$(echo "$mainParse" | sed 's/^[^({]* *reaper\./reaper\./')
+removeReturns() {
+    mainParse=$(echo "$mainParse" | grep -o '\S\+(.*)')
+}
 
-echo "$mainParse"
+removeArrayMethods() {
+    mainParse=$(echo "$mainParse" | sed '/^{/d')
+}
+
+parseC() {
+    mainParse=$(echo "$doc" | awk 'BEGIN{FS="<code>|</code>"} /C:/ {print $2}' | sed 's/<i>\|<\/i>\|//g;/^$/d')
+
+    # Removes any of the functions returns (variables at the start)
+    [ "$noReturns" = 1 ] && removeReturns
+
+    echo "$mainParse"
+    exit
+}
+
+parseEEL() {
+    mainParse=$(echo "$doc" | awk 'BEGIN{FS="<code>|</code>"} /[Ee][Ee][Ll]./ {print $2}' | sed 's/<i>\|<\/i>\|//g;/^$\|functionname()/d')
+
+    # Removes any of the functions returns (variables at the start)
+    [ "$noReturns" = 1 ] && removeReturns
+
+    echo "$mainParse"
+
+    exit
+}
+
+parseLua() {
+    mainParse=$(echo "$doc" | awk 'BEGIN{FS="<code>|</code>"} /[Ll]ua.*reaper\./ {print $2}' | sed 's/<i>\|<\/i>\|//g;/^$\|reaper.functionname()/d')
+
+    # Removes any of the functions returns (variables at the start)
+    [ "$noReturns" = 1 ] && removeReturns
+
+    # Deletes all the array methods at the bottom
+    [ "$noArrays" = 1 ] && removeArrayMethods
+
+    echo "$mainParse"
+}
+
+parsePython() {
+    mainParse=$(echo "$doc" | awk 'BEGIN{FS="<code>|</code>"} /Python:/ {print $2}' | sed 's/<i>\|<\/i>\|//g;/^$/d')
+
+    # Removes any of the functions returns (variables at the start)
+    [ "$noReturns" = 1 ] && removeReturns
+
+    echo "$mainParse"
+}
+
+optspec=":hcelp-:"
+while getopts "$optspec" optchar; do
+    case "${optchar}" in
+        -)
+            # For all the args with --
+            case "${OPTARG}" in
+                no-returns)
+                    noReturns=1
+                    ;;
+                no-arrays)
+                    noArrays=1
+                    ;;
+                lua)
+                    language=3
+                    ;;
+                eel)
+                    language=2
+                    ;;
+                python)
+                    ;;
+                c)
+                    language=1
+                    ;;
+                help)
+                    printHelp
+                    exit
+                    ;;
+                *)
+                    echo "Error with option --${OPTARG}" >&2
+                    ;;
+            esac;;
+        c)
+            language=1
+            ;;
+        e)
+            language=2
+            ;;
+        l)
+            language=3
+            ;;
+        p)
+            language=4
+            ;;
+        h)
+            printHelp
+            exit
+            ;;
+        *)
+            echo "Non-option argument: '-${OPTARG}'" >&2
+            ;;
+    esac
+done
+
+[ $language -le 0 ] && printf "ERROR: No langage has been specified.\nYou can view the help/guide with:\nGetReaScriptAPI --help\n" && exit
+
+
+doc=$(curl -s http://reaper.fm/sdk/reascript/reascripthelp.html)
+
+case ${language} in
+    1)
+        parseC
+        exit
+        ;;
+    2)
+        parseEEL
+        exit
+        ;;
+    3)
+        parseLua
+        exit
+        ;;
+    4)
+        parsePython
+        exit
+        ;;
+    *)
+        echo "ERROR: No language has been specified"
+        exit
+        ;;
+esac
+
+
+
