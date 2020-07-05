@@ -85,6 +85,7 @@ while getopts "$optspec" optchar; do
                     language=2
                     ;;
                 python)
+                    language=4
                     ;;
                 c)
                     language=1
