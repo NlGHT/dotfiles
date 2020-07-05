@@ -54,6 +54,7 @@ set clipboard=unnamedplus " Clipboard just works with everything (no register sh
 set background=dark
 
 
+
 " Themes
 
 " Use a lighter theme during the day and darker one at night
@@ -68,6 +69,15 @@ endif
 " set lines=50 columns=1000 " Was here for usage on GNOME, vim was too small
 set backspace=indent,eol,start
 syntax on
+
+" Change cursor on insert
+let &t_SI = "\033[5 q"
+let &t_SR = "\033[1 q"
+let &t_EI = "\033[1 q"
+
+" Highlight current working line in insert mode
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
 
 if !has('nvim')
   set ttymouse=xterm2
