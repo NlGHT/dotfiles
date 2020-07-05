@@ -37,7 +37,7 @@ parseC() {
 }
 
 parseEEL() {
-    mainParse=$(echo "$doc" | awk 'BEGIN{FS="<code>|</code>"} /[Ee][Ee][Ll]./ {print $2}' | sed 's/<i>\|<\/i>\|//g;/^$\|functionname()/d')
+    mainParse=$(echo "$doc" | awk 'BEGIN{FS="<code>|</code>"} /[Ee][Ee][Ll]./ {print $2}' | sed 's/<i>\|<\/i>\|//g;/^$\|functionname()/d;s/\&amp\;/\&/g')
 
     # Removes any of the functions returns (variables at the start)
     [ "$noReturns" = 1 ] && removeReturns
