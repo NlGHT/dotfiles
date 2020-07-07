@@ -60,13 +60,12 @@ int renameInDir(const char* path, const std::string stringInput, unsigned int bi
         i++;
         fs::path path = p.path();
         std::string extension = path.extension();
-        int extensionLength = extension.length();
 
         // Build the string for the object being renamed to
         std::string buildName = stringInput;
         buildName += "-";
         buildName += std::to_string(i);
-        if (extensionLength > 0) {
+        if (path.has_extension()) {
             buildName += extension;
         }
 
