@@ -20,7 +20,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Exports
-export EDITOR=vim
+export EDITOR=nvim
 export CLICOLOR=1
 export TERM=alacritty
 
