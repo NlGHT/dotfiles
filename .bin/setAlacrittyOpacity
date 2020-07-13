@@ -1,10 +1,30 @@
 #!/bin/sh
 
-opacity=$1
-alacrittyConfigPath=~/.config/alacritty/alacritty.yml
+[ -z "$1" ] && echo "No opacity value specified" && exit
 
-if [ -f $alacrittyConfigPath ]; then
-    awk -i inplace -v newOpacity="$opacity" -v INPLACE_SUFFIX=.bak 'BEGIN {FS = "[ ]"; OFS = " "} /^background_opacity:/ {$2=newOpacity} {print}' $alacrittyConfigPath
-else
-    echo "Config not found at $alacrittyConfigPath"
-fi
+changeOpacity() {
+    sed -i.bak "s/^background_opacity:\s\S\+/background_opacity: $1/" "$2"
+}
+
+alacrittyConfigPath=~/.config/alacritty/alacritty.yml
+! [ -f $alacrittyConfigPath ] && \
+    echo "Config path file not found at $alacrittyConfigPath" && \
+    exit
+
+! ( printf "%f" "$1" >/dev/null 2>&1 ) && \
+    echo "A number needs to be specified" && \
+    exit
+
+nonNegative=${1##-}
+beforeDecimal=${nonNegative%%\.*}
+case "$beforeDecimal" in
+    0)
+        changeOpacity "$nonNegative" "$alacrittyConfigPath"
+        ;;
+    1)
+        changeOpacity "1" "$alacrittyConfigPath"
+        ;;
+    *)
+        "Number given needs to be between 0 and 1"
+        ;;
+esac
