@@ -20,7 +20,7 @@ local clientKeys =
 			c.fullscreen = not c.fullscreen
 			c:raise()
 		end,
-		{description = 'toggle fullscreen', group = 'client'}
+		{description = '| Toggle fullscreen', group = 'client'}
 	),
 
 	-- close client
@@ -30,7 +30,7 @@ local clientKeys =
 		function(c)
 			c:kill()
 		end,
-		{description = 'close', group = 'client'}
+		{description = '| Close', group = 'client'}
 	),
 	-- Default client focus
 	awful.key(
@@ -39,7 +39,7 @@ local clientKeys =
 		function()
 			awful.client.focus.byidx(1)
 		end,
-		{description = 'focus next by index', group = 'client'}
+		{description = '| Focus next by index', group = 'client'}
 	),
 	awful.key(
 		{modkey},
@@ -47,7 +47,7 @@ local clientKeys =
 		function()
 			awful.client.focus.byidx(-1)
 		end,
-		{description = 'focus previous by index', group = 'client'}
+		{description = '| Focus previous by index', group = 'client'}
 	),
 	awful.key(
 		{ modkey, "Shift"  },
@@ -55,7 +55,7 @@ local clientKeys =
 		function ()
 			awful.client.swap.byidx(1)
 		end,
-		{description = "swap with next client by index", group = "client"}
+		{description = '| Swap with next client by index', group = 'client'}
 	),
 	awful.key(
 		{ modkey, "Shift" },
@@ -63,14 +63,14 @@ local clientKeys =
 		function ()
 			awful.client.swap.byidx(-1)
 		end,
-		{description = "swap with next client by index", group = "client"}
+		{description = '| Swap with next client by index', group = 'client'}
 	),
 
 	awful.key(
-		{modkey}, 
-		'u', 
-		awful.client.urgent.jumpto, 
-		{description = 'jump to urgent client', group = 'client'}
+		{modkey},
+		'u',
+		awful.client.urgent.jumpto,
+		{description = '| Jump to urgent client', group = 'client'}
 	),
 	awful.key(
 		{modkey},
@@ -81,7 +81,7 @@ local clientKeys =
 				client.focus:raise()
 			end
 		end,
-		{description = 'go back', group = 'client'}
+		{description = '| Go back', group = 'client'}
 	),
     awful.key(
         {modkey},
@@ -89,12 +89,12 @@ local clientKeys =
         function(c)
             c.minimized = true
         end,
-        {description = "minimize client", group = 'client'}
+        {description = '| Minimize client', group = 'client'}
     ),
 	-- move floating client to center
 	awful.key(
-		{ modkey, "Shift" }, 
-		"c", 
+		{ modkey, "Shift" },
+		"c",
 		function(c)
 			local focused = awful.screen.focused()
 
@@ -102,7 +102,7 @@ local clientKeys =
 				honor_workarea = true
 			})
 		end,
-		{description = 'align a client to the center of the focused screen.', group = "client"}
+		{description = '| Align a client to the center of the focused screen.', group = "client"}
 	),
 
 	-- toggle client floating mode
@@ -115,7 +115,7 @@ local clientKeys =
 			c.floating = not c.floating
 			c:raise()
 		end,
-		{description = 'toggle floating', group = 'client'}
+		{description = '| Toggle floating', group = 'client'}
 	),
 
 	-- move client position
@@ -127,7 +127,7 @@ local clientKeys =
 				c:relative_move(0, dpi(-50), 0, 0)
 			end
 		end,
-		{description = 'move floating client up by 10 px', group = 'client'}
+		{description = '| Move floating client up by 10 px', group = 'client'}
 	),
 	awful.key(
 		{modkey},
@@ -137,7 +137,7 @@ local clientKeys =
 				c:relative_move(0, dpi(50), 0, 0)
 			end
 		end,
-		{description = 'move floating client down by 10 px', group = 'client'}
+		{description = '| Move floating client down by 10 px', group = 'client'}
 	),
 	awful.key(
 		{modkey},
@@ -147,7 +147,7 @@ local clientKeys =
 				c:relative_move(dpi(-50), 0, 0, 0)
 			end
 		end,
-		{description = 'move floating client to the left by 10 px', group = 'client'}
+		{description = '| Move floating client to the left by 10 px', group = 'client'}
 	),
 	awful.key(
 		{modkey},
@@ -157,7 +157,7 @@ local clientKeys =
 				c:relative_move(dpi(50), 0, 0, 0)
 			end
 		end,
-		{description = 'move floating client to the right by 10 px', group = 'client'}
+		{description = '| Move floating client to the right by 10 px', group = 'client'}
 	),
 
 	-- Increasing floating client size
@@ -169,7 +169,7 @@ local clientKeys =
 				c:relative_move(0, dpi(-50), 0, dpi(50))
 			end
 		end,
-		{description = 'increase floating client size vertically by 10 px up', group = 'client'}
+		{description = '| Increase floating client size vertically by 10 px up', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Shift'},
@@ -179,7 +179,7 @@ local clientKeys =
 				c:relative_move(0, 0, 0, dpi(50))
 			end
 		end,
-		{description = 'increase floating client size vertically by 10 px down', group = 'client'}
+		{description = '| Increase floating client size vertically by 10 px down', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Shift'},
@@ -189,7 +189,7 @@ local clientKeys =
 				c:relative_move(dpi(-50), 0, dpi(50), 0)
 			end
 		end,
-		{description = 'increase floating client size horizontally by 10 px left', group = 'client'}
+		{description = '| Increase floating client size horizontally by 10 px left', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Shift'},
@@ -199,7 +199,7 @@ local clientKeys =
 				c:relative_move(0, 0, dpi(50), 0)
 			end
 		end,
-		{description = 'increase floating client size horizontally by 10 px right', group = 'client'}
+		{description = '| Increase floating client size horizontally by 10 px right', group = 'client'}
 	),
 
 	-- Decreasing floating client size
@@ -211,7 +211,7 @@ local clientKeys =
 				c:relative_move(0, 0, 0, dpi(-50))
 			end
 		end,
-		{description = 'decrease floating client size vertically by 10 px up', group = 'client'}
+		{description = '| Decrease floating client size vertically by 10 px up', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Control'},
@@ -225,7 +225,7 @@ local clientKeys =
 				end
 			end
 		end,
-		{description = 'decrease floating client size vertically by 10 px down', group = 'client'}
+		{description = '| Decrease floating client size vertically by 10 px down', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Control'},
@@ -235,7 +235,7 @@ local clientKeys =
 				c:relative_move(0, 0, dpi(-50), 0)
 			end
 		end,
-		{description = 'decrease floating client size horizontally by 10 px left', group = 'client'}
+		{description = '| Decrease floating client size horizontally by 10 px left', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Control'},
@@ -249,7 +249,7 @@ local clientKeys =
 				end
 			end
 		end,
-		{description = 'decrease floating client size horizontally by 10 px right', group = 'client'}
+		{description = '| Decrease floating client size horizontally by 10 px right', group = 'client'}
 	)
 )
 
