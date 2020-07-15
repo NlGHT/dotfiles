@@ -14,6 +14,17 @@ alias news='curl getnews.tech'
 alias aunews='curl au.getnews.tech'
 alias usnews='curl us.getnews.tech'
 alias starwars='telnet towel.blinkenlights.nl'
+function spotifyTheme() {
+    spicetify config current_theme Dribbblish color_scheme "$1" && spicetify apply
+}
+function setupSpicetifyThemes() {
+    cd "$(dirname "$(spicetify -c)")/Themes/Dribbblish" || return
+    cp dribbblish.js ../../Extensions
+    spicetify config extensions dribbblish.js
+    spicetify config current_theme Dribbblish color_scheme base
+    spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
+    spicetify apply
+}
 
 # All edits
 alias editAlacritty='nvim ~/.config/alacritty/alacritty.yml'
@@ -53,7 +64,7 @@ alias status='config status'
 
 # Currency conversion (cconv {amount} {from} {to}) (Country codes must be capital)
 cconv() {
-    qalc -t $1 $2 to $3
+    qalc -t "$1" "$2" to "$3"
 }
 
 # Time functions (Credit: https://superuser.com/a/611582)
