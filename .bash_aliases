@@ -17,7 +17,8 @@ alias starwars='telnet towel.blinkenlights.nl'
 function spotifyTheme() {
     spicetify config current_theme Dribbblish color_scheme "$1" && spicetify apply
 }
-function setupSpicetifyThemes() {
+function setDribbblishTheme() {
+    # Spotify
     cd "$(dirname "$(spicetify -c)")/Themes/Dribbblish" || return
     cp dribbblish.js ../../Extensions
     spicetify config extensions dribbblish.js
