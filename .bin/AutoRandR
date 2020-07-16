@@ -11,16 +11,22 @@ connected=$(xrandr | awk '/ connected/ {print $1" "}')
 wc=$(echo "$connected" | wc -w)
 [ "$1" != "-s" ] && echo "Found $wc devices connected"
 
+getDisconnected() {
+    xrandr | awk 'BEGIN { ORS=" " } / disconnected/ {print "--output "$1" --off"}'
+}
+
 if [ "$wc" -gt 0 ]; then
     case $wc in
         1)
-            xrandr --output "${connected% }" --primary --mode 1920x1080 --pos 0x0 --rotate normal
+            getDisconnected | xargs \
+                xrandr --output "${connected% }" --primary --mode 1920x1080 --pos 0x0 --rotate normal
             [ "$1" != "-s" ] && echo "XRandR of single display: $connected"
             ;;
         2)
             mon1=${connected%% *}
             mon2=${connected#* }
-            xrandr \
+            getDisconnected | xargs \
+                xrandr \
                 --output "$mon1" --primary --mode 1920x1080 --pos 0x0 --rotate normal \
                 --output "$mon2" --auto --right-of "$mon1"
             [ "$1" != "-s" ] && echo "XRandR of two displays: $mon1 and $mon2"
@@ -30,7 +36,8 @@ if [ "$wc" -gt 0 ]; then
             lastTwo=${connected#* }
             mon2=${lastTwo%% *}
             mon3=${lastTwo#* }
-            xrandr \
+            getDisconnected | xargs \
+                xrandr \
                 --output "$mon1" --mode 1920x1080 --primary --pos 0x0 --rotate normal \
                 --output "$mon2" --auto --right-of "$mon1" \
                 --output "$mon3" --auto --left-of "$mon2"
