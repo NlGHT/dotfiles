@@ -1,26 +1,34 @@
 #!/bin/sh
 
 # XRandR setup script that will setup up to 3 monitors automatically
-# I usually have this symlinked in /usr/share and then run as startup script in LightDM
+# where first newly connected device is the primary.
+# I usually have this symlinked in /usr/share and then run as startup script in LightDM.
 
 ################# ARGS #################
 # -s = silent (nothing will be echoed) #
 ########################################
 
-connected=$(xrandr | awk '/ connected/ {print $1" "}')
+connected=$(xrandr | awk 'BEGIN { ORS=" " } / connected/ {print $1}')
+connected=${connected%% } # Remove the end space if it is produced
 wc=$(echo "$connected" | wc -w)
 [ "$1" != "-s" ] && echo "Found $wc devices connected"
+
+getDisconnected() {
+    xrandr | awk 'BEGIN { ORS=" " } / disconnected/ {print "--output "$1" --off"}'
+}
 
 if [ "$wc" -gt 0 ]; then
     case $wc in
         1)
-            xrandr --output "${connected% }" --primary --mode 1920x1080 --pos 0x0 --rotate normal
+            getDisconnected | xargs \
+                xrandr --output "${connected% }" --primary --mode 1920x1080 --pos 0x0 --rotate normal
             [ "$1" != "-s" ] && echo "XRandR of single display: $connected"
             ;;
         2)
             mon1=${connected%% *}
-            mon2=${connected#* }
-            xrandr \
+            mon2=${connected##* }
+            getDisconnected | xargs \
+                xrandr \
                 --output "$mon2" --primary --auto --pos 0x0 --rotate normal \
                 --output "$mon1" --mode 1920x1080 --right-of "$mon2"
             [ "$1" != "-s" ] && echo "XRandR of two displays: $mon1 and $mon2"
@@ -30,7 +38,8 @@ if [ "$wc" -gt 0 ]; then
             lastTwo=${connected#* }
             mon2=${lastTwo%% *}
             mon3=${lastTwo#* }
-            xrandr \
+            getDisconnected | xargs \
+                xrandr \
                 --output "$mon2" --primary --auto --pos 0x0 --rotate normal \
                 --output "$mon1" --mode 1920x1080 --right-of "$mon2" \
                 --output "$mon3" --auto --left-of "$mon2"

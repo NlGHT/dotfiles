@@ -1,13 +1,14 @@
 #!/bin/sh
 
-# XRandR setup script that will setup up to 3 monitors automatically using the first connected display as the primary
-# I usually have this symlinked in /usr/share and then run as startup script in LightDM
+# XRandR setup script that will setup up to 3 monitors automatically using the first connected display as the primary.
+# I usually have this symlinked in /usr/share and then run as startup script in LightDM.
 
 ################# ARGS #################
 # -s = silent (nothing will be echoed) #
 ########################################
 
-connected=$(xrandr | awk '/ connected/ {print $1" "}')
+connected=$(xrandr | awk 'BEGIN { ORS=" " } / connected/ {print $1}')
+connected=${connected%% } # Remove the end space if it is produced
 wc=$(echo "$connected" | wc -w)
 [ "$1" != "-s" ] && echo "Found $wc devices connected"
 
@@ -24,7 +25,7 @@ if [ "$wc" -gt 0 ]; then
             ;;
         2)
             mon1=${connected%% *}
-            mon2=${connected#* }
+            mon2=${connected##* }
             getDisconnected | xargs \
                 xrandr \
                 --output "$mon1" --primary --mode 1920x1080 --pos 0x0 --rotate normal \
