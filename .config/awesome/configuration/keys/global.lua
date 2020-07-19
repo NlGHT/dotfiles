@@ -280,7 +280,7 @@ local globalKeys = awful.util.table.join(
         {},
         'XF86Display',
         function()
-            awful.spawn.single_instance('AutoRandR', false)
+            awful.spawn('/usr/share/AutoRandR', false)
         end,
         {description = '| Auto X R and R', group = 'hotkeys'}
     ),

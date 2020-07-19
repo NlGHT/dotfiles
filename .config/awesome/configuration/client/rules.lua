@@ -184,6 +184,7 @@ ruled.client.connect_signal("request::rules", function()
 			class = {
 				"vlc",
 				"Spotify",
+                "spotify",
                 "Totem",
                 "eog"
 			}
@@ -201,6 +202,7 @@ ruled.client.connect_signal("request::rules", function()
 			class = {
 				"Wine",
 				"Steam",
+                "steam",
                 "Lutris"
 			},
 		name = { "Steam" }
@@ -238,6 +240,7 @@ ruled.client.connect_signal("request::rules", function()
 		rule_any   = {
 			class = {
 				"reaper",
+                "REAPER",
 				"UnityHub"
 			}
 		},
