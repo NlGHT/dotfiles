@@ -42,5 +42,10 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Run a nice comfy neofetch :D
-neofetch --ascii_distro Arch_small --color_blocks off --disable uptime resolution cpu gpu de wm theme icons model term
+if [ "$(pgrep $TERM | wc -l)" -le 1 ]; then
+    # Run a nice comfy neofetch if only terminal :D
+    which neofetch >/dev/null 2>&1 && \
+        neofetch --ascii_distro Arch_small --color_blocks off --disable uptime resolution cpu gpu de wm theme icons model term
+    which fortune >/dev/null 2>&1 && \
+        fortune && printf "\n"
+fi
