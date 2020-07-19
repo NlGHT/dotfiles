@@ -33,15 +33,15 @@ function setupDribblish() {
 }
 
 # All edits
-alias editAlacritty='nvim ~/.config/alacritty/alacritty.yml'
-alias editAwesome='cd ~/.config/awesome/ && nvim'
-alias editRedshift='nvim ~/.config/redshift.conf'
-alias editAliases='nvim ~/.bash_aliases'
-alias editBashRC='nvim ~/.bashrc'
-alias editVim='nvim ~/.vimrc'
+alias eac='nvim ~/.config/alacritty/alacritty.yml'
+alias eaw='cd ~/.config/awesome/ && nvim'
+alias er='nvim ~/.config/redshift.conf'
+alias eal='nvim ~/.bash_aliases'
+alias eb='nvim ~/.bashrc'
+alias ev='nvim ~/.vimrc'
 alias td='nvim ~/ToDoList.txt'
-alias editLightDM='sudo nvim /etc/lightdm/lightdm.conf'
-alias editEMACS='nvim ~/.doom.d/init.el'
+alias el='sudo nvim /etc/lightdm/lightdm.conf'
+alias ee='nvim ~/.doom.d/init.el'
 
 # Utility
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
