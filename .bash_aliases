@@ -1,3 +1,7 @@
+# Rest in peace Vim <3 I still love you but NeoVim just is needed with all my plugins for performance
+alias vim='nvim'
+alias v='nvim'
+
 # NVIDIA and Optimus Manager
 alias pro='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia'
 alias mb='sudo su -c "echo 12 >/sys/class/backlight/intel_backlight/brightness"' # Go to minimum brightness
@@ -14,10 +18,11 @@ alias news='curl getnews.tech'
 alias aunews='curl au.getnews.tech'
 alias usnews='curl us.getnews.tech'
 alias starwars='telnet towel.blinkenlights.nl'
-function spotifyTheme() {
+function setDribbblishTheme() {
+    # Spotify themeing
     spicetify config current_theme Dribbblish color_scheme "$1" && spicetify apply
 }
-function setDribbblishTheme() {
+function setupDribblish() {
     # Spotify
     cd "$(dirname "$(spicetify -c)")/Themes/Dribbblish" || return
     cp dribbblish.js ../../Extensions
