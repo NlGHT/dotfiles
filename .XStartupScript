@@ -1,4 +1,9 @@
 #!/bin/sh
 
+# This is soft symlinked in /usr/share and used as a setup script for LightDM
+
+# This first thing is needed for Optimus Manager to work
+# Additionally in the display-stopped-script,
+# There needs to be /usr/bin/prime-switch
 eval '"/usr/bin/prime-offload"'
 eval '"/usr/share/AutoRandR"'
