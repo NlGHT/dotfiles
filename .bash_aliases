@@ -55,6 +55,9 @@ alias getLANIP="ip a s wlp2s0 | awk -F '[/ ]+' '/inet / {print $3}'"
 alias resetPiSSH='ssh-keygen -R 192.168.87.109'
 alias scanwifi='sudo nmap -sS -O'
 
+# System
+alias startBluetooth='sudo systemctl start bluetooth.service'
+
 # Instant CD's
 alias documents='cd ~/Documents'
 alias images='cd ~/Pictures'
