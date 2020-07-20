@@ -1,0 +1,4 @@
+#!/bin/sh
+
+eval '"/usr/bin/prime-offload"'
+eval '"/usr/share/AutoRandR"'
