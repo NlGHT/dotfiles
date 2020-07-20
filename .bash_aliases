@@ -1,6 +1,7 @@
 # Rest in peace Vim <3 I still love you but NeoVim just is needed with all my plugins for performance
 alias vim='nvim'
 alias v='nvim'
+alias suv='sudo nvim'
 
 # NVIDIA and Optimus Manager
 alias pro='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia'
