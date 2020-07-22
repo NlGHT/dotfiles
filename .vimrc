@@ -10,8 +10,16 @@ call plug#begin('~/.vim/plugged')
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " [TODO] Find some way to have Unity code completion (C#)
 
+Plug 'OmniSharp/omnisharp-vim'
 Plug 'ycm-core/YouCompleteMe' " Code completion
 " [TODO] Stop C++ constant popup when cursor still on anything
+
+Plug 'ervandew/supertab'
+" Track the snippet engine.
+Plug 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
+Plug 'NlGHT/vim-eel2'
 
 Plug 'preservim/nerdtree' " File manager
 Plug 'itchyny/lightline.vim'
@@ -26,7 +34,6 @@ Plug 'morhetz/gruvbox'
 Plug 'jacoborus/tender.vim'
 " Plug 'arcticicestudio/nord-vim' " [TODO] Why does this have transparent background?
 
-" Plug 'OmniSharp/omnisharp-vim'
 Plug 'w0rp/ale' " Linting
 call plug#end()
 
@@ -113,6 +120,15 @@ nnoremap <leader>fi :YcmCompleter FixIt<CR>
 nnoremap <leader>rn :YcmCompleter RefactorRename<CR>
 " [TODO] Need to have some way of entering the name after RefactorRename
 let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>'] " Add enter to accept code completion
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " ALE jump to errors/warnings
 nnoremap <leader>en :ALENextWrap<CR>
@@ -218,6 +234,13 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+
+" OmniSharp
+let g:OmniSharp_server_use_mono = 1
+let g:ale_linters = {
+\ 'cs': ['OmniSharp']
+\}
 
 
 

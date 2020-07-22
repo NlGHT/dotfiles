@@ -1,0 +1,6 @@
+#!/bin/sh
+
+~/.bin/GetReaScriptAPI --eel --no-returns | \
+    awk 'BEGIN { FS="[()]" }
+    { print "snippet " $1 " '\''" $0 "'\''" "\n" $0 "\n" "endsnippet"}' \
+        | awk '/^snippet/ {gsub("\"", ":", $0) ; gsub("'\''", "\"", $0) ; gsub(":", "'\''", $0)} {print}'
