@@ -66,6 +66,7 @@ alias videos='cd ~/Videos'
 alias downloads='cd ~/Downloads'
 alias uniDocs='cd ~/Documents/Uni/6Sem'
 alias uniVideos='cd ~/Videos/Sem6/'
+alias rscript='cd ~/.config/REAPER/Scripts/Own\ Scripts/Night-REAPER-Scripts'
 
 # Dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
@@ -96,5 +97,5 @@ function stopwatch(){
 }
 
 # Get all aliases
-alias aliases='sed -n -e :a -e "1,4!{P;N;D;};N;ba" ~/.bash_aliases'
+alias aliases='head -n -4 ~/.bash_aliases'
 alias aliasCommand='tail -n 3 ~/.bash_aliases' # Get the get aliases command
