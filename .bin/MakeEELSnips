@@ -3,4 +3,23 @@
 ~/.bin/GetReaScriptAPI --eel --no-returns | \
     awk 'BEGIN { FS="[()]" }
     { print "snippet " $1 " '\''" $0 "'\''" "\n" $0 "\n" "endsnippet"}' \
-        | awk '/^snippet/ {gsub("\"", ":", $0) ; gsub("'\''", "\"", $0) ; gsub(":", "'\''", $0)} {print}'
+        | awk '/^snippet/ {gsub("\"", ":", $0) ; gsub("'\''", "\"", $0) ; gsub(":", "'\''", $0)} {print}' \
+        | awk 'BEGIN {FS="[()]" ; OFS=""}
+            /^snippet/ {
+            print $0;
+            getline;
+            split($2, a, ",");
+            newString="(";
+            for (i in a) {
+                newString=newString "\$\{" i ":" a[i] "\}" ", ";
+            }
+            if ($2 != "") {
+                newString=substr(newString, 1, length(newString)-2);
+            }
+            newString=newString ")";
+            $2=newString;
+            print $0;
+            getline;
+            print $0;
+        }'
+            # | sed 's/.*(\(.*\))/\1/'
