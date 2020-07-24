@@ -85,7 +85,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			{
 				icon = tag.icon,
 				icon_only = true,
-				layout = awful.layout.suit.spiral.dwindle,
+				layout = awful.layout.suit.tile,
 				gap_single_client = false,
 				gap = beautiful.useless_gap,
 				screen = s,
