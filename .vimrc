@@ -88,6 +88,7 @@ syntax on
 " For lightline
 set laststatus=2
 set noshowmode
+" ================================================================= "
 
 
 " ================================================================= "
@@ -274,3 +275,4 @@ autocmd FileType cpp map <F8> <Esc>:w<CR>:!clear;g++ -g -std=c++17 % -o %:t:r -l
 " For basic Bash running
 autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
 autocmd FileType sh map <F5> <Esc>:w<CR>:!clear;./%<CR>
+" ================================================================= "
