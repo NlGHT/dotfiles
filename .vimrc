@@ -86,6 +86,9 @@ let &t_EI = "\033[1 q"
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 
+" Alias :W to :w for saving (from https://stackoverflow.com/questions/3878692/aliasing-a-command-in-vim)
+cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
+
 if !has('nvim')
   set ttymouse=xterm2
 endif
