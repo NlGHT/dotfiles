@@ -49,6 +49,7 @@ alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias x='exit'
 alias reload='source ~/.bashrc'
 alias delOrphans='sudo pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
+alias open='xdg-open'
 
 # WIFI
 alias getRegularWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/limit56farce59umbra.nmconnection'
