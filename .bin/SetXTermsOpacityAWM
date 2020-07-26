@@ -1,0 +1,4 @@
+#!/bin/sh
+path="$HOME/.config/awesome/configuration/picom.conf"
+[ -f "$path" ] && \
+    sed -i "s/[0-9]*:class_g/$1:class_g/" "$path"
