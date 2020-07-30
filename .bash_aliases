@@ -50,6 +50,7 @@ alias x='exit'
 alias reload='source ~/.bashrc'
 alias delOrphans='sudo pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
 alias open='xdg-open'
+alias g='git'
 
 # WIFI
 alias getRegularWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/limit56farce59umbra.nmconnection'
@@ -71,6 +72,7 @@ alias rscript='cd ~/.config/REAPER/Scripts/Own\ Scripts/Night-REAPER-Scripts'
 
 # Dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias c='config'
 alias seeCommitDiff='config diff --cached origin/master'
 alias status='config status'
 
