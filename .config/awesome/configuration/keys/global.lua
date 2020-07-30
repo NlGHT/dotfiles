@@ -367,6 +367,14 @@ local globalKeys = awful.util.table.join(
         {description = '| Lock the screen', group = 'Utility'}
     ),
     awful.key(
+        {modkey, "Shift"},
+        'Return',
+        function()
+            awful.spawn('xterm', false)
+        end,
+        {description = '| Open XTerm', group = 'launcher'}
+    ),
+    awful.key(
         {modkey},
         'Return',
         function()
