@@ -26,9 +26,8 @@ call plug#begin('~/.vim/plugged')
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " [TODO] Find some way to have Unity code completion (C#)
 
-Plug 'OmniSharp/omnisharp-vim'
+" Plug 'OmniSharp/omnisharp-vim'
 Plug 'ycm-core/YouCompleteMe' " Code completion
-" [TODO] Stop C++ constant popup when cursor still on anything
 
 Plug 'ervandew/supertab'
 " Track the snippet engine.
@@ -106,10 +105,10 @@ endif
 " colorscheme solarized
 
 " Set XTerm opacity to be opaque when in Vim and not when not
-autocmd VimEnter * :silent !~/.bin/SetXTermsOpacityAWM 100
-autocmd WinEnter * :silent !~/.bin/SetXTermsOpacityAWM 100
-autocmd VimLeave * :silent !~/.bin/SetXTermsOpacityAWM 80
-autocmd WinLeave * :silent !~/.bin/SetXTermsOpacityAWM 80
+" autocmd VimEnter * :silent !~/.bin/SetXTermsOpacityAWM 100
+" autocmd WinEnter * :silent !~/.bin/SetXTermsOpacityAWM 100
+" autocmd VimLeave * :silent !~/.bin/SetXTermsOpacityAWM 80
+" autocmd WinLeave * :silent !~/.bin/SetXTermsOpacityAWM 80
 
 " Change cursor in insert mode
 let &t_SI = "\033[5 q"
@@ -176,9 +175,16 @@ endif
 
 " ================================================================= "
 "
-" AUTO-COMPLETE
+" AUTO-COMPLETE (YouCompleteMe, UltiSnips, ALE)
 "
 " ================================================================= "
+" Hide completion details window (I do this on android because of lag)
+set completeopt-=preview
+" let g:ycm_autocose_preview_window_after_insertion = 1 " This don't work
+
+" Stop hover details
+let g:ycm_auto_hover=''
+
 " All YouCompleteMe keybinds
 nnoremap <leader>gg :YcmCompleter GoTo<CR>
 nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
