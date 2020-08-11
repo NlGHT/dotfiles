@@ -1,24 +1,7 @@
 # Night's Dotfiles!
 
 ## What I got
-- Bulk file editing with scripts written in C++ **(WIP: Currently renameAllHere does support large datasets, others don't.  It will all be combined and optimised in the near future!)**
-    - Prefix all in current directory
-        - Names can contain anything (Be a little bit careful here.....)
-        - Spaces will be joined
-        - Optional --silent flag for peace and quiet
-        - Use example: `$ prefixAllHere [--silent] {New prefix for all files}`
-    - Suffix all in current directory
-        - Names can contain anything (Be a little bit careful here.....)
-        - Spaces will be joined
-        - Optional --silent flag for peace and quiet
-        - Puts name before file extension
-        - Use example: `$ suffixAllHere [--silent] {New suffix for all files}`
-    - Rename all in current directory
-        - Names can contain anything (Be a little bit careful here.....)
-        - Spaces will be joined
-        - Optional --silent flag for peace and quiet
-        - Puts name before any file extension
-        - Use example: `$ renameAllHere [--silent] {New name for files}`
+- Some bulk file renaming tools that aren't finished yet :(
 - Some nice aliases :)
     - Terminal weather
     - Minimum brightness command
