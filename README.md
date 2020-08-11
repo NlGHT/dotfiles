@@ -4,20 +4,24 @@
 - Some bulk file renaming tools that aren't finished yet :(
 - Some nice aliases :)
     - Terminal weather
-    - Minimum brightness command
+    - Terminal news
     - Currency conversion (Requires `libqalculate`)
         - Example use: `$ cconv 10 EUR USD`
-- A nice .vimrc that uses YouCompleteMe (not clean yet but will be soon when I figure out how to use Unity with Vim)
+- A nice .vimrc that uses YouCompleteMe for auto-completion
     - Plugged (for plugins)
     - YouCompleteMe (for auto-complete)
+    - UltiSnips (for snippets)
+    - ALE (Marking errors on lines + jump to next/previous error/warning)
     - NERDTree (for file browser)
     - NERDCommenter (for commenting with code)
     - Lightline (for nicer UI)
     - Running and building hotkeys (C++, Python, Shell)
     - Trailing white-space stripping on write
+    - Change cursor and highlight line on insert mode
+    - Word count selection
 
 ## Dependencies
-Please visit the [original dependency description](https://github.com/manilarome/the-glorious-dotfiles/wiki/Dependencies) because it's done very well.  However, the base required dependencies are but you kinda need the optional ones as described over on the origin:
+Please visit the [original dependency description](https://githubselectioncom/manilarome/the-glorious-dotfiles/wiki/Dependencies) because it's done very well.  However, the base required dependencies are fine, but really you kinda need many of the optional ones as described over on the [origin](https://githubselectioncom/manilarome/the-glorious-dotfiles/wiki/Dependencies):
 
 #### Base
 | Name | Description | Why/Where is it needed? |
@@ -39,11 +43,12 @@ In addition to this the apps described below in the applications section are use
 *(However, I am trying to keep shell scripts POSIX-compliant)*
 
 ## Apps
-- Terminal: **Alacritty**
+- Terminal: **Alacritty** / **XTerm** *(For battery saving)*
 - File manager: **Nautilus**
 - Web browser: **Brave**
 - Text editor: **NeoVim / Vim**
 - Screenshot tool: **Flameshot**
+- Music: **Spotify**
 
 ## GTK Theme
 - Theme: **Matcha Dark Sea**
@@ -58,5 +63,4 @@ The original supplier for the Awesome Window Manager config is Gerome Matilla (m
 He has made a great wiki for many questions that you might have and issues with setting up (including dependencies) [over here](https://github.com/manilarome/the-glorious-dotfiles/wiki).
 
 ## Disclaimer
-- This is very much still a work in progress and it will be properly up and running soon!  Just wanted to get all the main files up.  *Mostly for my own well-being so that it's backed up...*
 - The base Awesome config is all all Gerome Matilla's as referenced in the credits.  Hence, the license is just the same as the one he used.  **Please correct me if this is not meant to be how it is!**
