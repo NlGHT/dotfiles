@@ -57,7 +57,7 @@ local tags = {
 	{
 	  icon = icons.social,
 	  type = 'social',
-	  default_app = 'discord',
+	  default_app = 'discord-ptb',
 	  screen = 1
 	},
 	{
