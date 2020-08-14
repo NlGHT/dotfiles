@@ -22,7 +22,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'ycm-core/YouCompleteMe' " Code completion
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clangd-completer --ts-completer --cs-completer --java-completer' } " Code completion
 
 " Supertab used so that YCM and UltiSnips co-operate
 Plug 'ervandew/supertab'
