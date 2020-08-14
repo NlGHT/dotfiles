@@ -22,22 +22,17 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-" CoC - Use release branch (Recommend)
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" [TODO] Find some way to have Unity code completion (C#)
-
-" Plug 'OmniSharp/omnisharp-vim'
 Plug 'ycm-core/YouCompleteMe' " Code completion
 
+" Supertab used so that YCM and UltiSnips co-operate
 Plug 'ervandew/supertab'
 " Track the snippet engine.
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
 Plug 'NlGHT/vim-eel2'
-
 Plug 'preservim/nerdtree' " File manager
-Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim' " Bottom bar
 Plug 'preservim/nerdcommenter' " Easy comment toggling
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Requires yarn and node to be installed
 Plug 'vim/killersheep' " New minigame
@@ -49,7 +44,7 @@ Plug 'morhetz/gruvbox'
 Plug 'jacoborus/tender.vim'
 " Plug 'arcticicestudio/nord-vim' " [TODO] Why does this have transparent background?
 
-Plug 'w0rp/ale' " Linting
+Plug 'w0rp/ale', { 'on': [] } " Linting
 call plug#end()
 
 " Vim-Plug commands
@@ -175,7 +170,7 @@ endif
 
 " ================================================================= "
 "
-" AUTO-COMPLETE (YouCompleteMe, UltiSnips, ALE)
+" AUTO-COMPLETE & ERRORS (YouCompleteMe, UltiSnips, ALE)
 "
 " ================================================================= "
 " Hide completion details window (I do this on android because of lag)
@@ -205,6 +200,10 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" ALE (Linting)
+" Don't load ALE for CS files (Doesn't seem to work with Unity)
+autocmd FileType * if &ft!="cs"|call plug#load('ale')|endif
 
 " ALE jump to errors/warnings
 nnoremap <leader>en :ALENextWrap<CR>

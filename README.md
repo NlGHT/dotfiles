@@ -20,6 +20,9 @@
     - Change cursor and highlight line on insert mode
     - Word count selection
 
+#### Vim Unity3D Support
+My VimRC is setup and working with Unity3D now!  ALE is disabled with `*.cs` files because it gives incorrect errors.  All that is needed to get running with Unity is adding this plugin project to your Unity3D project package dependencies as described: https://github.com/idbrii/unity-vimeditor.
+
 ## Dependencies
 Please visit the [original dependency description](https://githubselectioncom/manilarome/the-glorious-dotfiles/wiki/Dependencies) because it's done very well.  However, the base required dependencies are fine, but really you kinda need many of the optional ones as described over on the [origin](https://githubselectioncom/manilarome/the-glorious-dotfiles/wiki/Dependencies):
 
