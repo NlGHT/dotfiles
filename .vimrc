@@ -22,6 +22,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+Plug 'OmniSharp/omnisharp-vim'
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clangd-completer --ts-completer --cs-completer --java-completer' } " Code completion
 
 " Supertab used so that YCM and UltiSnips co-operate
@@ -45,6 +46,7 @@ Plug 'jacoborus/tender.vim'
 " Plug 'arcticicestudio/nord-vim' " [TODO] Why does this have transparent background?
 
 Plug 'w0rp/ale', { 'on': [] } " Linting
+Plug 'tbastos/vim-lua'
 call plug#end()
 
 " Vim-Plug commands
@@ -149,6 +151,9 @@ nnoremap <C-u> <C-u>M
 nnoremap <C-f> <C-f>M
 nnoremap <C-b> <C-b>M
 
+" Reload file (Like VimRC)
+nnoremap <Leader>rr :source %<CR>
+
 " Strip the trailing white space on write
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -203,7 +208,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " ALE (Linting)
 " Don't load ALE for CS files (Doesn't seem to work with Unity)
-autocmd FileType * if &ft!="cs"|call plug#load('ale')|endif
+autocmd BufRead * if &ft!="cs"|call plug#load('ale')|endif
 
 " ALE jump to errors/warnings
 nnoremap <leader>en :ALENextWrap<CR>
