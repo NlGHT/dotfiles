@@ -193,8 +193,16 @@ nnoremap <leader>gt :YcmCompleter GoToType<CR>
 nnoremap <leader>gi :YcmCompleter GetDoc<CR>
 nnoremap <leader>gf :YcmCompleter GoToImplementation<CR>
 nnoremap <leader>fi :YcmCompleter FixIt<CR>
-nnoremap <leader>rn :YcmCompleter RefactorRename<CR>
-" [TODO] Need to have some way of entering the name after RefactorRename
+function! RefactorRenameInput()
+    let wordUnderCursor = expand("<cword>")
+    call inputsave()
+    let name = input('RefactorRename "' . wordUnderCursor . '" to: ')
+    call inputrestore()
+    execute "YcmCompleter RefactorRename " . name
+endfunction
+nnoremap <leader>rn :call RefactorRenameInput()<CR>
+
+" All YouCompleteMe and syntax stuff variables and options
 let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>'] " Add enter to accept code completion
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
