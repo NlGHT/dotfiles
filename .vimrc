@@ -22,31 +22,48 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clangd-completer --ts-completer --cs-completer --java-completer' } " Code completion
+" Programming (Auto-Complete, Syntax, Errors, Snippets, etc.)
 
-" Supertab used so that YCM and UltiSnips co-operate
-Plug 'ervandew/supertab'
-" Track the snippet engine.
-Plug 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
-Plug 'NlGHT/vim-eel2'
-Plug 'preservim/nerdtree' " File manager
-Plug 'itchyny/lightline.vim' " Bottom bar
-Plug 'preservim/nerdcommenter' " Easy comment toggling
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Requires yarn and node to be installed
-Plug 'vim/killersheep' " New minigame
+    " Auto-Complete
+    Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clangd-completer --ts-completer --cs-completer --java-completer' } " Code completion
+
+    " Errors/Warnings
+    Plug 'w0rp/ale', { 'on': [] } " Linting and errors/warnings
+
+    " Snippets
+    Plug 'ervandew/supertab' " Supertab used so that YCM and UltiSnips co-operate
+    Plug 'SirVer/ultisnips' " Track the snippet engine
+    Plug 'honza/vim-snippets' " Snippets are separated from the engine
+
+    " Additional languages
+    Plug 'NlGHT/vim-eel2'
+    Plug 'tbastos/vim-lua'
+    Plug 'OmniSharp/omnisharp-vim' " Literally only here cos it has decent syntax highlighting
+
+" Usability
+
+    " Inline Text Usage
+    Plug 'thaerkh/vim-indentguides' " Kinda like VSCode's indentation line markers
+    Plug 'jmckiern/vim-venter' " Center the screen
+    Plug 'unblevable/quick-scope' " Outlines unique characters after 'f'
+    Plug 'junegunn/goyo.vim' " No distractions
+    Plug 'preservim/nerdcommenter' " Easy comment toggling
+
+    " Files
+    Plug 'preservim/nerdtree' " File manager
+    Plug 'Xvezda/vim-nobin' " Opens the cpp if executable accidentally opened
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Requires yarn and node to be installed
+
+    " UI
+    Plug 'itchyny/lightline.vim' " Bottom bar
 
 " Themes
-Plug 'vim-scripts/Solarized'
-Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'morhetz/gruvbox'
-Plug 'jacoborus/tender.vim'
-" Plug 'arcticicestudio/nord-vim' " [TODO] Why does this have transparent background?
 
-Plug 'w0rp/ale', { 'on': [] } " Linting
-Plug 'tbastos/vim-lua'
+    Plug 'vim-scripts/Solarized'
+    Plug 'kristijanhusak/vim-hybrid-material'
+    Plug 'morhetz/gruvbox'
+    Plug 'jacoborus/tender.vim'
+    " Plug 'arcticicestudio/nord-vim' " [TODO] Why does this have transparent background?
 call plug#end()
 
 " Vim-Plug commands
@@ -153,6 +170,7 @@ nnoremap <C-b> <C-b>M
 
 " Reload file (Like VimRC)
 nnoremap <Leader>rr :source %<CR>
+nnoremap <Leader>rv :source ~/.vimrc<CR>
 
 " Strip the trailing white space on write
 fun! <SID>StripTrailingWhitespaces()
@@ -293,4 +311,32 @@ autocmd FileType cpp map <F8> <Esc>:w<CR>:!clear;g++ -g -std=c++17 % -o %:t:r -l
 " For basic Bash running
 autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
 autocmd FileType sh map <F5> <Esc>:w<CR>:!clear;./%<CR>
+" ================================================================= "
+
+
+" ================================================================= "
+"
+" Usability
+"
+" ================================================================= "
+" Toggle Venter (Centers screen)
+nnoremap <Leader>vc :VenterToggle<CR>
+
+" Toggle 'goyo'
+map <leader>gy :Goyo \| set bg=dark \| set linebreak<CR>
+
+" If executable opened instead of cpp, open it no confirmation
+let g:nobin_always_yes = 1
+
+" Colour the quick-scope plugin
+function! SetQuickScopeColours()
+    highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+    highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+endfunction
+call SetQuickScopeColours()
+
+augroup qs_colors
+  autocmd!
+  autocmd ColorScheme * :call SetQuickScopeColours()
+augroup END
 " ================================================================= "
