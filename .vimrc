@@ -16,9 +16,9 @@
 " ================================================================= "
 " First off, install Plugged if not installed
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -48,6 +48,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'unblevable/quick-scope' " Outlines unique characters after 'f'
     Plug 'junegunn/goyo.vim' " No distractions
     Plug 'preservim/nerdcommenter' " Easy comment toggling
+    Plug 'godlygeek/tabular' " Alignment
 
     " Files
     Plug 'preservim/nerdtree' " File manager
@@ -186,7 +187,7 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
 
 if !has('nvim')
-  set ttymouse=xterm2
+    set ttymouse=xterm2
 endif
 " ================================================================= "
 
@@ -222,14 +223,15 @@ nnoremap <leader>rn :call RefactorRenameInput()<CR>
 
 " All YouCompleteMe and syntax stuff variables and options
 let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>'] " Add enter to accept code completion
+
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_select_completion   = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:SuperTabDefaultCompletionType    = '<C-n>'
 
 " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsExpandTrigger       = "<tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " ALE (Linting)
@@ -248,19 +250,19 @@ nnoremap <leader>ep :ALEPreviousWrap<CR>
 "
 " ================================================================= "
 " Open NERDTree when Vim starts with a directory as argument
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+autocmd StdinReadPre *  let s:std_in=1
+autocmd VimEnter *      if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
 " Auto startup NERDTree if no files specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd StdinReadPre *  let s:std_in=1
+autocmd VimEnter *      if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Auto close NERDTree if it is the only thing open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " All NERDTree keybinds
 nnoremap <leader>n :NERDTreeToggle<CR>
-map <C-n> :NERDTreeToggle<CR>
+map <C-n>          :NERDTreeToggle<CR>
 " ================================================================= "
 
 
@@ -290,27 +292,27 @@ map <leader>cc <plug>NERDCommenterToggle
 " ================================================================= "
 " For python running
 autocmd FileType python imap <F5> <Esc>:w<CR>:!clear;python %<CR>
-autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python %<CR>
+autocmd FileType python map  <F5> <Esc>:w<CR>:!clear;python %<CR>
 
 " For basic C++ compiling
 autocmd FileType cpp imap <F5> <Esc>:w<CR>:!clear;g++ % -o %:t:r<CR>
-autocmd FileType cpp map <F5> <Esc>:w<CR>:!clear;g++ % -o %:t:r<CR>
+autocmd FileType cpp map  <F5> <Esc>:w<CR>:!clear;g++ % -o %:t:r<CR>
 
 " For basic C++ compiling and running
 autocmd FileType cpp imap <F6> <Esc>:w<CR>:!clear;g++ % -o %:t:r;./%:t:r<CR>
-autocmd FileType cpp map <F6> <Esc>:w<CR>:!clear;g++ % -o %:t:r;./%:t:r<CR>
+autocmd FileType cpp map  <F6> <Esc>:w<CR>:!clear;g++ % -o %:t:r;./%:t:r<CR>
 
 " For C++17 experimental filesystem compiling
 autocmd FileType cpp imap <F7> <Esc>:w<CR>:!clear;g++ -std=c++17 % -o %:t:r -lstdc++fs<CR>
-autocmd FileType cpp map <F7> <Esc>:w<CR>:!clear;g++ -std=c++17 % -o %:t:r -lstdc++fs<CR>
+autocmd FileType cpp map  <F7> <Esc>:w<CR>:!clear;g++ -std=c++17 % -o %:t:r -lstdc++fs<CR>
 
 " For C++17 experimental filesystem compiling (DEBUGGING)
 autocmd FileType cpp imap <F8> <Esc>:w<CR>:!clear;g++ -g -std=c++17 % -o %:t:r -lstdc++fs<CR>
-autocmd FileType cpp map <F8> <Esc>:w<CR>:!clear;g++ -g -std=c++17 % -o %:t:r -lstdc++fs<CR>
+autocmd FileType cpp map  <F8> <Esc>:w<CR>:!clear;g++ -g -std=c++17 % -o %:t:r -lstdc++fs<CR>
 
 " For basic Bash running
 autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
-autocmd FileType sh map <F5> <Esc>:w<CR>:!clear;./%<CR>
+autocmd FileType sh map  <F5> <Esc>:w<CR>:!clear;./%<CR>
 " ================================================================= "
 
 
@@ -334,9 +336,36 @@ function! SetQuickScopeColours()
     highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 endfunction
 call SetQuickScopeColours()
-
 augroup qs_colors
-  autocmd!
-  autocmd ColorScheme * :call SetQuickScopeColours()
+    autocmd!
+    autocmd ColorScheme * :call SetQuickScopeColours()
 augroup END
+
+" Tim Pope Tabular Insert Mode Align Tables
+inoremap <silent><Bar> <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+    let p = '^\s*|\s.*\s|\s*$'
+    if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+        let column   = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+        let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+        Tabularize/|/l1
+        normal! 0
+        call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+    endif
+endfunction
+
+" Keybinds for aligning text
+" (credit: http://vimcasts.org/episodes/aligning-text-with-tabular-vim/)
+" Align to equals
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+
+" Align to after ':'
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+
+" Align to after ':'
+nmap <Leader>at :call <SID>align()<CR>
+vmap <Leader>at :call <SID>align()<CR>
 " ================================================================= "
