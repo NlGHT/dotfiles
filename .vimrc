@@ -111,7 +111,7 @@ set noshowmode
 "
 " ================================================================= "
 " Use a lighter theme (colorscheme) during the day and darker one at night
-if strftime("%H") < 19
+if strftime("%H") < 19 && strftime("%H") > 10
     colorscheme tender
 else
     colorscheme gruvbox
