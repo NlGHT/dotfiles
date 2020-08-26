@@ -45,7 +45,7 @@ local tags = {
 	{
 		icon = icons.graphics,
 		type = 'art',
-		default_app = '/home/night/Applications/photopea-desktop/release-builds/photopea-desktop-linux-x64/photopea-desktop',
+		default_app = 'krita',
 		screen = 1
 	},
 	{
