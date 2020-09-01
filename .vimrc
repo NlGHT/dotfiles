@@ -223,6 +223,8 @@ nnoremap <leader>rn :call RefactorRenameInput()<CR>
 
 " All YouCompleteMe and syntax stuff variables and options
 let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>'] " Add enter to accept code completion
+let g:ycm_warning_symbol = '~~'
+let g:ycm_goto_buffer_command = 'new-or-existing-tab' " Open GoTo in new tab or existing
 
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion   = ['<C-n>', '<Down>']
@@ -326,6 +328,7 @@ nnoremap <Leader>vc :VenterToggle<CR>
 
 " Toggle 'goyo'
 map <leader>gy :Goyo \| set bg=dark \| set linebreak<CR>
+" map <leader>gyl :Goyo \| set bg=light \| set linebreak<CR>
 
 " If executable opened instead of cpp, open it no confirmation
 let g:nobin_always_yes = 1
