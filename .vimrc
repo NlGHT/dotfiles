@@ -37,7 +37,8 @@ call plug#begin('~/.vim/plugged')
 
     " Additional languages
     Plug 'NlGHT/vim-eel2'
-    Plug 'tbastos/vim-lua'
+    Plug 'xolox/vim-misc' " Necessary for vim-lua-ftplugin
+    Plug 'xolox/vim-lua-ftplugin' " Works with YCM
     Plug 'OmniSharp/omnisharp-vim' " Literally only here cos it has decent syntax highlighting
 
 " Usability
