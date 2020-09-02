@@ -55,6 +55,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdtree' " File manager
     Plug 'Xvezda/vim-nobin' " Opens the cpp if executable accidentally opened
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Requires yarn and node to be installed
+    Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder
+    Plug 'vim-scripts/a.vim' " Alternate between .c and .h with :A
 
     " UI
     Plug 'itchyny/lightline.vim' " Bottom bar
@@ -65,7 +67,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'kristijanhusak/vim-hybrid-material'
     Plug 'morhetz/gruvbox'
     Plug 'jacoborus/tender.vim'
-    " Plug 'arcticicestudio/nord-vim' " [TODO] Why does this have transparent background?
+    " Plug 'arcticicestudio/nord-vim'
+    " [TODO] Why does this have transparent background?
 call plug#end()
 
 " Vim-Plug commands
@@ -170,6 +173,10 @@ nnoremap <C-u> <C-u>M
 nnoremap <C-f> <C-f>M
 nnoremap <C-b> <C-b>M
 
+" Vim file operations
+nmap <M-q> :q!<CR>
+nmap <M-x> :x<CR>
+
 " Reload file (Like VimRC)
 nnoremap <Leader>rr :source %<CR>
 nnoremap <Leader>rv :source ~/.vimrc<CR>
@@ -266,6 +273,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " All NERDTree keybinds
 nnoremap <leader>n :NERDTreeToggle<CR>
 map <C-n>          :NERDTreeToggle<CR>
+
+" Fuzzy finder
+nmap <leader>ff :CtrlP<CR>
+
+" Alternate between .c and .h files (or any other head/impl)
+nmap <leader>j :A<CR>
 " ================================================================= "
 
 
