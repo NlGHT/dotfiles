@@ -27,9 +27,9 @@ bind-key D pb-download
 bind-key U show-urls
 bind-key x pb-delete
 
-color listnormal cyan default
+color listnormal white default
 color listfocus black yellow standout bold
-color listnormal_unread white default
+color listnormal_unread cyan default
 color listfocus_unread yellow default bold
 color info red black bold
 color article white default bold
