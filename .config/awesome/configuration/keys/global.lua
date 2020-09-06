@@ -471,7 +471,7 @@ local globalKeys = awful.util.table.join(
                 _G.right_panel_mode = 'today_mode'
             end
         end,
-        {description = '| Open notification center', group = 'launcher'}
+        {description = '| Open today pane', group = 'launcher'}
     ),
     awful.key(
         {modkey},
@@ -494,7 +494,7 @@ local globalKeys = awful.util.table.join(
                 _G.right_panel_mode = 'notif_mode'
             end
         end,
-        {description = '| Open today pane', group = 'launcher'}
+        {description = '| Open notification center', group = 'launcher'}
     ),
     awful.key(
         {modkey, 'Shift'},
