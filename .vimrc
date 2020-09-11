@@ -194,6 +194,45 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " Alias :W to :w for saving (from https://stackoverflow.com/questions/3878692/aliasing-a-command-in-vim)
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
 
+" Derived from StackOverflow here: https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim/741819#741819
+function! s:swap_lines(n1, n2)
+    let columnPos = col('.')
+    normal! ^
+    let relColumnPos = columnPos - col('.')
+    let line1 = getline(a:n1)
+    let line2 = getline(a:n2)
+    call setline(a:n1, line2)
+    call setline(a:n2, line1)
+    " normal ==
+    " call setpos(line1, 0)
+    " normal ==
+    " call setpos(line2, 0)
+    " exec 'normal ^'.relColumnPos.'l'
+endfunction
+
+function! s:swap_up()
+    let n = line('.')
+    if n == 1
+        return
+    endif
+
+    call s:swap_lines(n, n - 1)
+    " exec n - 1
+endfunction
+
+function! s:swap_down()
+    let n = line('.')
+    if n == line('$')
+        return
+    endif
+
+    call s:swap_lines(n, n + 1)
+    " exec n + 1
+endfunction
+
+noremap <silent> <C-k> :call <SID>swap_up()<CR>
+noremap <silent> <C-j> :call <SID>swap_down()<CR>
+
 if !has('nvim')
     set ttymouse=xterm2
 endif
@@ -325,6 +364,10 @@ autocmd FileType cpp map  <F7> <Esc>:w<CR>:!clear;g++ -std=c++17 % -o %:t:r -lst
 " For C++17 experimental filesystem compiling (DEBUGGING)
 autocmd FileType cpp imap <F8> <Esc>:w<CR>:!clear;g++ -g -std=c++17 % -o %:t:r -lstdc++fs<CR>
 autocmd FileType cpp map  <F8> <Esc>:w<CR>:!clear;g++ -g -std=c++17 % -o %:t:r -lstdc++fs<CR>
+
+" For OpenGL/GLEW/GLUT C++ compiling and running
+autocmd FileType c imap <F9> <Esc>:w<CR>:!clear;gcc % -o %:t:r -lGL -lGLU -lglut -lGLEW;./%:t:r<CR>
+autocmd FileType c map  <F9> <Esc>:w<CR>:!clear;gcc % -o %:t:r -lGL -lGLU -lglut -lGLEW;./%:t:r<CR>
 
 " For basic Bash running
 autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
