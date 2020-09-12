@@ -52,6 +52,7 @@ alias reload='source ~/.bashrc'
 alias delOrphans='sudo pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
 alias open='xdg-open'
 alias g='git'
+alias wdil='history | grep'
 
 # WIFI
 alias getRegularWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/limit56farce59umbra.nmconnection'
@@ -68,7 +69,7 @@ alias images='cd ~/Pictures'
 alias videos='cd ~/Videos'
 alias downloads='cd ~/Downloads'
 alias uni='cd ~/Documents/Uni/7Sem'
-alias lectures='cd ~/Documents/Uni/7Sem/Lectures'
+alias lec='cd ~/Documents/Uni/7Sem/Lectures'
 alias uniVideos='cd ~/Videos/Sem6/'
 alias rscript='cd ~/.config/REAPER/Scripts/Own\ Scripts/Night-REAPER-Scripts'
 
