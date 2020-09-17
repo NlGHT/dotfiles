@@ -4,20 +4,21 @@ if command -v wget unzip > /dev/null 2>&1 ; then
     echo "------ Fixing the XPS15 WiFi drivers ------"
     echo "Found wget and unzip..."
     echo "Downloading firmware..."
-    /usr/bin/wget https://codeload.github.com/kvalo/ath10k-firmware/zip/master -O ath10k-firmware-master.zip
-    echo "Unzipping archive..."
-    /usr/bin/unzip ath10k-firmware-master.zip
-    echo "Unzip successful.  Working on update..."
-    rm -R /lib/firmware/ath10k/QCA6174
-    cp -R ath10k-firmware-master/QCA6174/ /lib/firmware/ath10k/
-    mv /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin_WLAN.RM.2.0-00180-QCARMSWPZ-1 /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin
-    mv /lib/firmware/ath10k/QCA6174/hw3.0/4.4/firmware-6.bin_WLAN.RM.4.4-00022-QCARMSWPZ-2 /lib/firmware/ath10k/QCA6174/hw3.0/4.4/firmware-6.bin
-    mv /lib/firmware/ath10k/QCA6174/hw3.0/4.4.1/firmware-6.bin_WLAN.RM.4.4.1-00051-QCARMSWP-1 /lib/firmware/ath10k/QCA6174/hw3.0/4.4.1/firmware-6.bin
-    cp /lib/firmware/ath10k/QCA6174/hw3.0/4.4.1/firmware-6.bin /lib/firmware/ath10k/QCA6174/hw3.0/
-    echo "Cleaning up..."
-    rm ath10k-firmware-master.zip
-    rm -rf ath10k-firmware-master/
-    echo "------ Fixed the XPS15 WiFi drivers ------"
+    if /usr/bin/wget https://codeload.github.com/kvalo/ath10k-firmware/zip/master -O ath10k-firmware-master.zip; then
+        echo "Unzipping archive..."
+        /usr/bin/unzip ath10k-firmware-master.zip
+        echo "Unzip successful.  Working on update..."
+        rm -R /lib/firmware/ath10k/QCA6174
+        cp -R ath10k-firmware-master/QCA6174/ /lib/firmware/ath10k/
+        mv /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin_WLAN.RM.2.0-00180-QCARMSWPZ-1 /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin
+        mv /lib/firmware/ath10k/QCA6174/hw3.0/4.4/firmware-6.bin_WLAN.RM.4.4-00022-QCARMSWPZ-2 /lib/firmware/ath10k/QCA6174/hw3.0/4.4/firmware-6.bin
+        mv /lib/firmware/ath10k/QCA6174/hw3.0/4.4.1/firmware-6.bin_WLAN.RM.4.4.1-00051-QCARMSWP-1 /lib/firmware/ath10k/QCA6174/hw3.0/4.4.1/firmware-6.bin
+        cp /lib/firmware/ath10k/QCA6174/hw3.0/4.4.1/firmware-6.bin /lib/firmware/ath10k/QCA6174/hw3.0/
+        echo "Cleaning up..."
+        rm ath10k-firmware-master.zip
+        rm -rf ath10k-firmware-master/
+        echo "------ Fixed the XPS15 WiFi drivers ------"
+    fi
 else
     echo "Please install wget and unzip before use."
 fi
