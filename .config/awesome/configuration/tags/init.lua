@@ -39,7 +39,7 @@ local tags = {
 	{
 		icon = icons.games,
 		type = 'game',
-		default_app = 'steam',
+		default_app = 'lutris',
 		screen = 1
 	},
 	{
