@@ -20,11 +20,11 @@ alias news='curl getnews.tech'
 alias aunews='curl au.getnews.tech'
 alias usnews='curl us.getnews.tech'
 alias starwars='telnet towel.blinkenlights.nl'
-function setDribbblishTheme() {
+setDribbblishTheme() {
     # Spotify themeing
     spicetify config current_theme Dribbblish color_scheme "$1" && spicetify apply
 }
-function setupDribblish() {
+setupDribblish() {
     # Spotify
     cd "$(dirname "$(spicetify -c)")/Themes/Dribbblish" || return
     cp dribbblish.js ../../Extensions
@@ -50,6 +50,7 @@ alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias x='exit'
 alias reload='source ~/.bashrc'
 alias delOrphans='sudo pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
+alias yay!='yay' # YAY!!!!!!!!!
 alias open='xdg-open'
 alias g='git'
 alias wdil='history | grep'
@@ -65,9 +66,10 @@ alias startBluetooth='sudo systemctl start bluetooth.service'
 
 # Instant CD's
 alias documents='cd ~/Documents'
+alias docs='cd ~/Documents'
 alias images='cd ~/Pictures'
 alias videos='cd ~/Videos'
-alias downloads='cd ~/Downloads'
+alias dl='cd ~/Downloads'
 alias uni='cd ~/Documents/Uni/7Sem'
 alias lec='cd ~/Documents/Uni/7Sem/Lectures'
 alias uniVideos='cd ~/Videos/Sem6/'
@@ -85,16 +87,16 @@ cconv() {
 }
 
 # Time functions (Credit: https://superuser.com/a/611582)
-function countdown(){
-    date1=$((`date +%s` + $1));
-    while [ "$date1" -ge `date +%s` ]; do
+countdown(){
+    date1=$(($(date +%s) + $1));
+    while [ "$date1" -ge "$(date +%s)" ]; do
         echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
         sleep 0.1
     done
 }
 
-function stopwatch(){
-    date1=`date +%s`;
+stopwatch(){
+    date1=$(date +%s);
     # 24 = q ; 65 = SPACE
     while true; do
         echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
