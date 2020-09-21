@@ -51,6 +51,7 @@ alias x='exit'
 alias reload='source ~/.bashrc'
 alias delOrphans='sudo pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
 alias yay!='yay' # YAY!!!!!!!!!
+alias pacman='yay'
 alias open='xdg-open'
 alias g='git'
 alias wdil='history | grep'
