@@ -31,7 +31,7 @@ Please visit the [original dependency description](https://githubselectioncom/ma
 | --- | --- | --- |
 | [`awesome-git`](https://github.com/awesomeWM/awesome) |  Highly configurable framework window manager | isn't it obvious? |
 | [`rofi-git`](https://github.com/davatorium/rofi) | Window switcher, application launcher and dmenu replacement | Application launcher |
-| [`tryone144's picom`](https://github.com/tryone144/compton/tree/feature/dual_kawase) | A compositor for X11 | a compositor with kawase-blur |
+| [`picom-git`](https://github.com/yshui/picom) | A compositor for X11 | a compositor with kawase-blur |
 
 In addition to this the apps described below in the applications section are used in the config.  The GTK themeing is optional of course but if you don't know what you're doing then just get the things listed :).  Also however there are a few extra dependencies I use:
 
