@@ -395,11 +395,11 @@ function! SetQuickScopeColours()
     highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
     highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 endfunction
-call SetQuickScopeColours()
-augroup qs_colors
-    autocmd!
-    autocmd ColorScheme * :call SetQuickScopeColours()
-augroup END
+" call SetQuickScopeColours()
+" augroup qs_colors
+    " autocmd!
+    " autocmd ColorScheme * :call SetQuickScopeColours()
+" augroup END
 
 " Tim Pope Tabular Insert Mode Align Tables
 inoremap <silent><Bar> <Bar><Esc>:call <SID>align()<CR>a

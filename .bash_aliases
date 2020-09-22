@@ -73,6 +73,8 @@ alias videos='cd ~/Videos'
 alias dl='cd ~/Downloads'
 alias uni='cd ~/Documents/Uni/7Sem'
 alias lec='cd ~/Documents/Uni/7Sem/Lectures'
+alias res='cd ~/Documents/Uni/7Sem/Project/Research'
+alias resn='cd ~/Documents/Uni/7Sem/Project/Notes'
 alias uniVideos='cd ~/Videos/Sem6/'
 alias rscript='cd ~/.config/REAPER/Scripts/Own\ Scripts/Night-REAPER-Scripts'
 
