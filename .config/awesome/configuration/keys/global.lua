@@ -286,14 +286,6 @@ local globalKeys = awful.util.table.join(
     ),
     awful.key(
         {modkey},
-        '`',
-        function()
-            _G.toggle_quake()
-        end,
-        {description = '| Dropdown application', group = 'launcher'}
-    ),
-    awful.key(
-        {modkey},
         'm',
         function()
             if awful.screen.focused().musicpop then
