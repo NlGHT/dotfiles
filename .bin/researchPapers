@@ -1,0 +1,9 @@
+#!/bin/sh
+
+researchPapers="$HOME/Documents/Uni/7Sem/Project/Research/"
+
+if [ -d "$researchPapers" ]; then
+    dmOut=$(find "$researchPapers" -type f | sed 's/.*\///g' | dmenu -i -sb "#4d97ff" -nb "#000000" -sb "#4d97ff" -sf "#19262b")
+    [ -z "$dmOut" ] && exit
+    zathura "$researchPapers""$dmOut"
+fi

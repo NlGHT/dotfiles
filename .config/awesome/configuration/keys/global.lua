@@ -309,7 +309,7 @@ local globalKeys = awful.util.table.join(
             --awful.spawn.easy_async_with_shell(apps.bins.full_screenshot,function() end)
             awful.spawn("flameshot gui", false)
         end,
-        {description = '| Take screenshot with flameshot', group = 'Utility'}
+        {description = '| Take screenshot with flameshot', group = 'utility'}
     ),
     awful.key(
         {modkey},
@@ -317,7 +317,7 @@ local globalKeys = awful.util.table.join(
         function()
             awesome.emit_signal("widget::blur:toggle")
         end,
-        {description = '| Toggle blur effects', group = 'Utility'}
+        {description = '| Toggle blur effects', group = 'utility'}
     ),
     awful.key(
         {modkey},
@@ -325,7 +325,7 @@ local globalKeys = awful.util.table.join(
         function()
             awesome.emit_signal("widget::blur:increase")
         end,
-        {description = '| Increase blur effect by 10%', group = 'Utility'}
+        {description = '| Increase blur effect by 10%', group = 'utility'}
     ),
     awful.key(
         {modkey},
@@ -333,7 +333,7 @@ local globalKeys = awful.util.table.join(
         function()
             awesome.emit_signal("widget::blur:decrease")
         end,
-        {description = '| Decrease blur effect by 10%', group = 'Utility'}
+        {description = '| Decrease blur effect by 10%', group = 'utility'}
     ),
     awful.key(
         {modkey},
@@ -341,7 +341,7 @@ local globalKeys = awful.util.table.join(
         function()
             awesome.emit_signal("widget::blue_light:toggle")
         end,
-        {description = '| Toggle redshift filter', group = 'Utility'}
+        {description = '| Toggle redshift filter', group = 'utility'}
     ),
     awful.key(
         { 'Control' },
@@ -356,7 +356,7 @@ local globalKeys = awful.util.table.join(
                 end
             end
         end,
-        {description = '| Toggle systray visibility', group = 'Utility'}
+        {description = '| Toggle systray visibility', group = 'utility'}
     ),
     awful.key(
         {modkey},
@@ -364,7 +364,7 @@ local globalKeys = awful.util.table.join(
         function()
             awful.spawn(apps.default.lock, false)
         end,
-        {description = '| Lock the screen', group = 'Utility'}
+        {description = '| Lock the screen', group = 'utility'}
     ),
     awful.key(
         {modkey, "Shift"},
@@ -511,7 +511,15 @@ local globalKeys = awful.util.table.join(
         function()
             awful.spawn('peek', false)
         end,
-        {description = '| Capture GIF of screen area with peek', group = 'Utility'}
+        {description = '| Capture GIF of screen area with peek', group = 'utility'}
+    ),
+    awful.key(
+        {modkey, 'Shift', 'Control'},
+        'r',
+        function()
+            awful.spawn('researchPapers', false)
+        end,
+        {description = '| Open a research paper', group = 'launcher'}
     )
 )
 
