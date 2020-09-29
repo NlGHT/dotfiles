@@ -58,8 +58,8 @@ screen.connect_signal("request::desktop_decoration", function(s)
 		function()
 
 			local brightness_level = bri_osd_slider:get_value()
-			
-			spawn('light -S ' .. math.max(brightness_level, 5), false)
+
+			spawn('light -S ' .. math.max(brightness_level, 0.1), false)
 
 			-- Update textbox widget text
 			osd_value.text = brightness_level .. '%'
@@ -69,11 +69,11 @@ screen.connect_signal("request::desktop_decoration", function(s)
 
 			if s.show_bri_osd then
 				awesome.emit_signal(
-					'module::brightness_osd:show', 
+					'module::brightness_osd:show',
 					true
 				)
 			end
-	  	
+
 	  	end
 	)
 
@@ -189,14 +189,14 @@ screen.connect_signal("request::desktop_decoration", function(s)
 
   	-- Reset timer on mouse hover
 	s.brightness_osd_overlay:connect_signal(
-		'mouse::enter', 
+		'mouse::enter',
 		function()
 			s.show_bri_osd = true
 			timer_rerun()
 		end
 	)
 	s.brightness_osd_overlay:connect_signal(
-		'mouse::enter', 
+		'mouse::enter',
 		function()
 			s.show_bri_osd = false
 			timer_rerun()
@@ -206,19 +206,19 @@ screen.connect_signal("request::desktop_decoration", function(s)
 	local placement_placer = function()
 
 		local focused = awful.screen.focused()
-		
+
 		local right_panel = focused.right_panel
 		local left_panel = focused.left_panel
 		local volume_osd = focused.brightness_osd_overlay
 
 		if right_panel and left_panel then
 			if right_panel.visible then
-				awful.placement.bottom_left(focused.brightness_osd_overlay, { margins = { 
+				awful.placement.bottom_left(focused.brightness_osd_overlay, { margins = {
 					left = osd_margin + left_panel.width,
 					right = 0,
 					top = 0,
 					bottom = osd_margin,
-					}, 
+					},
 					parent = focused }
 				)
 				return
@@ -227,30 +227,30 @@ screen.connect_signal("request::desktop_decoration", function(s)
 
 		if right_panel then
 			if right_panel.visible then
-				awful.placement.bottom_left(focused.brightness_osd_overlay, { margins = { 
+				awful.placement.bottom_left(focused.brightness_osd_overlay, { margins = {
 					left = osd_margin,
 					right = 0,
 					top = 0,
 					bottom = osd_margin,
-					}, 
+					},
 					parent = focused }
 				)
 				return
 			end
 		end
 
-		awful.placement.bottom_right(focused.brightness_osd_overlay, { margins = { 
+		awful.placement.bottom_right(focused.brightness_osd_overlay, { margins = {
 			left = 0,
 			right = osd_margin,
 			top = 0,
 			bottom = osd_margin,
-			}, 
+			},
 			parent = focused }
 		)
 	end
 
 	awesome.connect_signal(
-		'module::brightness_osd:show', 
+		'module::brightness_osd:show',
 		function(bool)
 			placement_placer()
 			awful.screen.focused().brightness_osd_overlay.visible = bool
