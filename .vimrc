@@ -40,6 +40,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'xolox/vim-misc' " Necessary for vim-lua-ftplugin
     Plug 'xolox/vim-lua-ftplugin' " Works with YCM
     Plug 'OmniSharp/omnisharp-vim' " Literally only here cos it has decent syntax highlighting
+    Plug 'sheerun/vim-polyglot' " Bunch of language files
 
 " Usability
 
@@ -67,8 +68,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'kristijanhusak/vim-hybrid-material'
     Plug 'morhetz/gruvbox'
     Plug 'jacoborus/tender.vim'
-    " Plug 'arcticicestudio/nord-vim'
-    " [TODO] Why does this have transparent background?
+    Plug 'ghifarit53/tokyonight-vim'
+    Plug 'arcticicestudio/nord-vim'
+    Plug 'joshdick/onedark.vim'
+    Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 " Vim-Plug commands
@@ -103,6 +106,13 @@ set background=dark
 set backspace=indent,eol,start
 syntax on
 
+" For making sure the colour scheme displays without transparent BG
+if (has("termguicolors"))
+ set termguicolors
+endif
+" For Neovim 0.1.3 and 0.1.4
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 " For lightline
 set laststatus=2
 set noshowmode
@@ -122,6 +132,10 @@ else
 endif
 " colorscheme dracula
 " colorscheme solarized
+
+" TokyoNight theme settings
+let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_enable_italic = 1
 
 " Set XTerm opacity to be opaque when in Vim and not when not
 " autocmd VimEnter * :silent !~/.bin/SetXTermsOpacityAWM 100
