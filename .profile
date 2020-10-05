@@ -19,3 +19,7 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+
+if [ -d "$HOME/Android/Sdk/tools" ] ; then
+    PATH="$HOME/Android/Sdk/tools:$PATH"
+fi
