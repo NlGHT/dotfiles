@@ -133,10 +133,6 @@ endif
 " colorscheme dracula
 " colorscheme solarized
 
-" TokyoNight theme settings
-let g:tokyonight_style = 'storm' " available: night, storm
-let g:tokyonight_enable_italic = 1
-
 " Set XTerm opacity to be opaque when in Vim and not when not
 " autocmd VimEnter * :silent !~/.bin/SetXTermsOpacityAWM 100
 " autocmd WinEnter * :silent !~/.bin/SetXTermsOpacityAWM 100
@@ -327,8 +323,20 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 nnoremap <leader>n :NERDTreeToggle<CR>
 map <C-n>          :NERDTreeToggle<CR>
 
+let g:NERDTreeIgnore = [
+      \ '^node_modules$',
+      \ '^vendor$',
+      \ '^\.git$',
+      \ '^\.idea$',
+      \ ]
+
 " Fuzzy finder
 nmap <leader>ff :CtrlP<CR>
+
+let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/](\.git|\.hg|\.svn|vendor|node_modules)$',
+      \ 'file': '\v\.(exe|so|dll)$',
+      \ }
 
 " Alternate between .c and .h files (or any other head/impl)
 nmap <leader>j :A<CR>
@@ -380,8 +388,8 @@ autocmd FileType cpp imap <F8> <Esc>:w<CR>:!clear && g++ -g -std=c++17 % -o %:t:
 autocmd FileType cpp map  <F8> <Esc>:w<CR>:!clear && g++ -g -std=c++17 % -o %:t:r -lstdc++fs<CR>
 
 " For OpenGL/GLEW/GLUT C++ compiling and running
-autocmd FileType c imap <F5> <Esc>:w<CR>:!clear && gcc % -o %:t:r -lGL -lGLU -lglut -lGLEW && ./%:t:r<CR>
-autocmd FileType c map  <F5> <Esc>:w<CR>:!clear && gcc % -o %:t:r -lGL -lGLU -lglut -lGLEW && ./%:t:r<CR>
+autocmd FileType c imap <F5> <Esc>:w<CR>:!clear && g++ % -o %:t:r -lGL -lGLU -lglut -lGLEW && ./%:t:r<CR>
+autocmd FileType c map  <F5> <Esc>:w<CR>:!clear && g++ % -o %:t:r -lGL -lGLU -lglut -lGLEW && ./%:t:r<CR>
 
 " For basic Bash running
 autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
@@ -398,7 +406,7 @@ autocmd FileType sh map  <F5> <Esc>:w<CR>:!clear;./%<CR>
 nnoremap <Leader>vc :VenterToggle<CR>
 
 " Toggle 'goyo'
-map <leader>gy :Goyo \| set bg=dark \| set linebreak<CR>
+map <leader>gy :Goyo<CR>
 " map <leader>gyl :Goyo \| set bg=light \| set linebreak<CR>
 
 " If executable opened instead of cpp, open it no confirmation
