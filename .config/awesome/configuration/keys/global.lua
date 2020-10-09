@@ -250,7 +250,6 @@ local globalKeys = awful.util.table.join(
             awful.spawn('playerctl --player=spotify play-pause', false)
         end,
         {description = '| Play/pause music', group = 'hotkeys'}
-
     ),
     awful.key(
         {},
@@ -512,6 +511,14 @@ local globalKeys = awful.util.table.join(
             awful.spawn('researchPapers', false)
         end,
         {description = '| Open a research paper', group = 'launcher'}
+    ),
+    awful.key(
+        {modkey, 'Shift', 'Control'},
+        'x',
+        function()
+            awful.spawn('xkill', false)
+        end,
+        {description = '| xkill', group = 'client'}
     )
 )
 
