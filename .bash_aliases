@@ -127,5 +127,5 @@ stopwatch(){
 }
 
 # Get all aliases
-alias aliases='head -n -4 ~/.bash_aliases'
+alias aliases='head -n -4 ~/.bash_aliases | less'
 alias aliasCommand='tail -n 3 ~/.bash_aliases' # Get the get aliases command

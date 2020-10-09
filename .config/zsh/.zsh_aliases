@@ -127,5 +127,5 @@ stopwatch(){
 }
 
 # Get all aliases
-alias aliases='head -n -4 $ZDOTDIR/.zsh_aliases'
+alias aliases='head -n -4 $ZDOTDIR/.zsh_aliases | less'
 alias aliasCommand='tail -n 3 $ZDOTDIR/.zsh_aliases' # Get the get aliases command
