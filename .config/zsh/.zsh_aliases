@@ -56,8 +56,8 @@ setupDribblish() {
 alias eac='nvim ~/.config/alacritty/alacritty.yml'
 alias eaw='cd ~/.config/awesome/ && nvim'
 alias er='nvim ~/.config/redshift/redshift.conf'
-alias eal='nvim ~/.zsh_aliases'
-alias eb='nvim ~/.zshrc'
+alias eal='nvim $ZDOTDIR/.zsh_aliases'
+alias eb='nvim $ZDOTDIR/.zshrc'
 alias ev='nvim ~/.vimrc'
 alias td='nvim ~/ToDoList.txt'
 alias el='sudo nvim /etc/lightdm/lightdm.conf'
@@ -66,7 +66,7 @@ alias ee='nvim ~/.doom.d/init.el'
 # Utility
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias x='exit'
-alias reload='source ~/.zshrc'
+alias reload='source $ZDOTDIR/.zshrc'
 alias delOrphans='sudo pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
 alias yay!='yay' # YAY!!!!!!!!!
 alias pacman='yay'
@@ -127,5 +127,5 @@ stopwatch(){
 }
 
 # Get all aliases
-alias aliases='head -n -4 ~/.zsh_aliases'
-alias aliasCommand='tail -n 3 ~/.zsh_aliases' # Get the get aliases command
+alias aliases='head -n -4 $ZDOTDIR/.zsh_aliases'
+alias aliasCommand='tail -n 3 $ZDOTDIR/.zsh_aliases' # Get the get aliases command

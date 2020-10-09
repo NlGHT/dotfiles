@@ -10,15 +10,20 @@ unsetopt beep
 bindkey -v
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/night/.oh-my-zsh"
+export ZSH="${XDG_CONFIG_HOME:-$HOME/.config}/ohmyzsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#
+# Official themes
 # ZSH_THEME="gallois" Clean and $ (But has long path name)
 # ZSH_THEME="mgutz" # Minimal (But has % instead of $)
-ZSH_THEME="minimal_improved/minimal_improved" # Ultra Minimal (But matches other text)
+# ZSH_THEME="minimal" # Minimal (But has % instead of $)
+
+# Themes in custom folder
+ZSH_THEME="minimal_improved/minimal_improved" # Ultra Minimal (Bit too much space around $)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -59,7 +64,7 @@ ENABLE_CORRECTION="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$HOME/.config/ohmyzsh/custom
+ZSH_CUSTOM=$ZSH/custom
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -79,4 +84,4 @@ export ARCHFLAGS="-arch x86_64"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-source .zsh_aliases
+source $ZDOTDIR/.zsh_aliases
