@@ -3,6 +3,24 @@ alias vim='nvim'
 alias v='nvim'
 alias suv='sudo nvim'
 
+# Basic shell stuff
+# Enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls -hN --color=auto --group-directories-first'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# Some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ld='ls -d .*/ */'
+alias mv='mv -i' # Ask to confirm
+alias rm='rm -i' # Ask to confirm
+
 # NVIDIA and Optimus Manager
 alias pro='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia'
 alias mb='sudo su -c "echo 12 >/sys/class/backlight/intel_backlight/brightness"' # Go to minimum brightness
