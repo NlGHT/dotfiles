@@ -2,7 +2,7 @@
 
 ## What I got
 - Some bulk file renaming tools that aren't finished yet :(
-- Some nice aliases :)
+- Some nice aliases (Bash/zsh) :)
     - Terminal weather
     - Terminal news
     - Currency conversion (Requires `libqalculate`)
