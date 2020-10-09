@@ -1,0 +1,3 @@
+[submodule "/home/night/.config/ohmyzsh/custom/themes/minimal_improved"]
+	path = /home/night/.config/ohmyzsh/custom/themes/minimal_improved
+	url = https://github.com/gdsrosa/minimal_improved.git
