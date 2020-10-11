@@ -9,6 +9,12 @@ export TERM=alacritty
 unsetopt beep
 bindkey -v
 
+# CompInstall
+# zstyle :compinstall filename '$ZDOTDIR/.zshrc'
+# autoload -Uz compinit
+# compinit
+# setopt magicequalsubst
+
 # Path to your oh-my-zsh installation.
 export ZSH="${XDG_CONFIG_HOME:-$HOME/.config}/ohmyzsh"
 
@@ -69,7 +75,14 @@ ZSH_CUSTOM=$ZSH/custom
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(git nmap vi-mode)
+plugins=(
+    git
+    archlinux
+    gitignore
+    sudo
+    nmap
+    vi-mode
+)
 
 source $ZSH/oh-my-zsh.sh
 
