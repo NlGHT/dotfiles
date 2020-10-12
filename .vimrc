@@ -62,6 +62,7 @@ call plug#begin('~/.vim/plugged')
     " UI
     Plug 'itchyny/lightline.vim' " Bottom bar
     Plug 'terryma/vim-multiple-cursors'
+    Plug 'liuchengxu/vim-which-key'
 
 " Themes
 
