@@ -109,7 +109,7 @@ syntax on
 
 " For making sure the colour scheme displays without transparent BG
 if (has("termguicolors"))
- set termguicolors
+    set termguicolors
 endif
 " For Neovim 0.1.3 and 0.1.4
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -310,19 +310,19 @@ nnoremap <leader>ep :ALEPreviousWrap<CR>
 "
 " ================================================================= "
 " Open NERDTree when Vim starts with a directory as argument
-autocmd StdinReadPre *  let s:std_in=1
-autocmd VimEnter *      if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter     * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
 " Auto startup NERDTree if no files specified
-autocmd StdinReadPre *  let s:std_in=1
-autocmd VimEnter *      if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter     * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Auto close NERDTree if it is the only thing open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " All NERDTree keybinds
 nnoremap <leader>n :NERDTreeToggle<CR>
-map <C-n>          :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 
 let g:NERDTreeIgnore = [
       \ '^node_modules$',
