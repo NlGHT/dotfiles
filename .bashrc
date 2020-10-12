@@ -11,9 +11,7 @@ shopt -s autocd # Allows auto cd'ing into directory by just typing directory nam
 export PS1='[\u@\h \W]\$ '
 
 # Exports
-export EDITOR=nvim
 export CLICOLOR=1
-export TERM=alacritty
 
 # Coloured GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
