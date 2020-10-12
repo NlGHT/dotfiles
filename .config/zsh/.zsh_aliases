@@ -104,12 +104,19 @@ alias seeCommitDiff='config diff --cached origin/master'
 alias status='config status'
 
 # Currency conversion (cconv {amount} {from} {to}) (Country codes must be capital)
-cconv() {
+cconv () {
     qalc -t "$1" "$2" to "$3"
 }
 
+# Make directory and CD
+mkcdir () {
+    mkdir -p -- "$1" &&
+        cd -P -- "$1" ||
+        exit | return
+}
+
 # Time functions (Credit: https://superuser.com/a/611582)
-countdown(){
+countdown () {
     date1=$(($(date +%s) + $1));
     while [ "$date1" -ge "$(date +%s)" ]; do
         echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
@@ -117,7 +124,7 @@ countdown(){
     done
 }
 
-stopwatch(){
+stopwatch () {
     date1=$(date +%s);
     # 24 = q ; 65 = SPACE
     while true; do
