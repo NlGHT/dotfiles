@@ -2,9 +2,7 @@
 
 stty -ixon # Disable ^S and ^Q which freezes term
 
-export EDITOR=nvim
 export CLICOLOR=1
-export TERM=alacritty
 
 unsetopt beep
 bindkey -v
