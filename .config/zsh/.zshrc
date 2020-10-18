@@ -96,3 +96,33 @@ export ARCHFLAGS="-arch x86_64"
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 source $ZDOTDIR/.zsh_aliases
+
+# Change cursor on insert/normal mode
+# TY to: https://archive.emily.st/2013/05/03/zsh-vi-cursor/
+function zle-keymap-select zle-line-init
+{
+    # Change cursor shape on insert mode
+    case $KEYMAP in
+        vicmd)      print -n -- "\E]50;CursorShape=0\C-G";;  # Block Cursor
+        viins|main) print -n -- "\E]50;CursorShape=1\C-G";;  # Line Cursor
+    esac
+
+    zle reset-prompt
+    zle -R
+}
+
+function zle-line-finish
+{
+    print -n -- "\E]50;CursorShape=0\C-G"  # block cursor
+}
+
+zle -N zle-line-init
+zle -N zle-line-finish
+zle -N zle-keymap-select
+
+# Comfy Neofetch
+if [ "$(pgrep $TERM | wc -l)" -le 1 ]; then
+    # Run a nice comfy neofetch if only terminal :D
+    which neofetch >/dev/null 2>&1 && \
+        neofetch --ascii_distro Arch_small --color_blocks off --disable uptime resolution cpu gpu de wm theme icons model term
+fi
