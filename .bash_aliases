@@ -34,7 +34,6 @@ alias stopMongo='sudo systemctl stop mongodb.service'
 
 # Ornamentation
 alias weather='curl wttr.in/~aalborg'
-alias news='curl getnews.tech'
 alias aunews='curl au.getnews.tech'
 alias usnews='curl us.getnews.tech'
 alias starwars='telnet towel.blinkenlights.nl'
