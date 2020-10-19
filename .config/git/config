@@ -1,0 +1,7 @@
+[user]
+	name = NlGHT
+	email =
+[core]
+	autocrlf = input
+[color]
+	ui = true
