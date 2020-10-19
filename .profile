@@ -42,7 +42,7 @@ export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/inputrc"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
-export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/bash/history"
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
 
 # __    _          _       .    ,
 # |\   |  `   ___. /      _/_   /   ____
