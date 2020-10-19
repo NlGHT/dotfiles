@@ -61,6 +61,7 @@ alias ev='nvim ~/.vimrc'
 alias td='nvim ~/ToDoList.txt'
 alias el='sudo nvim /etc/lightdm/lightdm.conf'
 alias ee='nvim ~/.doom.d/init.el'
+alias ep='nvim ~/.profile'
 
 # Utility
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
