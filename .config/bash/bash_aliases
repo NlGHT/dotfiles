@@ -55,7 +55,7 @@ setupDribblish() {
 alias eac='nvim ~/.config/alacritty/alacritty.yml'
 alias eaw='cd ~/.config/awesome/ && nvim'
 alias er='nvim ~/.config/redshift/redshift.conf'
-alias eal='nvim ~/.bash_aliases'
+alias eal='nvim ~/.config/bash/bash_aliases'
 alias eb='nvim ~/.bashrc'
 alias ev='nvim ~/.vimrc'
 alias td='nvim ~/ToDoList.txt'
