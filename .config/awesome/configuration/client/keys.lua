@@ -69,7 +69,9 @@ local clientKeys =
 	awful.key(
 		{modkey},
 		'u',
-		awful.client.urgent.jumpto,
+		function ()
+			awful.client.urgent.jumpto(false)
+		end,
 		{description = '| Jump to urgent client', group = 'client'}
 	),
 	awful.key(
