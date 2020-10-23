@@ -205,10 +205,10 @@ map <Space> <Leader>
 map <leader>wc g<C-g>
 
 " Put the cursor in the middle when moving views
-nnoremap <C-d> <C-d>M
-nnoremap <C-u> <C-u>M
-nnoremap <C-f> <C-f>M
-nnoremap <C-b> <C-b>M
+" nnoremap <C-d> <C-d>M
+" nnoremap <C-u> <C-u>M
+" nnoremap <C-f> <C-f>M
+" nnoremap <C-b> <C-b>M
 
 " Vim file operations
 nmap <M-q> :q!<CR>
