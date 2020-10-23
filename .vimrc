@@ -51,6 +51,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/goyo.vim' " No distractions
     Plug 'preservim/nerdcommenter' " Easy comment toggling
     Plug 'godlygeek/tabular' " Alignment
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'liuchengxu/vim-which-key'
 
     " Files
     Plug 'preservim/nerdtree' " File manager
@@ -61,8 +63,6 @@ call plug#begin('~/.vim/plugged')
 
     " UI
     Plug 'itchyny/lightline.vim' " Bottom bar
-    Plug 'terryma/vim-multiple-cursors'
-    Plug 'liuchengxu/vim-which-key'
 
 " Themes
 
@@ -108,12 +108,17 @@ set background=dark
 set backspace=indent,eol,start
 syntax on
 
-" For making sure the colour scheme displays without transparent BG
-if (has("termguicolors"))
-    set termguicolors
-endif
-" For Neovim 0.1.3 and 0.1.4
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" Indents word-wrapped lines as much as the 'parent' line
+set breakindent
+
+function! s:setWordWrapping()
+    " Ensures word-wrap does not split words
+    set formatoptions=l
+    set lbr
+endfunction
+
+" Only set word wrapping for pure writing filetypes
+autocmd FileType markdown,text call s:setWordWrapping()
 
 " For lightline
 set laststatus=2
@@ -126,14 +131,34 @@ set noshowmode
 " Theme
 "
 " ================================================================= "
+" For making sure the colour scheme displays without transparent BG
+if (has("termguicolors") && has("nvim"))
+    set termguicolors
+endif
+" For Neovim 0.1.3 and 0.1.4
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+function SetDayTheme()
+    let g:lightline = {'colorscheme' : 'dracula'}
+
+    colorscheme dracula
+endfunction
+
+function SetNightTheme()
+    " Tokyo Night theme settings
+    let g:tokyonight_style = 'storm' " available: night, storm
+    let g:tokyonight_enable_italic = 1
+    let g:lightline = {'colorscheme' : 'tokyonight'}
+
+    colorscheme tokyonight
+endfunction
+
 " Use a lighter theme (colorscheme) during the day and darker one at night
 if strftime("%H") < 19 && strftime("%H") > 10
-    colorscheme tender
+    call SetDayTheme()
 else
-    colorscheme gruvbox
+    call SetNightTheme()
 endif
-" colorscheme dracula
-" colorscheme solarized
 
 " Set XTerm opacity to be opaque when in Vim and not when not
 " autocmd VimEnter * :silent !~/.bin/SetXTermsOpacityAWM 100
@@ -194,12 +219,12 @@ nnoremap <Leader>rr :source %<CR>
 nnoremap <Leader>rv :source ~/.vimrc<CR>
 
 " Strip the trailing white space on write
-fun! <SID>StripTrailingWhitespaces()
+function! <SID>StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")
     keepp %s/\s\+$//e
     call cursor(l, c)
-endfun
+endfunction
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
@@ -427,7 +452,8 @@ map <leader>gy :Goyo<CR>
 " If executable opened instead of cpp, open it no confirmation
 let g:nobin_always_yes = 1
 
-" Colour the quick-scope plugin
+" Colour the quick-scope plugin as the same colours everywhere
+" (I don't do this anymore)
 function! SetQuickScopeColours()
     highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
     highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
