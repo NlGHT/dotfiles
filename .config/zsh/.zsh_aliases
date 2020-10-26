@@ -54,6 +54,9 @@ setupDribblish() {
 # All edits
 alias eac='nvim ~/.config/alacritty/alacritty.yml'
 alias eaw='cd ~/.config/awesome/ && nvim'
+alias ed='cd ~/.config/dwm/ && nvim'
+alias ei='nvim ~/.xinitrc'
+alias es='nvim ~/.config/startup-apps'
 alias er='nvim ~/.config/redshift/redshift.conf'
 alias eal='nvim $ZDOTDIR/.zsh_aliases'
 alias eb='nvim $ZDOTDIR/.zshrc'
