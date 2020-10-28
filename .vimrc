@@ -491,4 +491,8 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 " Align to after ':'
 nmap <Leader>at :call <SID>align()<CR>
 vmap <Leader>at :call <SID>align()<CR>
+
+" Align comma separated stuff
+nmap <Leader>a, :call Tabularize /.\zs<CR>
+vmap <Leader>a, :call Tabularize /.\zs<CR>
 " ================================================================= "
