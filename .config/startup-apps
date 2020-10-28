@@ -17,3 +17,5 @@ pulseeffects --gapplication-service &
 redshift &
 
 feh --bg-fill "$XDG_CONFIG_HOME/wallpaper.jpg"
+
+dwmblocks &
