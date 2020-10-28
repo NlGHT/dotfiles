@@ -27,6 +27,7 @@ alias mb='sudo su -c "echo 12 >/sys/class/backlight/intel_backlight/brightness"'
 alias nv='optimus-manager --switch nvidia'
 alias intl='optimus-manager --switch intel'
 alias gpu='glxinfo | grep renderer'
+alias bat='upower -i $(upower -e | grep BAT) | awk "/percentage/ {print $2}"'
 
 # MongoDB
 alias startMongo='sudo systemctl start mongodb.service'
@@ -55,6 +56,7 @@ setupDribblish() {
 alias eac='nvim ~/.config/alacritty/alacritty.yml'
 alias eaw='cd ~/.config/awesome/ && nvim'
 alias ed='cd ~/.config/dwm/ && nvim'
+alias edb='cd ~/.config/dwmblocks/ && nvim'
 alias ei='nvim ~/.xinitrc'
 alias es='nvim ~/.config/startup-apps'
 alias er='nvim ~/.config/redshift/redshift.conf'
@@ -65,6 +67,9 @@ alias td='nvim ~/ToDoList.txt'
 alias el='sudo nvim /etc/lightdm/lightdm.conf'
 alias ee='nvim ~/.doom.d/init.el'
 alias ep='nvim ~/.profile'
+
+# All code
+alias smi='sudo make install' # Handy for dwm and suckless software
 
 # Utility
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
@@ -110,7 +115,7 @@ alias seeCommitDiff='config diff --cached origin/master'
 alias status='config status'
 
 # Currency conversion (cconv {amount} {from} {to}) (Country codes must be capital)
-cconv() {
+cconv () {
     qalc -t "$1" "$2" to "$3"
 }
 
