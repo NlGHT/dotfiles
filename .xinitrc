@@ -20,4 +20,4 @@ initRun="$XDG_CONFIG_HOME/startup-apps"
     # #dwm >/dev/null 2>&1
 # done
 
-exec dwm
+exec dbus-launch dwm
