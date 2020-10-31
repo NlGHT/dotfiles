@@ -2,20 +2,22 @@
 
 # All the startup applications and stuff
 
-picom -b --experimental-backends --dbus
+picom -b --experimental-backends --dbus # Compositor (Blur)
 
+# The password popup prompt for some things
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 eval "$(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)"
 
 xrdb "$HOME/.Xresources"
 
-nm-applet &
-blueman-applet &
+nm-applet & # Wifi applet in systray
+blueman-applet & # Bluetooth applet in systray
 
 pulseeffects --gapplication-service &
 
-redshift &
+redshift & # Blue light filter
 
-feh --bg-fill "$XDG_CONFIG_HOME/wallpaper.jpg"
+feh --bg-fill "$XDG_CONFIG_HOME/wallpaper.jpg" # Background
 
-dwmblocks &
+dunst & # Notifications
+dwmblocks & # Status bar
