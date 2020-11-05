@@ -63,6 +63,7 @@ call plug#begin('~/.vim/plugged')
 
     " UI
     Plug 'itchyny/lightline.vim' " Bottom bar
+    Plug 'ap/vim-css-color' " Preview colours inline
 
 " Themes
 
