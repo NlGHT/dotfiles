@@ -34,7 +34,7 @@ alias startMongo='sudo systemctl start mongodb.service'
 alias stopMongo='sudo systemctl stop mongodb.service'
 
 # Ornamentation
-alias weather='curl wttr.in/~aalborg'
+alias weather='curl wttr.in'
 alias aunews='curl au.getnews.tech'
 alias usnews='curl us.getnews.tech'
 alias starwars='telnet towel.blinkenlights.nl'
@@ -52,22 +52,25 @@ setupDribblish() {
     spicetify apply
 }
 
+# In case XDG_CONFIG_HOME has been unset
+XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+
 # All edits
-alias eac='vim ~/.config/alacritty/alacritty.yml'
-alias eaw='cd ~/.config/awesome/ && vim'
-alias ed='cd ~/.config/dwm/ && vim'
-alias edb='cd ~/.config/dwmblocks/ && vim'
-alias edst='vim ~/.config/dunst/dunstrc'
-alias ei='vim ~/.xinitrc'
-alias es='vim ~/.config/startup-apps'
-alias er='vim ~/.config/redshift/redshift.conf'
-alias eal='vim ~/.config/bash/bash_aliases'
-alias eb='vim ~/.bashrc'
-alias ev='vim ~/.vimrc'
-alias td='vim ~/Documents/ToDoList.txt'
+alias eac='vim $XDG_CONFIG_HOME/alacritty/alacritty.yml'
+alias eaw='cd $XDG_CONFIG_HOME/awesome/ && vim'
+alias ed='cd $XDG_CONFIG_HOME/dwm/ && vim'
+alias edb='cd $XDG_CONFIG_HOME/dwmblocks/ && vim'
+alias edst='vim $XDG_CONFIG_HOME/dunst/dunstrc'
+alias ei='vim $HOME/.xinitrc'
+alias es='vim $XDG_CONFIG_HOME/startup-apps'
+alias er='vim $XDG_CONFIG_HOME/redshift/redshift.conf'
+alias eal='vim $XDG_CONFIG_HOME/bash/bash_aliases'
+alias eb='vim $HOME/.bashrc'
+alias ev='vim $HOME/.vimrc'
+alias td='vim $HOME/Documents/ToDoList.txt'
 alias el='sudo vim /etc/lightdm/lightdm.conf'
-alias ee='vim ~/.doom.d/init.el'
-alias ep='vim ~/.profile'
+alias ee='vim $HOME/.doom.d/init.el'
+alias ep='vim $HOME/.profile'
 
 # All code
 alias smi='sudo make install' # Handy for dwm and suckless software
@@ -75,8 +78,8 @@ alias smi='sudo make install' # Handy for dwm and suckless software
 # Utility
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias x='exit'
-alias reload='source ~/.bashrc'
-alias delOrphans='sudo pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
+alias reload='source $HOME/.bashrc'
+alias delOrphans='sudo /bin/pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
 alias yay!='yay' # YAY!!!!!!!!!
 alias pacman='yay'
 alias pls='sudo'
@@ -104,20 +107,20 @@ alias scanwifi='sudo nmap -sS -O'
 alias startBluetooth='sudo systemctl start bluetooth.service'
 
 # Instant CD's
-alias documents='cd ~/Documents'
-alias docs='cd ~/Documents'
-alias images='cd ~/Pictures'
-alias videos='cd ~/Videos'
-alias dls='cd ~/Downloads'
-alias uni='cd ~/Documents/Uni/7Sem'
-alias lec='cd ~/Documents/Uni/7Sem/Lectures'
-alias cgp='cd ~/Documents/Uni/7Sem/Lectures/CGP'
-alias ml='cd ~/Documents/Uni/7Sem/Lectures/ML'
-alias ux='cd ~/Documents/Uni/7Sem/Lectures/UX'
-alias res='cd ~/Documents/Uni/7Sem/Project/Research'
-alias resn='cd ~/Documents/Uni/7Sem/Project/Notes'
-alias uniVideos='cd ~/Videos/Sem6/'
-alias rscript='cd ~/.config/REAPER/Scripts/Own\ Scripts/Night-REAPER-Scripts'
+alias documents='cd $HOME/Documents'
+alias docs='cd $HOME/Documents'
+alias images='cd $HOME/Pictures'
+alias videos='cd $HOME/Videos'
+alias dls='cd $HOME/Downloads'
+alias uni='cd $HOME/Documents/Uni/7Sem'
+alias lec='cd $HOME/Documents/Uni/7Sem/Lectures'
+alias cgp='cd $HOME/Documents/Uni/7Sem/Lectures/CGP'
+alias ml='cd $HOME/Documents/Uni/7Sem/Lectures/ML'
+alias ux='cd $HOME/Documents/Uni/7Sem/Lectures/UX'
+alias res='cd $HOME/Documents/Uni/7Sem/Project/Research'
+alias resn='cd $HOME/Documents/Uni/7Sem/Project/Notes'
+alias uniVideos='cd $HOME/Videos/Sem6/'
+alias rscript='cd $HOME/.config/REAPER/Scripts/Own\ Scripts/Night-REAPER-Scripts'
 
 # Dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
@@ -156,5 +159,5 @@ stopwatch () {
 }
 
 # Get all aliases
-alias aliases='head -n -4 ~/.config/bash/.bash_aliases | less'
-alias aliasCommand='tail -n 3 ~/.config/bash/.bash_aliases' # Get the get aliases command
+alias aliases='head -n -4 $XDG_CONFIG_HOME/bash/.bash_aliases | less'
+alias aliasCommand='tail -n 3 $XDG_CONFIG_HOME/bash/.bash_aliases' # Get the get aliases command
