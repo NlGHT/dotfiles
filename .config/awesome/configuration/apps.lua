@@ -24,7 +24,7 @@ return {
             ' -theme ' .. config_dir ..
             '/configuration/rofi/sidebar/rofi.rasi', -- Rofi Web Search
 		rofiappmenu = 'rofi -dpi ' .. screen.primary.dpi ..
-            ' -show drun -theme ' .. config_dir ..
+            ' -matching regex -show drun -theme ' .. config_dir ..
             '/configuration/rofi/appmenu/rofi.rasi' -- Application Menu
 		-- You can add more default applications here
 	},
