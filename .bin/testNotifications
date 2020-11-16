@@ -1,0 +1,4 @@
+#!/bin/sh
+notify-send -u critical Critical Notification
+notify-send -u normal Normal Notification
+notify-send -u low Low Notification

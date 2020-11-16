@@ -1,3 +1,9 @@
 [submodule "/home/night/.config/ohmyzsh/custom/themes/minimal_improved"]
 	path = /home/night/.config/ohmyzsh/custom/themes/minimal_improved
 	url = https://github.com/gdsrosa/minimal_improved.git
+[submodule ".config/dwm"]
+	path = .config/dwm
+	url = https://github.com/NlGHT/dwm.git
+[submodule ".config/dwmblocks"]
+	path = .config/dwmblocks
+	url = https://github.com/NlGHT/dwmblocks.git
