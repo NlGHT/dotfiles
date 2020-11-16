@@ -65,7 +65,7 @@ alias er='nvim ~/.config/redshift/redshift.conf'
 alias eal='nvim $ZDOTDIR/.zsh_aliases'
 alias eb='nvim $ZDOTDIR/.zshrc'
 alias ev='nvim ~/.vimrc'
-alias td='nvim ~/ToDoList.txt'
+alias td='nvim ~/Documents/ToDoList.txt'
 alias el='sudo nvim /etc/lightdm/lightdm.conf'
 alias ee='nvim ~/.doom.d/init.el'
 alias ep='nvim ~/.profile'
@@ -85,6 +85,14 @@ alias open='xdg-open'
 alias g='git'
 alias wdil='history | grep'
 alias debugapp='G_MESSAGES_DEBUG=X11Helper'
+whichActiveMon() {
+    for p in $(pgrep -t $(cat /sys/class/tty/tty0/active));
+    do
+        d=$(awk -v RS='\0' -F= '$1=="DISPLAY" {print $2}' /proc/$p/environ 2>/dev/null);
+        [[ -n $d ]] && break;
+    done;
+    echo $d
+}
 
 # WIFI
 alias getRegularWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/limit56farce59umbra.nmconnection'
