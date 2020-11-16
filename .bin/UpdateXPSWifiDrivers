@@ -1,6 +1,8 @@
 #!/bin/sh
 # I put this script in /usr/bin and then run it as a pacman hook
 
+# Run 'UpdateXPSWifiDrivers -h' for help and options/args
+
 ExtractArchive() {
     echo "Unzipping archive..."
     /usr/bin/unzip ath10k-firmware-master.zip
@@ -22,12 +24,13 @@ DownloadFirmware() {
 
 HelpMessage() {
     printf '%s\n' \
-        "UpdateWifiDrivers: Tool to update the XPS15 Wi-Fi drivers and fix dropping connection." \
+        "UpdateXPSWifiDrivers: Tool to update the Dell XPS-15/13 Wi-Fi drivers and fix dropping connection." \
         "" \
         "Arguments (Only takes one at a time):" \
         "   -l : Use ath10k-firmware-master zip in this directory" \
         "   -d : Download firmware to current directory (For -l)" \
-        "   -h : Display this help message"
+        "   -h : Display this help message" \
+        ""
 }
 
 
