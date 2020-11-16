@@ -31,10 +31,8 @@ if has("win32")
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 else
-    echo "YEET"
     " Hello linux/unix fam :)
     if empty(glob('~/.vim/autoload/plug.vim'))
-        echo "Downloading Plug"
         silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
