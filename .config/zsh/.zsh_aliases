@@ -23,7 +23,6 @@ alias rm='rm -i' # Ask to confirm
 
 # NVIDIA and Optimus Manager
 alias pro='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia'
-alias yetsi='YEET=1'
 alias mb='sudo su -c "echo 12 >/sys/class/backlight/intel_backlight/brightness"' # Go to minimum brightness
 alias nv='optimus-manager --switch nvidia'
 alias intl='optimus-manager --switch intel'
@@ -84,7 +83,8 @@ alias pls='sudo'
 alias open='xdg-open'
 alias g='git'
 alias wdil='history | grep'
-alias debugapp='G_MESSAGES_DEBUG=X11Helper'
+alias debugxapp='G_MESSAGES_DEBUG=X11Helper'
+# Active monitor function from here: https://unix.stackexchange.com/questions/203844/how-to-find-out-the-current-active-xserver-display-number
 whichActiveMon() {
     for p in $(pgrep -t $(cat /sys/class/tty/tty0/active));
     do

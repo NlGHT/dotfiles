@@ -57,13 +57,14 @@ alias eac='nvim ~/.config/alacritty/alacritty.yml'
 alias eaw='cd ~/.config/awesome/ && nvim'
 alias ed='cd ~/.config/dwm/ && nvim'
 alias edb='cd ~/.config/dwmblocks/ && nvim'
+alias edst='nvim ~/.config/dunst/dunstrc'
 alias ei='nvim ~/.xinitrc'
 alias es='nvim ~/.config/startup-apps'
 alias er='nvim ~/.config/redshift/redshift.conf'
 alias eal='nvim ~/.config/bash/bash_aliases'
 alias eb='nvim ~/.bashrc'
 alias ev='nvim ~/.vimrc'
-alias td='nvim ~/ToDoList.txt'
+alias td='nvim ~/Documents/ToDoList.txt'
 alias el='sudo nvim /etc/lightdm/lightdm.conf'
 alias ee='nvim ~/.doom.d/init.el'
 alias ep='nvim ~/.profile'
@@ -82,6 +83,16 @@ alias pls='sudo'
 alias open='xdg-open'
 alias g='git'
 alias wdil='history | grep'
+alias debugxapp='G_MESSAGES_DEBUG=X11Helper'
+# Active monitor function from here: https://unix.stackexchange.com/questions/203844/how-to-find-out-the-current-active-xserver-display-number
+whichActiveMon() {
+    for p in $(pgrep -t $(cat /sys/class/tty/tty0/active));
+    do
+        d=$(awk -v RS='\0' -F= '$1=="DISPLAY" {print $2}' /proc/$p/environ 2>/dev/null);
+        [[ -n $d ]] && break;
+    done;
+    echo $d
+}
 
 # WIFI
 alias getRegularWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/limit56farce59umbra.nmconnection'
@@ -145,5 +156,5 @@ stopwatch () {
 }
 
 # Get all aliases
-alias aliases='head -n -4 ~/.bash_aliases | less'
-alias aliasCommand='tail -n 3 ~/.bash_aliases' # Get the get aliases command
+alias aliases='head -n -4 ~/.config/bash/.bash_aliases | less'
+alias aliasCommand='tail -n 3 ~/.config/bash/.bash_aliases' # Get the get aliases command
