@@ -219,6 +219,10 @@ nmap <M-x> :x<CR>
 nnoremap <Leader>rr :source %<CR>
 nnoremap <Leader>rv :source ~/.vimrc<CR>
 
+" Diff'ing files
+nmap <Leader>dp :diffput<CR>
+nmap <Leader>dg :diffget<CR>
+
 " Strip the trailing white space on write
 function! <SID>StripTrailingWhitespaces()
     let l = line(".")
