@@ -15,13 +15,31 @@
 "
 " ================================================================= "
 " First off, install Plugged if not installed
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if has("win32")
+    " To all my windows friends :) (Please read the comment below if using
+    " nvim)
+    if empty(glob('$HOME/vimfiles/autoload/plug.vim'))
+        set shell=powershell.exe
+        set shellcmdflag=-Command
+        set shellpipe=|
+        set shellredir=>
+        " This command won't work with nvim installed through Scoop (I think
+        " because of permission issues)
+        " To solve: Install vim and open there one time or run this command
+        " below in Powershell
+        silent :!Invoke-WebRequest https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -OutFile $HOME\vimfiles\autoload\plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
+else
+    " Hello linux/unix fam :)
+    if empty(glob('~/.vim/autoload/plug.vim'))
+        silent !curl -fLo .vim\autoload\plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('$HOME/.vim/plugged')
 " Programming (Auto-Complete, Syntax, Errors, Snippets, etc.)
 
     " Auto-Complete
@@ -237,6 +255,7 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
 
 " Derived from StackOverflow here: https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim/741819#741819
+" [TODO] Finish this to follow indentation and keep cursor position in word
 function! s:swap_lines(n1, n2)
     let columnPos = col('.')
     normal! ^
@@ -450,7 +469,7 @@ autocmd FileType sh map  <F5> <Esc>:w<CR>:!clear;./%<CR>
 " Toggle Venter (Centers screen)
 nnoremap <Leader>vc :VenterToggle<CR>
 
-" Toggle 'goyo'
+" Toggle 'goyo' (Zen mode with no distractions)
 map <leader>gy :Goyo<CR>
 " map <leader>gyl :Goyo \| set bg=light \| set linebreak<CR>
 
