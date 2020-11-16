@@ -31,14 +31,17 @@ if has("win32")
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 else
+    echo "YEET"
     " Hello linux/unix fam :)
     if empty(glob('~/.vim/autoload/plug.vim'))
-        silent !curl -fLo .vim\autoload\plug.vim --create-dirs
+        echo "Downloading Plug"
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 endif
 
+" These are all the plugins to be installed, sorted into categories
 call plug#begin('$HOME/.vim/plugged')
 " Programming (Auto-Complete, Syntax, Errors, Snippets, etc.)
 
