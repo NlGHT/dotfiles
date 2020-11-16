@@ -1,7 +1,7 @@
 # Rest in peace Vim <3 I still love you but NeoVim just is needed with all my plugins for performance
 alias vim='nvim'
-alias v='nvim'
-alias suv='sudo nvim'
+alias v='vim'
+alias suv='sudo vim'
 
 # Basic shell stuff
 # Enable color support of ls and also add handy aliases
@@ -53,21 +53,21 @@ setupDribblish() {
 }
 
 # All edits
-alias eac='nvim ~/.config/alacritty/alacritty.yml'
-alias eaw='cd ~/.config/awesome/ && nvim'
-alias ed='cd ~/.config/dwm/ && nvim'
-alias edb='cd ~/.config/dwmblocks/ && nvim'
-alias edst='nvim ~/.config/dunst/dunstrc'
-alias ei='nvim ~/.xinitrc'
-alias es='nvim ~/.config/startup-apps'
-alias er='nvim ~/.config/redshift/redshift.conf'
-alias eal='nvim ~/.config/bash/bash_aliases'
-alias eb='nvim ~/.bashrc'
-alias ev='nvim ~/.vimrc'
-alias td='nvim ~/Documents/ToDoList.txt'
-alias el='sudo nvim /etc/lightdm/lightdm.conf'
-alias ee='nvim ~/.doom.d/init.el'
-alias ep='nvim ~/.profile'
+alias eac='vim ~/.config/alacritty/alacritty.yml'
+alias eaw='cd ~/.config/awesome/ && vim'
+alias ed='cd ~/.config/dwm/ && vim'
+alias edb='cd ~/.config/dwmblocks/ && vim'
+alias edst='vim ~/.config/dunst/dunstrc'
+alias ei='vim ~/.xinitrc'
+alias es='vim ~/.config/startup-apps'
+alias er='vim ~/.config/redshift/redshift.conf'
+alias eal='vim ~/.config/bash/bash_aliases'
+alias eb='vim ~/.bashrc'
+alias ev='vim ~/.vimrc'
+alias td='vim ~/Documents/ToDoList.txt'
+alias el='sudo vim /etc/lightdm/lightdm.conf'
+alias ee='vim ~/.doom.d/init.el'
+alias ep='vim ~/.profile'
 
 # All code
 alias smi='sudo make install' # Handy for dwm and suckless software
