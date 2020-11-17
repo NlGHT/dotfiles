@@ -224,11 +224,9 @@ map <Space> <Leader>
 " Get the wordcount of selection
 map <leader>wc g<C-g>
 
-" Put the cursor in the middle when moving views
-" nnoremap <C-d> <C-d>M
-" nnoremap <C-u> <C-u>M
-" nnoremap <C-f> <C-f>M
-" nnoremap <C-b> <C-b>M
+" Keep the cursor position when doing page-up/down
+nmap <C-b> <C-u><C-u>
+nmap <C-f> <C-d><C-d>
 
 " Vim file operations
 nmap <M-q> :q!<CR>
