@@ -17,7 +17,7 @@ pulseeffects --gapplication-service &
 
 redshift & # Blue light filter
 
-feh --bg-fill "$XDG_CONFIG_HOME/wallpaper.jpg" # Background
+feh --no-fehbg --bg-fill "$XDG_CONFIG_HOME/wallpaper.jpg" # Background
 
 dunst & # Notifications
 dwmblocks & # Status bar
