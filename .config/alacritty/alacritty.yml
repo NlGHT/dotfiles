@@ -506,18 +506,18 @@ background_opacity: 0.4
 # at once.
 key_bindings:
   # (Windows, Linux, and BSD only)
-  - { key: V,        mods: Control|Shift, action: Paste            }
-  - { key: C,        mods: Control|Shift, action: Copy             }
-  #- { key: Insert,   mods: Shift,         action: PasteSelection   }
-  #- { key: Key0,     mods: Control,       action: ResetFontSize    }
-  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
-  #- { key: Add,      mods: Control,       action: IncreaseFontSize }
-  - { key: Subtract, mods: Control,       action: DecreaseFontSize }
-  #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
-  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
+  - { key: V,               mods: Control|Shift,  action: Paste            }
+  - { key: C,               mods: Control|Shift,  action: Copy             }
+  #- { key: Insert,         mods: Shift,          action: PasteSelection   }
+  #- { key: Key0,           mods: Control,        action: ResetFontSize    }
+  - { key: Equals,          mods: Control,        action: IncreaseFontSize }
+  #- { key: Add,            mods: Control,        action: IncreaseFontSize }
+  - { key: NumpadSubtract,  mods: Control,        action: DecreaseFontSize }
+  #- { key: Minus,          mods: Control,        action: DecreaseFontSize }
+  - { key: Return,          mods: Control|Shift,  action: SpawnNewInstance }
 
   # (Windows only)
-  - { key: Return,   mods: Alt,           action: ToggleFullscreen }
+  - { key: Return,          mods: Alt,            action: ToggleFullscreen }
 
   # (macOS only)
   #- { key: Key0,   mods: Command,         action: ResetFontSize    }
