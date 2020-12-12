@@ -1,6 +1,7 @@
 #!/bin/sh
 
-. ~/.profile
+setxkbmap -v 10 -rules evdev -model pc105 -layout us,dk \
+        -option "grp:alt_space_toggle"
 
 [ -f "/usr/bin/prime-offload" ] && \
     eval '"/usr/bin/prime-offload"'
