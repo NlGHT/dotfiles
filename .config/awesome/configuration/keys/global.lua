@@ -383,7 +383,7 @@ local globalKeys = awful.util.table.join(
     ),
     awful.key(
         {modkey, "Shift"},
-        'f',
+        's',
         function()
             awful.spawn(apps.default.web_browser)
         end,
