@@ -1,7 +1,10 @@
 #!/bin/sh
 
-setxkbmap -v 10 -rules evdev -model pc105 -layout us,dk \
-        -option "grp:alt_space_toggle"
+currentXRule=$(setxkbmap -v 10 print | awk '/rules:/ {print $2}')
+[ -z "$currentXRule" ] && currentXRule="xorg"
+
+setxkbmap -v 10 -rules "$currentXRule" -model pc105 -layout us,dk \
+        -option "grp:alt_space_toggle" # >> ~/.dwm.log
 
 [ -f "/usr/bin/prime-offload" ] && \
     eval '"/usr/bin/prime-offload"'
