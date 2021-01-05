@@ -492,10 +492,6 @@ autocmd FileType cpp map  <F8> <Esc>:w<CR>:!clear && g++ -g -std=c++17 % -o %:t:
 " For OpenGL/GLEW/GLUT C++ compiling and running
 autocmd FileType c imap <F5> <Esc>:w<CR>:!clear && g++ % -o %:t:r -lGL -lGLU -lglut -lGLEW && ./%:t:r<CR>
 autocmd FileType c map  <F5> <Esc>:w<CR>:!clear && g++ % -o %:t:r -lGL -lGLU -lglut -lGLEW && ./%:t:r<CR>
-"
-" For basic Bash running
-autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
-autocmd FileType sh map  <F5> <Esc>:w<CR>:!clear;./%<CR>
 
 " For basic Bash running
 autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
