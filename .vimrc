@@ -79,6 +79,7 @@ call plug#begin('$HOME/.vim/plugged')
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Requires yarn and node to be installed
     Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder
     Plug 'vim-scripts/a.vim' " Alternate between .c and .h with :A
+    Plug 'xolox/vim-session' " Remember files opening position
 
     " UI
     Plug 'itchyny/lightline.vim' " Bottom bar
@@ -194,6 +195,9 @@ let &t_EI = "\033[1 q"
 " Highlight current working line in insert mode
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
+
+" Remap S to replace all
+nnoremap S :%s/<C-r><C-w>//gc<Left><Left><Left>
 " ================================================================= "
 
 
@@ -250,8 +254,18 @@ endfunction
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
-" Alias :W to :w for saving (from https://stackoverflow.com/questions/3878692/aliasing-a-command-in-vim)
-cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
+" Abbreviations
+" Alias :W to :w for saving and more (from Vim Bootstrap template)
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qall qall
 
 " Derived from StackOverflow here: https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim/741819#741819
 " [TODO] Finish this to follow indentation and keep cursor position in word
@@ -309,6 +323,31 @@ let g:multi_cursor_next_key            = '<C-n>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+" Session manageent
+let g:session_directory = "~/.config/nvim/session"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
+let g:session_command_aliases = 1
+
+" Remember cursor position
+augroup vimrc-remember-cursor-position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+" Vmap for maintain Visual Mode after shifting > and <
+vmap < <gv
+vmap > >gv
+
+" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv
 " ================================================================= "
 
 
@@ -453,6 +492,10 @@ autocmd FileType cpp map  <F8> <Esc>:w<CR>:!clear && g++ -g -std=c++17 % -o %:t:
 " For OpenGL/GLEW/GLUT C++ compiling and running
 autocmd FileType c imap <F5> <Esc>:w<CR>:!clear && g++ % -o %:t:r -lGL -lGLU -lglut -lGLEW && ./%:t:r<CR>
 autocmd FileType c map  <F5> <Esc>:w<CR>:!clear && g++ % -o %:t:r -lGL -lGLU -lglut -lGLEW && ./%:t:r<CR>
+"
+" For basic Bash running
+autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
+autocmd FileType sh map  <F5> <Esc>:w<CR>:!clear;./%<CR>
 
 " For basic Bash running
 autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
