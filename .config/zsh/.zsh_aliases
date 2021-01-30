@@ -88,6 +88,8 @@ alias open='xdg-open'
 alias g='git'
 alias wdil='history | grep'
 alias debugxapp='G_MESSAGES_DEBUG=X11Helper'
+alias spaceLeft='df -h | grep -E "/$|/home"'
+alias ssh="TERM=xterm-256color ssh"
 # Active monitor function from here: https://unix.stackexchange.com/questions/203844/how-to-find-out-the-current-active-xserver-display-number
 whichActiveMon() {
     for p in $(pgrep -t $(cat /sys/class/tty/tty0/active));
@@ -100,6 +102,7 @@ whichActiveMon() {
 
 # WIFI
 alias getRegularWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/limit56farce59umbra.nmconnection'
+alias getOtherWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/mappe82motel42parat.nmconnection'
 alias getLANIP="ip a s wlp2s0 | awk -F '[/ ]+' '/inet / {print $3}'"
 alias resetPiSSH='ssh-keygen -R 192.168.87.109'
 alias scanwifi='sudo nmap -sS -O'
@@ -158,6 +161,9 @@ stopwatch () {
         sleep 0.1
     done
 }
+
+# Site controls
+alias updateSite="rsync -vrP --delete-after ~/Development/Site/ root@nightmusic.net:/var/www/nightmusic"
 
 # Get all aliases
 alias aliases='head -n -4 $ZDOTDIR/.zsh_aliases | less'
