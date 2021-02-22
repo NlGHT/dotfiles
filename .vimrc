@@ -304,8 +304,8 @@ function! s:swap_down()
     " exec n + 1
 endfunction
 
-noremap <silent> <C-k> :call <SID>swap_up()<CR>
-noremap <silent> <C-j> :call <SID>swap_down()<CR>
+noremap <silent> <C-A-k> :call <SID>swap_up()<CR>
+noremap <silent> <C-A-j> :call <SID>swap_down()<CR>
 
 if !has('nvim')
     set ttymouse=xterm2
@@ -469,33 +469,70 @@ map <leader>cc <plug>NERDCommenterToggle
 " Building and Running
 "
 " ================================================================= "
+autocmd BufEnter * if !exists("t:extraFlags") | let t:extraFlags = "" | endif
+function! FlagChanging()
+    call inputsave()
+    let newFlags = input('Flags to append: ')
+    call inputrestore()
+    if exists("t:extraFlags")
+        let t:extraFlags .= newFlags
+    else
+        let t:extraFlags = newFlags
+    endif
+endfunction
+
+function! FlagManager()
+    if exists("t:extraFlags") && t:extraFlags != ""
+        call inputsave()
+            let appendReset = input('Current flags:"' . t:extraFlags . '" APPEND/reset: ')
+        call inputrestore()
+
+        if appendReset == "" || appendReset =~ "[Aa][Pp][Pp][Ee][Nn][Dd]"
+            call FlagChanging()
+        elseif appendReset =~ "[Rr][Ee][Ss][Ee][Tt]" || appendReset =~ "[Rr]"
+            let t:extraFlags = ""
+        endif
+    else
+        call FlagChanging()
+    endif
+endfunction
+
+map <leader>fm :call FlagManager()<CR>
+
 " For python running
-autocmd FileType python imap <F5> <Esc>:w<CR>:!clear && python %<CR>
-autocmd FileType python map  <F5> <Esc>:w<CR>:!clear && python %<CR>
+let pythonRun = "!clear && python %"
+autocmd FileType python imap <F5> <Esc>:w<CR>:execute ":" . pythonRun<CR>
+autocmd FileType python map  <F5> <Esc>:w<CR>:execute ":" . pythonRun<CR>
 
 " For basic C++ compiling
-autocmd FileType cpp imap <F5> <Esc>:w<CR>:!clear && g++ % -o %:t:r<CR>
-autocmd FileType cpp map  <F5> <Esc>:w<CR>:!clear && g++ % -o %:t:r<CR>
+let basicComp = "!clear && g++ % -o %:t:r"
+autocmd FileType cpp imap <F5> <Esc>:w<CR>:execute ":" . basicComp . " " . t:extraFlags<CR>
+autocmd FileType cpp map  <F5> <Esc>:w<CR>:execute ":" . basicComp . " " . t:extraFlags<CR>
 
 " For basic C++ compiling and running
-autocmd FileType cpp imap <F6> <Esc>:w<CR>:!clear && g++ % -o %:t:r && ./%:t:r<CR>
-autocmd FileType cpp map  <F6> <Esc>:w<CR>:!clear && g++ % -o %:t:r && ./%:t:r<CR>
+let compRun = "!clear && echo '' && g++ % -o %:t:r && ./%:t:r"
+autocmd FileType cpp imap <F6> <Esc>:w<CR>:execute ":" . compRun . " " . t:extraFlags<CR>
+autocmd FileType cpp map  <F6> <Esc>:w<CR>:execute ":" . compRun . " " . t:extraFlags<CR>
 
 " For C++17 experimental filesystem compiling
-autocmd FileType cpp imap <F7> <Esc>:w<CR>:!clear && g++ -std=c++17 % -o %:t:r -lstdc++fs<CR>
-autocmd FileType cpp map  <F7> <Esc>:w<CR>:!clear && g++ -std=c++17 % -o %:t:r -lstdc++fs<CR>
+let compRunFilesystem = "!clear && g++ -std=c++17 % -o %:t:r -lstdc++fs"
+autocmd FileType cpp imap <F7> <Esc>:w<CR>:execute ":" . compRunFilesystem . " " . t:extraFlags<CR>
+autocmd FileType cpp map  <F7> <Esc>:w<CR>:execute ":" . compRunFilesystem . " " . t:extraFlags<CR>
 
 " For C++17 experimental filesystem compiling (DEBUGGING)
-autocmd FileType cpp imap <F8> <Esc>:w<CR>:!clear && g++ -g -std=c++17 % -o %:t:r -lstdc++fs<CR>
-autocmd FileType cpp map  <F8> <Esc>:w<CR>:!clear && g++ -g -std=c++17 % -o %:t:r -lstdc++fs<CR>
+let compFilesystemDebug = ":!clear && g++ -g -std=c++17 % -o %:t:r -lstdc++fs"
+autocmd FileType cpp imap <F8> <Esc>:w<CR>:execute ":" . compFilesystemDebug . " " . t:extraFlags<CR>
+autocmd FileType cpp map  <F8> <Esc>:w<CR>:execute ":" . compFilesystemDebug . " " . t:extraFlags<CR>
 
 " For OpenGL/GLEW/GLUT C++ compiling and running
-autocmd FileType c imap <F5> <Esc>:w<CR>:!clear && g++ % -o %:t:r -lGL -lGLU -lglut -lGLEW && ./%:t:r<CR>
-autocmd FileType c map  <F5> <Esc>:w<CR>:!clear && g++ % -o %:t:r -lGL -lGLU -lglut -lGLEW && ./%:t:r<CR>
+let compGLRun = "!clear && g++ % -o %:t:r -lGL -lGLU -lglut -lGLEW && ./%:t:r"
+autocmd FileType c imap <F5> <Esc>:w<CR>:execute ":" . compGLRun . " " . t:extraFlags<CR>
+autocmd FileType c map  <F5> <Esc>:w<CR>:execute ":" . compGLRun . " " . t:extraFlags<CR>
 
 " For basic Bash running
-autocmd FileType sh imap <F5> <Esc>:w<CR>:!clear;./%<CR>
-autocmd FileType sh map  <F5> <Esc>:w<CR>:!clear;./%<CR>
+let shellRun = "!clear;./%"
+autocmd FileType sh imap <F5> <Esc>:w<CR>:execute ":" . shellRun . " " . t:extraFlags<CR>
+autocmd FileType sh map  <F5> <Esc>:w<CR>:execute ":" . shellRun . " " . t:extraFlags<CR>
 " ================================================================= "
 
 
