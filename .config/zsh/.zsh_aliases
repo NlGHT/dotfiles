@@ -3,6 +3,7 @@ alias vim='nvim'
 alias v='vim'
 alias suv='sudo vim'
 
+
 # Basic shell stuff
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -13,6 +14,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+
 # Some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -20,6 +22,7 @@ alias l='ls -CF'
 alias ld='ls -d .*/ */'
 alias mv='mv -i' # Ask to confirm
 alias rm='rm -i' # Ask to confirm
+
 
 # NVIDIA and Optimus Manager
 alias pro='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia'
@@ -29,20 +32,22 @@ alias intl='optimus-manager --switch intel'
 alias gpu='glxinfo | grep renderer'
 alias bat='upower -i $(upower -e | grep BAT) | awk "/percentage/ {print $2}"'
 
+
 # MongoDB
 alias startMongo='sudo systemctl start mongodb.service'
 alias stopMongo='sudo systemctl stop mongodb.service'
+
 
 # Ornamentation
 alias weather='curl wttr.in'
 alias aunews='curl au.getnews.tech'
 alias usnews='curl us.getnews.tech'
 alias starwars='telnet towel.blinkenlights.nl'
-setDribbblishTheme() {
+function setDribbblishTheme() {
     # Spotify themeing
     spicetify config current_theme Dribbblish color_scheme "$1" && spicetify apply
 }
-setupDribblish() {
+function setupDribblish() {
     # Spotify
     cd "$(dirname "$(spicetify -c)")/Themes/Dribbblish" || return
     cp dribbblish.js ../../Extensions
@@ -52,9 +57,11 @@ setupDribblish() {
     spicetify apply
 }
 
+
 # In case XDG_CONFIG_HOME has been unset
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 ZDOTDIR="${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}"
+
 
 # All edits
 alias eac='vim $XDG_CONFIG_HOME/alacritty/alacritty.yml'
@@ -73,8 +80,10 @@ alias el='sudo vim /etc/lightdm/lightdm.conf'
 alias ee='vim $HOME/.doom.d/init.el'
 alias ep='vim $HOME/.profile'
 
+
 # All code
 alias smi='sudo make install' # Handy for dwm and suckless software
+
 
 # Utility
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
@@ -91,7 +100,7 @@ alias debugxapp='G_MESSAGES_DEBUG=X11Helper'
 alias spaceLeft='df -h | grep -E "/$|/home"'
 alias ssh="TERM=xterm-256color ssh"
 # Active monitor function from here: https://unix.stackexchange.com/questions/203844/how-to-find-out-the-current-active-xserver-display-number
-whichActiveMon() {
+function whichActiveMon() {
     for p in $(pgrep -t $(cat /sys/class/tty/tty0/active));
     do
         d=$(awk -v RS='\0' -F= '$1=="DISPLAY" {print $2}' /proc/$p/environ 2>/dev/null);
@@ -100,6 +109,7 @@ whichActiveMon() {
     echo $d
 }
 
+
 # WIFI
 alias getRegularWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/limit56farce59umbra.nmconnection'
 alias getOtherWifiPassword='sudo grep psk= /etc/NetworkManager/system-connections/mappe82motel42parat.nmconnection'
@@ -107,8 +117,10 @@ alias getLANIP="ip a s wlp2s0 | awk -F '[/ ]+' '/inet / {print $3}'"
 alias resetPiSSH='ssh-keygen -R 192.168.87.109'
 alias scanwifi='sudo nmap -sS -O'
 
+
 # System
 alias startBluetooth='sudo systemctl start bluetooth.service'
+
 
 # Instant CD's
 alias documents='cd $HOME/Documents'
@@ -126,26 +138,87 @@ alias resn='cd $HOME/Documents/Uni/7Sem/Project/Notes'
 alias uniVideos='cd $HOME/Videos/Sem6/'
 alias rscript='cd $HOME/.config/REAPER/Scripts/Own\ Scripts/Night-REAPER-Scripts'
 
+
+# FZF
+function getFZF () {
+    find ~ -type $1 -not -path "*/.git/*" | sed "/[Cc][Aa][Cc][Hh][Ee]/d" | fzf
+}
+
+# Fast Change Directory to file in your home directory
+function fcd () {
+    directory=$(getFZF "d");
+    [ ! -z "$directory" ] &&
+        cd "$directory";
+}
+
+# Change Directory to the same as the file selected
+function cdf () {
+    file=$(getFZF "f");
+    [ ! -z "$file" ] &&
+        directory=$(echo "$file" | grep -oE "^.*\/");
+        cd "$directory";
+}
+
+# Open any file in your home directory with xdg-open
+function fopen () {
+    file=$(getFZF "f");
+    [ ! -z "$file" ] &&
+        xdg-open "$file";
+}
+
+# Find file (copy file path selected to clipboard
+function ff () {
+    file=$(getFZF "f");
+    [ ! -z "$file" ] &&
+        echo "$file" | sed "s/^..?//g;s/^/\"/;s/$/\"/" | tr -d "\n" | xclip -selection c;
+}
+
+# Copy file or directory to any folder in FZF fuzzy finder
+function cpto () {
+    if [ ! -z "$1" ] && [ -e "$1" ]; then
+        destination=$(getFZF "d");
+        if [ ! -z "$destination" ]; then
+            rsync -auv --progress "$1" "$destination"
+        fi
+    fi
+}
+
+# Move file or directory to any folder in FZF fuzzy finder (and Change Directory with it)
+function mvto () {
+    if [ ! -z "$1" ] && [ -e "$1" ]; then
+        destination=$(getFZF "d");
+        if [ ! -z "$destination" ]; then
+            rsync -auv --progress --remove-source-files "$1" "$destination" &&
+                rm -rf "$1" > /dev/null 2>&1 &&
+                cd "$destination";
+        fi
+    fi
+}
+
+
 # Dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias c='config'
 alias seeCommitDiff='config diff --cached origin/master'
 alias status='config status'
 
+
 # Currency conversion (cconv {amount} {from} {to}) (Country codes must be capital)
-cconv () {
+function cconv () {
     qalc -t "$1" "$2" to "$3"
 }
 
+
 # Make directory and CD
-mkcdir () {
+function mkcdir () {
     mkdir -p -- "$1" &&
         cd -P -- "$1" ||
         exit | return
 }
 
+
 # Time functions (Credit: https://superuser.com/a/611582)
-countdown () {
+function countdown () {
     date1=$(($(date +%s) + $1));
     while [ "$date1" -ge "$(date +%s)" ]; do
         echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
@@ -153,7 +226,7 @@ countdown () {
     done
 }
 
-stopwatch () {
+function stopwatch () {
     date1=$(date +%s);
     # 24 = q ; 65 = SPACE
     while true; do
@@ -162,8 +235,10 @@ stopwatch () {
     done
 }
 
+
 # Site controls
 alias updateSite="rsync -vrP --delete-after ~/Development/Site/ root@nightmusic.net:/var/www/nightmusic"
+
 
 # Get all aliases
 alias aliases='head -n -4 $ZDOTDIR/.zsh_aliases | less'
