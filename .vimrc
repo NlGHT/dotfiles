@@ -484,10 +484,10 @@ endfunction
 function! FlagManager()
     if exists("t:extraFlags") && t:extraFlags != ""
         call inputsave()
-            let appendReset = input('Current flags:"' . t:extraFlags . '" APPEND/reset: ')
+            let appendReset = input('Current flags:"' . t:extraFlags . '" [A]PPEND/[r]eset: ')
         call inputrestore()
 
-        if appendReset == "" || appendReset =~ "[Aa][Pp][Pp][Ee][Nn][Dd]"
+        if appendReset == "" || appendReset =~ "[Aa][Pp][Pp][Ee][Nn][Dd]" || appendReset =~ "[Aa]"
             call FlagChanging()
         elseif appendReset =~ "[Rr][Ee][Ss][Ee][Tt]" || appendReset =~ "[Rr]"
             let t:extraFlags = ""
@@ -499,6 +499,8 @@ endfunction
 
 map <leader>fm :call FlagManager()<CR>
 
+
+let cRun = " && ./%:t:r"
 " For python running
 let pythonRun = "!clear && python %"
 autocmd FileType python imap <F5> <Esc>:w<CR>:execute ":" . pythonRun<CR>
@@ -510,9 +512,9 @@ autocmd FileType cpp imap <F5> <Esc>:w<CR>:execute ":" . basicComp . " " . t:ext
 autocmd FileType cpp map  <F5> <Esc>:w<CR>:execute ":" . basicComp . " " . t:extraFlags<CR>
 
 " For basic C++ compiling and running
-let compRun = "!clear && echo '' && g++ % -o %:t:r && ./%:t:r"
-autocmd FileType cpp imap <F6> <Esc>:w<CR>:execute ":" . compRun . " " . t:extraFlags<CR>
-autocmd FileType cpp map  <F6> <Esc>:w<CR>:execute ":" . compRun . " " . t:extraFlags<CR>
+let compRun = "!clear && echo '' && g++ % -o %:t:r"
+autocmd FileType cpp imap <F6> <Esc>:w<CR>:execute ":" . compRun . " " . t:extraFlags . cRun<CR>
+autocmd FileType cpp map  <F6> <Esc>:w<CR>:execute ":" . compRun . " " . t:extraFlags . cRun<CR>
 
 " For C++17 experimental filesystem compiling
 let compRunFilesystem = "!clear && g++ -std=c++17 % -o %:t:r -lstdc++fs"
@@ -525,9 +527,9 @@ autocmd FileType cpp imap <F8> <Esc>:w<CR>:execute ":" . compFilesystemDebug . "
 autocmd FileType cpp map  <F8> <Esc>:w<CR>:execute ":" . compFilesystemDebug . " " . t:extraFlags<CR>
 
 " For OpenGL/GLEW/GLUT C++ compiling and running
-let compGLRun = "!clear && g++ % -o %:t:r -lGL -lGLU -lglut -lGLEW && ./%:t:r"
-autocmd FileType c imap <F5> <Esc>:w<CR>:execute ":" . compGLRun . " " . t:extraFlags<CR>
-autocmd FileType c map  <F5> <Esc>:w<CR>:execute ":" . compGLRun . " " . t:extraFlags<CR>
+let compGLRun = "!clear && g++ % -o %:t:r -lGL -lGLU -lglut -lGLEW"
+autocmd FileType c imap <F5> <Esc>:w<CR>:execute ":" . compGLRun . " " . t:extraFlags . cRun<CR>
+autocmd FileType c map  <F5> <Esc>:w<CR>:execute ":" . compGLRun . " " . t:extraFlags . cRun<CR>
 
 " For basic Bash running
 let shellRun = "!clear;./%"
@@ -550,6 +552,7 @@ map <leader>gy :Goyo<CR>
 
 " If executable opened instead of cpp, open it no confirmation
 let g:nobin_always_yes = 1
+let g:nobin_accept_trailing_dot = 1 " Won't work without this
 
 " Colour the quick-scope plugin as the same colours everywhere
 " (I don't do this anymore)
