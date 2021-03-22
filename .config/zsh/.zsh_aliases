@@ -99,6 +99,8 @@ alias wdil='history | grep'
 alias debugxapp='G_MESSAGES_DEBUG=X11Helper'
 alias spaceLeft='df -h | grep -E "/$|/home"'
 alias ssh="TERM=xterm-256color ssh"
+alias dnd="dragon-drag-and-drop --and-exit"
+alias sxiv="sxiv -ba" # Remove bottom bar
 # Active monitor function from here: https://unix.stackexchange.com/questions/203844/how-to-find-out-the-current-active-xserver-display-number
 function whichActiveMon() {
     for p in $(pgrep -t $(cat /sys/class/tty/tty0/active));
