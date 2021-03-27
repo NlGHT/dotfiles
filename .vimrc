@@ -552,7 +552,6 @@ map <leader>gy :Goyo<CR>
 
 " If executable opened instead of cpp, open it no confirmation
 let g:nobin_always_yes = 1
-let g:nobin_accept_trailing_dot = 1 " Won't work without this
 
 " Colour the quick-scope plugin as the same colours everywhere
 " (I don't do this anymore)
