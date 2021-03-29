@@ -11,7 +11,7 @@
 
 export TERM="alacritty"
 export EDITOR="nvim"
-export BROWSER="brave"
+export BROWSER="librewolf"
 export READER="zathura"
 
 # Set PATH so it includes user's bash scripts if it exists
