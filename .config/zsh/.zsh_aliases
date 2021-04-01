@@ -88,6 +88,7 @@ alias smi='sudo make install' # Handy for dwm and suckless software
 # Utility
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias x='exit'
+alias sus='systemctl suspend'
 alias reload='source $ZDOTDIR/.zshrc'
 alias delOrphans='sudo /bin/pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
 alias yay!='yay' # YAY!!!!!!!!!
