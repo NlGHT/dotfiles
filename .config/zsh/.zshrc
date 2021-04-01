@@ -92,11 +92,11 @@ source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh 2>/de
 source /usr/share/doc/pkgfile/command-not-found.zsh 2>/dev/null
 
 # Source OMZ library functions for proper git prompt
-source "$ZSH/omzlib/git.zsh"
-source "$ZSH/omzlib/theme-and-appearance.zsh"
+source "$ZDOTDIR/omzlib/git.zsh"
+source "$ZDOTDIR/omzlib/theme-and-appearance.zsh"
 
 # Theme
-source "$ZSH/themes/minimal_improved/minimal_improved.zsh-theme"
+source "$ZDOTDIR/themes/minimal_improved/minimal_improved.zsh-theme"
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
