@@ -50,6 +50,10 @@ export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
 export NVM_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nvm"
 export GRADLE_USER_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/gradle"
 
+if [[ "$(tty)" = "/dev/tty1" ]]; then
+	pgrep dwm || startx
+fi
+
 # __    _          _       .    ,
 # |\   |  `   ___. /      _/_   /   ____
 # | \  |  | .'   ` |,---.  |       (
