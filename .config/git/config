@@ -5,3 +5,5 @@
 	autocrlf = input
 [color]
 	ui = true
+[pull]
+	rebase = true
