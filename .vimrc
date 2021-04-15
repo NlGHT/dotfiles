@@ -565,6 +565,9 @@ endfunction
     " autocmd ColorScheme * :call SetQuickScopeColours()
 " augroup END
 
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
 " Tim Pope Tabular Insert Mode Align Tables
 inoremap <silent><Bar> <Bar><Esc>:call <SID>align()<CR>a
 
