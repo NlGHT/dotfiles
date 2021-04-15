@@ -144,6 +144,13 @@ autocmd FileType markdown,text call s:setWordWrapping()
 " For lightline
 set laststatus=2
 set noshowmode
+
+" For GUI
+set guifont=InputMono:h20
+
+" For NeoVide
+let g:neovide_cursor_animation_length=0.02
+let g:neovide_cursor_trail_length=0.4
 " ================================================================= "
 
 
