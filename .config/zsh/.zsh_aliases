@@ -119,6 +119,7 @@ alias getOtherWifiPassword='sudo grep psk= /etc/NetworkManager/system-connection
 alias getLANIP="ip a s wlp2s0 | awk -F '[/ ]+' '/inet / {print $3}'"
 alias resetPiSSH='ssh-keygen -R 192.168.87.109'
 alias scanwifi='sudo nmap -sS -O'
+alias uniVPN='sudo openconnect https://ssl-vpn1.aau.dk/'
 
 
 # System
