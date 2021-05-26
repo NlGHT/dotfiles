@@ -144,6 +144,13 @@ autocmd FileType markdown,text call s:setWordWrapping()
 " For lightline
 set laststatus=2
 set noshowmode
+
+" For GUI
+set guifont=InputMono:h20
+
+" For NeoVide
+let g:neovide_cursor_animation_length=0.02
+let g:neovide_cursor_trail_length=0.4
 " ================================================================= "
 
 
@@ -564,6 +571,9 @@ endfunction
     " autocmd!
     " autocmd ColorScheme * :call SetQuickScopeColours()
 " augroup END
+
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Tim Pope Tabular Insert Mode Align Tables
 inoremap <silent><Bar> <Bar><Esc>:call <SID>align()<CR>a

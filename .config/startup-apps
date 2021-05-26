@@ -2,7 +2,7 @@
 
 # All the startup applications and stuff
 
-picom -b --experimental-backends --dbus # Compositor (Blur)
+picom -b --experimental-backends --dbus --backend glx --blur-method dual_kawase # Compositor (Blur)
 
 # The password popup prompt for some things
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
