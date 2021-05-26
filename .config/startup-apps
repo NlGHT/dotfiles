@@ -11,7 +11,7 @@ eval "$(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)"
 xrdb "$HOME/.Xresources"
 
 nm-applet & # Wifi applet in systray
-blueman-applet & # Bluetooth applet in systray
+# blueman-applet & # Bluetooth applet in systray
 
 pulseeffects --gapplication-service &
 
