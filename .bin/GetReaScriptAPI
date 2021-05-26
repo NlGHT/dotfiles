@@ -120,7 +120,7 @@ while getopts "$optspec" optchar; do
     esac
 done
 
-[ $language -le 0 ] && printf "ERROR: No langage has been specified.\nYou can view the help/guide with:\nGetReaScriptAPI --help\n" && exit
+[ $language -le 0 ] && printf "ERROR: No langage has been specified.\nYou can view the help/guide with:\nGetReaScriptAPI --help\n" && exit 1
 
 
 doc=$(curl -s http://reaper.fm/sdk/reascript/reascripthelp.html)
