@@ -5,15 +5,14 @@
 picom -b --experimental-backends --dbus --backend glx --blur-method dual_kawase # Compositor (Blur)
 
 # The password popup prompt for some things
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-eval "$(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)"
+/usr/lib/polkit-kde-authentication-agent-1 &
 
 xrdb "$HOME/.Xresources"
 
 nm-applet & # Wifi applet in systray
 # blueman-applet & # Bluetooth applet in systray
-
-pulseeffects --gapplication-service &
+# pulseeffects --gapplication-service &
+# qjackctl & # JACK GUI control
 
 redshift & # Blue light filter
 
@@ -21,3 +20,5 @@ feh --no-fehbg --bg-fill "$XDG_CONFIG_HOME/wallpaper.jpg" # Background
 
 dunst & # Notifications
 dwmblocks & # Status bar
+
+#timedatectl set-ntp true
