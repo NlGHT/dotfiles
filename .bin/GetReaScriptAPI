@@ -27,6 +27,10 @@ removeArrayMethods() {
     mainParse=$(echo "$mainParse" | sed '/^{/d')
 }
 
+onlyArrayMethods() {
+    mainParse=$(echo "$mainParse" | sed '/^[^{]/d')
+}
+
 parseC() {
     mainParse=$(echo "$doc" | awk 'BEGIN{FS="<code>|</code>"} /C:/ {print $2}' | sed 's/<i>\|<\/i>\|//g;/^$/d')
 
@@ -54,6 +58,9 @@ parseLua() {
     # Deletes all the array methods at the bottom
     [ "$noArrays" = 1 ] && removeArrayMethods
 
+    # Keep only array
+    [ "$onlyArrays" = 1 ] && onlyArrayMethods
+
     echo "$mainParse"
 }
 
@@ -77,6 +84,9 @@ while getopts "$optspec" optchar; do
                     ;;
                 no-arrays)
                     noArrays=1
+                    ;;
+                only-arrays)
+                    onlyArrays=1
                     ;;
                 lua)
                     language=3
