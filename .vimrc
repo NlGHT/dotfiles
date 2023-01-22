@@ -55,11 +55,12 @@ call plug#begin('$HOME/.vim/plugged')
     Plug 'honza/vim-snippets' " Snippets are separated from the engine
 
     " Additional languages
-    Plug 'NlGHT/vim-eel2'
+    Plug 'NlGHT/vim-eel'
     Plug 'xolox/vim-misc' " Necessary for vim-lua-ftplugin
-    Plug 'xolox/vim-lua-ftplugin' " Works with YCM
+    " Plug 'xolox/vim-lua-ftplugin' " Works with YCM
     Plug 'OmniSharp/omnisharp-vim' " Literally only here cos it has decent syntax highlighting
     Plug 'sheerun/vim-polyglot' " Bunch of language files
+    Plug 'lervag/vimtex'
 
 " Usability
 
@@ -139,7 +140,7 @@ function! s:setWordWrapping()
 endfunction
 
 " Only set word wrapping for pure writing filetypes
-autocmd FileType markdown,text call s:setWordWrapping()
+autocmd FileType markdown,text,tex call s:setWordWrapping()
 
 " For lightline
 set laststatus=2
@@ -355,6 +356,8 @@ vnoremap K :m '<-2<CR>gv=gv
 " search will center on the line it's found in.
 nnoremap n nzzzv
 nnoremap N Nzzzv
+
+" nmap p pmz==`z
 " ================================================================= "
 
 
@@ -402,9 +405,15 @@ let g:UltiSnipsExpandTrigger       = "<tab>"
 let g:UltiSnipsJumpForwardTrigger  = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
+" Lua
+" let g:lua_complete_omni = 1
+
 " ALE (Linting)
 " Don't load ALE for CS files (Doesn't seem to work with Unity)
 autocmd BufRead * if &ft!="cs"|call plug#load('ale')|endif
+
+" TeX filetype correction
+autocmd BufNewFile,BufRead,BufEnter *.tex setf tex
 
 " ALE jump to errors/warnings
 nnoremap <leader>en :ALENextWrap<CR>
@@ -542,6 +551,13 @@ autocmd FileType c map  <F5> <Esc>:w<CR>:execute ":" . compGLRun . " " . t:extra
 let shellRun = "!clear;./%"
 autocmd FileType sh imap <F5> <Esc>:w<CR>:execute ":" . shellRun . " " . t:extraFlags<CR>
 autocmd FileType sh map  <F5> <Esc>:w<CR>:execute ":" . shellRun . " " . t:extraFlags<CR>
+
+" For basic Bash running
+let pdfCompile = "!clear;texi2pdf % -q"
+autocmd FileType tex imap <F5> <Esc>:w<CR>:execute ":" . pdfCompile . " " . t:extraFlags<CR>
+autocmd FileType tex map  <F5> <Esc>:w<CR>:execute ":" . pdfCompile . " " . t:extraFlags<CR>
+
+let g:vimtex_quickfix_enabled = 0
 " ================================================================= "
 
 
