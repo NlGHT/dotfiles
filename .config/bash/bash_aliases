@@ -1,7 +1,7 @@
-# Rest in peace Vim <3 I still love you but NeoVim just is needed with all my plugins for performance
-alias vim='nvim'
-alias v='vim'
-alias suv='sudo vim'
+# Vim
+alias vim='$EDITOR'
+alias v='$EDITOR'
+alias suv='sudo $EDITOR'
 
 
 # Basic shell stuff
@@ -63,21 +63,21 @@ XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 
 # All edits
-alias eac='vim $XDG_CONFIG_HOME/alacritty/alacritty.yml'
-alias eaw='cd $XDG_CONFIG_HOME/awesome/ && vim'
-alias ed='cd $XDG_CONFIG_HOME/dwm/ && vim'
-alias edb='cd $XDG_CONFIG_HOME/dwmblocks/ && vim'
-alias edst='vim $XDG_CONFIG_HOME/dunst/dunstrc'
-alias ei='vim $HOME/.xinitrc'
-alias es='vim $XDG_CONFIG_HOME/startup-apps'
-alias er='vim $XDG_CONFIG_HOME/redshift/redshift.conf'
-alias eal='vim $XDG_CONFIG_HOME/bash/bash_aliases'
-alias eb='vim $HOME/.bashrc'
-alias ev='vim $HOME/.vimrc'
-alias td='vim $HOME/Documents/ToDoList.txt'
-alias el='sudo vim /etc/lightdm/lightdm.conf'
-alias ee='vim $HOME/.doom.d/init.el'
-alias ep='vim $HOME/.profile'
+alias eac='$EDITOR $XDG_CONFIG_HOME/alacritty/alacritty.yml'
+alias eaw='cd $XDG_CONFIG_HOME/awesome/ && $EDITOR'
+alias ed='cd $XDG_CONFIG_HOME/dwm/ && $EDITOR'
+alias edb='cd $XDG_CONFIG_HOME/dwmblocks/ && $EDITOR'
+alias edst='$EDITOR $XDG_CONFIG_HOME/dunst/dunstrc'
+alias ei='$EDITOR $HOME/.xinitrc'
+alias es='$EDITOR $XDG_CONFIG_HOME/startup-apps'
+alias er='$EDITOR $XDG_CONFIG_HOME/redshift/redshift.conf'
+alias eal='$EDITOR $ZDOTDIR/.zsh_aliases'
+alias eb='$EDITOR $ZDOTDIR/.zshrc'
+alias ev='$EDITOR $HOME/.vimrc'
+alias td='$EDITOR $HOME/Documents/ToDoList.txt'
+alias el='sudo $EDITOR /etc/lightdm/lightdm.conf'
+alias ee='$EDITOR $HOME/.doom.d/init.el'
+alias ep='$EDITOR $HOME/.profile'
 
 
 # All code
@@ -87,6 +87,7 @@ alias smi='sudo make install' # Handy for dwm and suckless software
 # Utility
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias x='exit'
+alias s='systemctl'
 alias sus='systemctl suspend'
 alias reload='source $HOME/.bashrc'
 alias delOrphans='sudo /bin/pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
@@ -95,12 +96,14 @@ alias pacman='yay'
 alias pls='sudo'
 alias open='xdg-open'
 alias g='git'
+alias y='yabridgectl'
 alias wdil='history | grep'
 alias debugxapp='G_MESSAGES_DEBUG=X11Helper'
 alias spaceLeft='df -h | grep -E "/$|/home"'
 alias ssh="TERM=xterm-256color ssh"
 alias dnd="dragon-drag-and-drop --and-exit"
 alias sxiv="sxiv -ba" # Remove bottom bar
+alias setTime="timedatectl set-ntp true"
 # Active monitor function from here: https://unix.stackexchange.com/questions/203844/how-to-find-out-the-current-active-xserver-display-number
 function whichActiveMon() {
     for p in $(pgrep -t $(cat /sys/class/tty/tty0/active));
@@ -110,6 +113,22 @@ function whichActiveMon() {
     done;
     echo $d
 }
+# Open current repo in browser edited version of: https://jasonneylon.wordpress.com/2011/04/22/opening-github-in-your-browser-from-the-terminal/
+function repo() {
+  giturl=$(git config --get remote.origin.url);
+  if [ -z "$giturl" ]; then
+     echo "Not a git repository or no remote.origin.url set";
+     return 1;
+  fi
+
+  giturl=${giturl/git\@github\.com\:/https://github.com/};
+  giturl=${giturl/\.git/\/tree/};
+  branch="$(git symbolic-ref HEAD 2>/dev/null)" ||
+      branch="(unnamed branch)"; # detached HEAD
+  branch=${branch##refs/heads/};
+  giturl+="$branch";
+  open $giturl;
+}
 
 
 # WIFI
@@ -118,6 +137,7 @@ alias getOtherWifiPassword='sudo grep psk= /etc/NetworkManager/system-connection
 alias getLANIP="ip a s wlp2s0 | awk -F '[/ ]+' '/inet / {print $3}'"
 alias resetPiSSH='ssh-keygen -R 192.168.87.109'
 alias scanwifi='sudo nmap -sS -O'
+alias uniVPN='sudo openconnect https://ssl-vpn1.aau.dk/'
 
 
 # System
@@ -239,7 +259,7 @@ function stopwatch () {
 
 
 # Site controls
-alias updateSite="rsync -vrP --delete-after ~/Development/Site/ root@nightmusic.net:/var/www/nightmusic"
+alias updateSite="rsync -vrP --delete-after --exclude='/.git*' --exclude='/README*' --exclude='/LICENSE' ~/Development/NightMusicDotNet/ root@nightmusic.net:/var/www/nightmusic"
 
 
 # Get all aliases

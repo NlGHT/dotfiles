@@ -88,6 +88,7 @@ alias smi='sudo make install' # Handy for dwm and suckless software
 # Utility
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias x='exit'
+alias s='systemctl'
 alias sus='systemctl suspend'
 alias reload='source $ZDOTDIR/.zshrc'
 alias delOrphans='sudo /bin/pacman -Rns $(pacman -Qtdq)' # Remove orphaned packages
@@ -96,12 +97,14 @@ alias pacman='yay'
 alias pls='sudo'
 alias open='xdg-open'
 alias g='git'
+alias y='yabridgectl'
 alias wdil='history | grep'
 alias debugxapp='G_MESSAGES_DEBUG=X11Helper'
 alias spaceLeft='df -h | grep -E "/$|/home"'
 alias ssh="TERM=xterm-256color ssh"
 alias dnd="dragon-drag-and-drop --and-exit"
 alias sxiv="sxiv -ba" # Remove bottom bar
+alias setTime="timedatectl set-ntp true"
 # Active monitor function from here: https://unix.stackexchange.com/questions/203844/how-to-find-out-the-current-active-xserver-display-number
 function whichActiveMon() {
     for p in $(pgrep -t $(cat /sys/class/tty/tty0/active));
@@ -110,6 +113,22 @@ function whichActiveMon() {
         [[ -n $d ]] && break;
     done;
     echo $d
+}
+# Open current repo in browser edited version of: https://jasonneylon.wordpress.com/2011/04/22/opening-github-in-your-browser-from-the-terminal/
+function repo() {
+  giturl=$(git config --get remote.origin.url);
+  if [ -z "$giturl" ]; then
+     echo "Not a git repository or no remote.origin.url set";
+     return 1;
+  fi
+
+  giturl=${giturl/git\@github\.com\:/https://github.com/};
+  giturl=${giturl/\.git/\/tree/};
+  branch="$(git symbolic-ref HEAD 2>/dev/null)" ||
+      branch="(unnamed branch)"; # detached HEAD
+  branch=${branch##refs/heads/};
+  giturl+="$branch";
+  open $giturl;
 }
 
 
@@ -241,7 +260,7 @@ function stopwatch () {
 
 
 # Site controls
-alias updateSite="rsync -vrP --delete-after ~/Development/Site/ root@nightmusic.net:/var/www/nightmusic"
+alias updateSite="rsync -vrP --delete-after --exclude='/.git*' --exclude='/README*' --exclude='/LICENSE' ~/Development/NightMusicDotNet/ root@nightmusic.net:/var/www/nightmusic"
 
 
 # Get all aliases
