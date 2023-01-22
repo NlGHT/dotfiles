@@ -81,7 +81,7 @@ done
 
 # Control bindings for programs
 bindkey -s "^g" "lc\n"
-bindkey -s "^h" "history 1\n"
+bindkey -s "^h" "^w"
 bindkey -s "^l" "clear\n"
 
 # Load zsh-syntax-highlighting
